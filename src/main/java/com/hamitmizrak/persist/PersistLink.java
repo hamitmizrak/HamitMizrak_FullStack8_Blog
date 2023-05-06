@@ -16,4 +16,10 @@ public class PersistLink {
     // Postman
     // Intellij IDEA
     // Visual Studio Code
+
+    // Proje üstünden geç
+    // Swagger
+    // Postman
+    // Generics
+    // Security
 }

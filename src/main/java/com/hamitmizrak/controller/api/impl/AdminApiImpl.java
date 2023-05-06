@@ -23,7 +23,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 // CORS: eğer reactta package.json'da proxy yazarsam @CrossOrigin yazmasamda olur.
-@RequestMapping("/customer/api/v1")
+@RequestMapping("/admin/api/v1")
 public class AdminApiImpl implements IAdminApi {
 
     // ERROR
@@ -55,7 +55,7 @@ public class AdminApiImpl implements IAdminApi {
     private final AdminServices customerServices;
 
     // SPEED ALL
-    // http://localhost:2222/customer/api/v1/speedData
+    // http://localhost:2222/admin/api/v1/speedData
     @Override
     @GetMapping("/speedData")
     public ResponseEntity<AdminDto> speedDataApi() {
@@ -63,15 +63,15 @@ public class AdminApiImpl implements IAdminApi {
     }
 
     // DELETE ALL
-    // http://localhost:2222/customer/api/v1/customerAllData
+    // http://localhost:2222/admin/api/v1/deleteall
     @Override
-    @GetMapping("/customerAllData")
+    @GetMapping("/deleteall")
     public ResponseEntity<String> deleteApi() {
         return ResponseEntity.ok(customerServices.allDeleteServices());
     }
 
     // CREATE
-    // http://localhost:2222/customer/api/v1/create
+    // http://localhost:2222/admin/api/v1/create
     @Override
     @PostMapping(value="create")
     public ResponseEntity<AdminDto> createApi(@Valid @RequestBody AdminDto customerDto) {
@@ -83,7 +83,7 @@ public class AdminApiImpl implements IAdminApi {
     }
 
     // LIST
-    // http://localhost:2222/customer/api/v1/list
+    // http://localhost:2222/admin/api/v1/list
     @Override
     @GetMapping( "list")
     @Cacheable(value = "cacheAdminList")
@@ -92,10 +92,10 @@ public class AdminApiImpl implements IAdminApi {
     }
 
     // FIND
-    // http://localhost:2222/customer/api/v1/find
-    // http://localhost:2222/customer/api/v1/find/0
-    // http://localhost:2222/customer/api/v1/find/-1
-    // http://localhost:2222/customer/api/v1/find/1
+    // http://localhost:2222/admin/api/v1/find
+    // http://localhost:2222/admin/api/v1/find/0
+    // http://localhost:2222/admin/api/v1/find/-1
+    // http://localhost:2222/admin/api/v1/find/1
     @Override
     @GetMapping({"/find","/find/{id}"})
     public ResponseEntity<?> findByIdApi(@PathVariable(name = "id",required = false) Long id) {
@@ -122,7 +122,7 @@ public class AdminApiImpl implements IAdminApi {
     }
 
     // DELETE
-    // http://localhost:2222/customer/api/v1/delete/1
+    // http://localhost:2222/admin/api/v1/delete/1
     @Override
     @DeleteMapping({"/delete","/delete/{id}"})
     public ResponseEntity<Map<String, Boolean>> deleteApi(@PathVariable(name = "id", required = false) Long id) {
@@ -130,7 +130,7 @@ public class AdminApiImpl implements IAdminApi {
     }
 
     // UPDATE
-    // http://localhost:2222/customer/api/v1/update/1
+    // http://localhost:2222/admin/api/v1/update/1
     @Override
     @PutMapping({"/update","/update/{id}"})
     public ResponseEntity<AdminDto> updateApi(@PathVariable(name = "id", required = false) Long id, @Valid @RequestBody AdminDto customerDto) {

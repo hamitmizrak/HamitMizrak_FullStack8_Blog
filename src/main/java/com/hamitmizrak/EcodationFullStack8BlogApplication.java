@@ -18,11 +18,10 @@ import java.util.TimeZone;
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareMethod")
 
 //SCAN
-@EntityScan(basePackages = "com.hamitmizrak.data.entity") //Entity bulamadığı zaman
-@EnableJpaRepositories(basePackages = "com.hamitmizrak.data.repository") //Repository bulamadığı zaman
+//@EntityScan(basePackages = "com.hamitmizrak.data.entity") //Entity bulamadığı zaman
+//@EnableJpaRepositories(basePackages = "com.hamitmizrak.data.repository") //Repository bulamadığı zaman
 
 // Spring Security
-
 @SpringBootApplication(exclude = {
         //SecurityAutoConfiguration.class,
         org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,

@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface IAdminRepository extends JpaRepository<AdminEntity,Long> {
 
     //Delivered Query
-    Optional<AdminEntity> findByEmail(String email); // database email bulmak için
+    //Optional<AdminEntity> findByEmail(String email); // database email bulmak için
+    AdminEntity findByEmail(String email); // database email bulmak için
 }

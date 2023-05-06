@@ -14,13 +14,13 @@ import org.webjars.NotFoundException;
 public class UniqueEmailValidation implements ConstraintValidator<UniqueEmail,String> {
 
     //Injection
-    private final IAdminRepository iCustomerRepository;
+    private final IAdminRepository iAdminRepository;
 
     // Database email bulunan  kullanıcıyı var mı yok mu ?
     @Override
     public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
-        AdminEntity customerEntity= iCustomerRepository.findByEmail(email)
-                .orElseThrow( ()->new NotFoundException(email+" bulunmadı"));
+        //AdminEntity customerEntity= iAdminRepository.findByEmail(email).orElseThrow( ()->new NotFoundException(email+" bulunmadı"));
+        AdminEntity customerEntity= iAdminRepository.findByEmail(email);
         // Eğer böyle bir email varsa return false döndürsün
         if(customerEntity!=null){
             return false;
