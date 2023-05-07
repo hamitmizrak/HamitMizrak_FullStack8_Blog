@@ -6,7 +6,7 @@ i18n.use(initReactI18next).init({
         en:
         {
             translations: {
-                'Login Register': 'Login Register',
+                'Register': 'Register',
                 'Login': 'Login',
                 'username': 'Username',
                 'email': 'email address',
@@ -15,13 +15,18 @@ i18n.use(initReactI18next).init({
                 'submit': 'submit',
                 'logout': "Logout",
                 'homepage':"Home Page",
-
+                'company':"Company Name",
+                'product':"Product",
+                'useFullLink':"useFullLink",
+                'contact':"Contact",
+                'home':"Home",
+                'search':"search",
             }
         },
         tr:
         {
             translations: {
-                'Login Register': 'Üye Kayıt',
+                'Register': 'Üye Kayıt',
                 'Login': 'Üye Girişi',
                 'username': 'Kullanıcı adını giriniz',
                 'email': 'email adresini Giriniz',
@@ -30,6 +35,12 @@ i18n.use(initReactI18next).init({
                 'submit': 'Gönder',
                 'logout': "Çıkış Yap",
                 'homepage':"Anasayfa",
+                'company':"Şirket Adı",
+                'product':"Ürün",
+                'useFullLink':"Yararlı Linkler",
+                'contact':"İletişim",
+                'home':"Anasayfa",
+                'search':"Arama..",
             }
         }
     },

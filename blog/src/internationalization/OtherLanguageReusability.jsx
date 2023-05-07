@@ -5,8 +5,8 @@ import React from 'react';
 
 //TR import edelim
 //adı tr olsun
-import tr from "../assets/Turkish.png"
-import en from "../assets/English.jpg"
+import tr from "../image/flag/Turkish.png"
+import en from "../image/flag/English.jpg"
 
 // Dil secenegi
 import { withTranslation } from 'react-i18next';
@@ -26,10 +26,18 @@ function OtherLanguageReusability(props) {
 
     //render
     return (
-        <div className="container">
-            <a className="dropdown-item44" href="#" onClick={() => internationalizationLanguage('tr')}><img src={tr} style={{ height: "15px", width: "40px;" }} className="me-2 mt-2" alt="TR" /> </a>
-            <a className="dropdown-item44" href="#" onClick={() => internationalizationLanguage('en')}><img src={en} style={{ height: "15px", width: "20px" }} className="me-2 mt-2" alt="EN" /></a>
-        </div>
+        <React.Fragment>
+            <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li className="nav-item">
+                    <a className="dropdown-item44" href="#" onClick={() => internationalizationLanguage('tr')}><img src={tr} style={{ height: "15px", width: "40px;" }} className="me-2 mt-2" alt="TR" /> </a>
+                </li>
+                <li className="nav-item">
+                    <a className="dropdown-item44" href="#" onClick={() => internationalizationLanguage('en')}><img src={en} style={{ height: "15px", width: "20px" }} className="me-2 mt-2" alt="EN" /></a>
+                </li>
+                <div className="container">
+                </div>
+            </ul>
+        </React.Fragment>
     );
 }
 // export default UserRegister
