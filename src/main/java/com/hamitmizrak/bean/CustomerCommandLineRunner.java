@@ -1,6 +1,6 @@
 package com.hamitmizrak.bean;
 
-import com.hamitmizrak.business.services.IAdminServices;
+import com.hamitmizrak.business.services.IGenericsServices;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CustomerCommandLineRunner {
 
-    private final IAdminServices customerServices;
+    private final IGenericsServices customerServices;
 
     // proje ayağa kalkar kalmaz otomatik veri eklesin
     @Bean

@@ -1,4 +1,5 @@
 import React from 'react'
+import { withTranslation } from 'react-i18next';
 
 // Arrow function Date
 let newDateYear = () => {
@@ -6,7 +7,7 @@ let newDateYear = () => {
 }
 
 // FUNCTION COMPONENT(Stateless)
-export default function Footer(props) {
+function Footer(props) {
     return (
         <React.Fragment>
             <footer class="text-center text-lg-start bg-dark text-white">
@@ -16,22 +17,22 @@ export default function Footer(props) {
                     </div>
 
                     <div>
-                        <a href="" class="me-4 link-secondary">
+                        <a href="blog/src/component/main/Footer" class="me-4 link-secondary">
                             <i class="text-primary fab fa-facebook-f"></i>
                         </a>
-                        <a href="" class="me-4 link-secondary">
+                        <a href="blog/src/component/main/Footer" class="me-4 link-secondary">
                             <i class="text-warning fab fa-twitter"></i>
                         </a>
-                        <a href="" class="me-4 link-secondary">
+                        <a href="blog/src/component/main/Footer" class="me-4 link-secondary">
                             <i class="text-primary  text-primary  fab fa-google"></i>
                         </a>
-                        <a href="" class="me-4 link-secondary">
+                        <a href="blog/src/component/main/Footer" class="me-4 link-secondary">
                             <i class="text-danger  fab fa-instagram"></i>
                         </a>
-                        <a href="" class="me-4 link-secondary">
+                        <a href="blog/src/component/main/Footer" class="me-4 link-secondary">
                             <i class="text-success fab fa-linkedin"></i>
                         </a>
-                        <a href="" class="me-4 link-secondary">
+                        <a href="blog/src/component/main/Footer" class="me-4 link-secondary">
                             <i class="fab fa-github"></i>
                         </a>
                     </div>
@@ -56,16 +57,16 @@ export default function Footer(props) {
                                     Products
                                 </h6>
                                 <p>
-                                    <a href="#!" class="text-reset">Angular</a>
+                                    <a href="blog/src/component/main/Footer#!" class="text-reset">Angular</a>
                                 </p>
                                 <p>
-                                    <a href="#!" class="text-reset">React</a>
+                                    <a href="blog/src/component/main/Footer#!" class="text-reset">React</a>
                                 </p>
                                 <p>
-                                    <a href="#!" class="text-reset">Vue</a>
+                                    <a href="blog/src/component/main/Footer#!" class="text-reset">Vue</a>
                                 </p>
                                 <p>
-                                    <a href="#!" class="text-reset">Laravel</a>
+                                    <a href="blog/src/component/main/Footer#!" class="text-reset">Laravel</a>
                                 </p>
                             </div>
 
@@ -75,16 +76,16 @@ export default function Footer(props) {
                                     Useful links
                                 </h6>
                                 <p>
-                                    <a href="#!" class="text-reset">Pricing</a>
+                                    <a href="blog/src/component/main/Footer#!" class="text-reset">Pricing</a>
                                 </p>
                                 <p>
-                                    <a href="#!" class="text-reset">Settings</a>
+                                    <a href="blog/src/component/main/Footer#!" class="text-reset">Settings</a>
                                 </p>
                                 <p>
-                                    <a href="#!" class="text-reset">Orders</a>
+                                    <a href="blog/src/component/main/Footer#!" class="text-reset">Orders</a>
                                 </p>
                                 <p>
-                                    <a href="#!" class="text-reset">Help</a>
+                                    <a href="blog/src/component/main/Footer#!" class="text-reset">Help</a>
                                 </p>
                             </div>
 
@@ -105,10 +106,13 @@ export default function Footer(props) {
                 <div class="text-center p-4" style={{ "backgroundColor": "rgba(0, 0, 0, 0.025)" }} >
                     2020
                     © {newDateYear()} Copyright:
-                    <a class="text-reset fw-bold" href="https://www.hamitmizrak.com.tr/">{props.site}</a>
+                    <a class="text-reset fw-bold" href="blog/src/component/main/Footer">{props.site}</a>
                 </div>
             </footer>
         </React.Fragment>
-    )
-}
+    ) //end return
+} //end function
+
+//i18n sarmaladı
+export default withTranslation()(Footer)
 

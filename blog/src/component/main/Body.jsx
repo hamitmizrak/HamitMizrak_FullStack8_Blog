@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { withTranslation } from 'react-i18next'
 
-export default class Body extends Component {
+class Body extends Component {
   render() {
     return (
       <React.Fragment>
@@ -14,6 +15,9 @@ export default class Body extends Component {
         
         lorem*200
         </React.Fragment>
-    )
-  }
-}
+    ) //end return
+  } //end render
+} //end class
+
+//i18n sarmaladı
+export default withTranslation()(Body);

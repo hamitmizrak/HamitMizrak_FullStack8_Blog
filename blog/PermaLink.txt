@@ -1,0 +1,18 @@
+#---- react kurulumu ----
+npx create-react-app blog
+
+#---- axios: java-react api bağlantısı için ----
+npm install axios --save
+
+#---- Router: link yönlendirmesini sağlasın ----
+npm install react-router-dom@5.2.0 --save
+
+#----  Dil desteği için ----
+npm install i18next@21.9.1 --save
+npm install react-i18next@11.18.6 --save
+
+#---- local storage bilgileri gizlemek için ----
+npm install secure-ls --save
+
+#---- redux middWare için ----
+npm i redux-thunk

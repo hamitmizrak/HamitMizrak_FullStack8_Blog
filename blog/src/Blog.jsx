@@ -1,8 +1,8 @@
 // rcc
 import React, { Component } from 'react'
-import Header from './main/Header'
-import Body from './main/Body'
-import Footer from './main/Footer'
+import Header from './component/main/Header'
+import Body from './component/main/Body'
+import Footer from './component/main/Footer'
 
 export default class Blog extends Component {
   render() {

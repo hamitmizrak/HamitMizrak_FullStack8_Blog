@@ -3,7 +3,7 @@ package com.hamitmizrak.business.services.impl;
 import com.hamitmizrak.bean.ModelMapperBean;
 import com.hamitmizrak.bean.PasswordEncoderBean;
 import com.hamitmizrak.business.dto.AdminDto;
-import com.hamitmizrak.business.services.IAdminServices;
+import com.hamitmizrak.business.services.IGenericsServices;
 import com.hamitmizrak.data.entity.AdminEntity;
 import com.hamitmizrak.data.repository.IAdminRepository;
 import com.hamitmizrak.exception.HamitMizrakException;
@@ -22,7 +22,7 @@ import java.util.*;
 
 @Service
 // Asıl iş yükünü yapan class
-public class AdminServices implements IAdminServices {
+public class AdminServices implements IGenericsServices<AdminDto> {
 
     // INJECTION
     private final IAdminRepository iCustomerRepository;

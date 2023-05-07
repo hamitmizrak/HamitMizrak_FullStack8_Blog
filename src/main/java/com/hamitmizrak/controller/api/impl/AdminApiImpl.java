@@ -2,7 +2,7 @@ package com.hamitmizrak.controller.api.impl;
 
 import com.hamitmizrak.business.dto.AdminDto;
 import com.hamitmizrak.business.services.impl.AdminServices;
-import com.hamitmizrak.controller.api.IAdminApi;
+import com.hamitmizrak.controller.api.IGenericsApi;
 import com.hamitmizrak.error.ApiResult;
 import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
@@ -24,7 +24,7 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 // CORS: eğer reactta package.json'da proxy yazarsam @CrossOrigin yazmasamda olur.
 @RequestMapping("/admin/api/v1")
-public class AdminApiImpl implements IAdminApi {
+public class AdminApiImpl implements IGenericsApi<AdminDto> {
 
     // ERROR
     private ApiResult apiResult;
