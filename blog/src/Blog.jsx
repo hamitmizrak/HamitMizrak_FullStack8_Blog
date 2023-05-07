@@ -47,7 +47,7 @@ class Blog extends Component {
             </Switch>
           </div>
           <Body/>
-          <Footer site="Hamit Mızrak" />
+          <Footer site="@Copy; Bütün Haklar Saklıdır. Hamit Mızrak" />
         </Router>
       </React.Fragment>
     ) //end return

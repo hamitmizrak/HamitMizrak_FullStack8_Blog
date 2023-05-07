@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
+
+//i18n için
 import { withTranslation } from 'react-i18next';
+
+//Link için
 import { Link } from 'react-router-dom';
+
+// Bayrak için
 import OtherLanguageReusability from '../../internationalization/OtherLanguageReusability';
 
 // CLASS
@@ -47,7 +53,8 @@ class Header extends Component {
                             <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                                 <li className="nav-item">
                                     {/* Login Page */}
-                                   <Link className="nav-link" to={`/login`}>{this.props.t('Login')}</Link> 
+                                   <Link className="nav-link" to={'/login'}>{this.props.t('Login')}</Link> 
+                                   
                                 </li>
                                 <li className="nav-item">
                                     {/* Register Page */}
