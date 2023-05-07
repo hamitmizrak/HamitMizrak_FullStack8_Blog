@@ -10,7 +10,8 @@ let newDateYear = () => {
 function Footer(props) {
     return (
         <React.Fragment>
-            <footer className="text-center text-lg-start bg-dark text-white fixed-bottom44">
+           
+            <footer className="text-center text-lg-start bg-dark text-white fixed-bottom44" style={{"marginTop":"20rem"}}>
                 <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
                     <div className="me-5 d-none d-lg-block">
                         <span>Get connected with us on social networks:</span>

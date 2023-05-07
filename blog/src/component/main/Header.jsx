@@ -51,10 +51,13 @@ class Header extends Component {
                                 </li>
                             </ul>
                             <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+                            <li className="nav-item">
+                                    {/* Login Page */}
+                                   <Link className="nav-link" to={'/admin'}>{this.props.t('admin')}</Link>     
+                                </li>
                                 <li className="nav-item">
                                     {/* Login Page */}
-                                   <Link className="nav-link" to={'/login'}>{this.props.t('Login')}</Link> 
-                                   
+                                   <Link className="nav-link" to={'/login'}>{this.props.t('Login')}</Link>     
                                 </li>
                                 <li className="nav-item">
                                     {/* Register Page */}

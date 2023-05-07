@@ -22,6 +22,8 @@ import './internationalization/i18nlanguage.js'
 import Home from './component/Home'
 import Register from './component/Register'
 import Login from './component/Login'
+import List from './component/admin/list'
+
 
 class Blog extends Component {
   constructor(props) {
@@ -42,10 +44,11 @@ class Blog extends Component {
               <Route path="/index" component={Home}></Route>
               <Route path="/register" component={Register}></Route>
               <Route path="/login" component={Login}></Route>
+              <Route path="/admin" component={List}></Route>
               <Redirect to="/"/>
             </Switch>
           </div>
-          <Body/>
+          {/* <Body/> */}
           <Footer site="@Copy; Bütün Haklar Saklıdır. Hamit Mızrak" />
         </Router>
       </React.Fragment>

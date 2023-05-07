@@ -21,6 +21,8 @@ i18n.use(initReactI18next).init({
                 'contact':"Contact",
                 'home':"Home",
                 'search':"search",
+                'admin':"Admin Page",
+
             }
         },
         tr:
@@ -41,6 +43,7 @@ i18n.use(initReactI18next).init({
                 'contact':"İletişim",
                 'home':"Anasayfa",
                 'search':"Arama..",
+                'admin':"Yönetim Sayfası",
             }
         }
     },

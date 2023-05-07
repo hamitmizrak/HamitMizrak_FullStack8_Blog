@@ -15,7 +15,7 @@ class RegisterApi {
     // LIST
     // http://localhost:2222/admin/api/v1/list
     listApi() {
-        axios.get(`${REGISTER_URL}/list`);
+       return axios.get(`${REGISTER_URL}/list`);
     }
 
     // FIND
