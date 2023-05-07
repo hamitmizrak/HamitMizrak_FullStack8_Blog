@@ -74,12 +74,12 @@ public class AdminApiImpl implements IGenericsApi<AdminDto> {
     // http://localhost:2222/admin/api/v1/create
     @Override
     @PostMapping(value="create")
-    public ResponseEntity<AdminDto> createApi(@Valid @RequestBody AdminDto customerDto) {
+    public ResponseEntity<AdminDto> createApi(@Valid @RequestBody AdminDto adminDto) {
         // return new ResponseEntity<>(adminDto, HttpStatus.OK);
         // return  ResponseEntity.status(HttpStatus.OK).body(adminDto);
         // return  ResponseEntity.status(200).body(adminDto);
         // return  ResponseEntity.ok().body(adminDto);
-        return ResponseEntity.ok(customerServices.createServices(customerDto));
+        return ResponseEntity.ok(customerServices.createServices(adminDto));
     }
 
     // LIST
@@ -133,7 +133,7 @@ public class AdminApiImpl implements IGenericsApi<AdminDto> {
     // http://localhost:2222/admin/api/v1/update/1
     @Override
     @PutMapping({"/update","/update/{id}"})
-    public ResponseEntity<AdminDto> updateApi(@PathVariable(name = "id", required = false) Long id, @Valid @RequestBody AdminDto customerDto) {
-        return ResponseEntity.ok(customerServices.updateServices(id, customerDto));
+    public ResponseEntity<AdminDto> updateApi(@PathVariable(name = "id", required = false) Long id, @Valid @RequestBody AdminDto adminDto) {
+        return ResponseEntity.ok(customerServices.updateServices(id, adminDto));
     }
 } // end update
