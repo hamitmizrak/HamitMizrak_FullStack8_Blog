@@ -30,7 +30,6 @@ class Blog extends Component {
     //BIND
   }
   //CDM
-
   render() {
     return (
       <React.Fragment>

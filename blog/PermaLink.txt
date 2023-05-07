@@ -16,3 +16,7 @@ npm install secure-ls --save
 
 #---- redux middWare için ----
 npm i redux-thunk
+
+################################################################################
+Hatalar Ve Çözümleri
+'react-scripts' is not recognized as an internal or external command,operable program or batch file. ==> npm install
