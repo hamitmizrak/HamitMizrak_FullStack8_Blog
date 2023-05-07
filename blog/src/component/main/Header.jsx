@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +21,8 @@ class Header extends Component {
             <React.Fragment>
                 <nav className="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
                     <div className="container">
-                        <a className="navbar-brand" href="blog/src/component/main/Header#"><i className={this.props.logo}></i></a>
+                        <Link className='navbar-brand' to="/"><i className={this.props.logo}></i></Link>
+                        <a className="navbar-brand" href="blog/src/component/main/Header#"></a>
                         <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
@@ -41,18 +43,26 @@ class Header extends Component {
                                     </div>
                                 </li>
                             </ul>
-
-                            {/* Türkçe ingilizce */}
                             <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                                 <li className="nav-item">
-                                    {/* <Link classNameName="nav-link"> Türkçe</Link> */}
+                                    {/* Login Page */}
+                                   <Link className="nav-link" to={`/login`}>Login</Link> 
                                 </li>
                                 <li className="nav-item">
-                                   {/* <Link className="nav-item">İngilizce</Link> */}
+                                    {/* Register Page */}
+                                  <Link className="nav-link" to={`/register`}>Register</Link> 
                                 </li>
                             </ul>
-
-
+                            <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+                                <li className="nav-item">
+                                    {/* Login Page */}
+                                   <Link className="nav-link" to={`/login`}>Login</Link> 
+                                </li>
+                                <li className="nav-item">
+                                    {/* Register Page */}
+                                  <Link className="nav-link" to={`/register`}>Register</Link> 
+                                </li>
+                            </ul>
                             <form className="d-flex my-2 my-lg-0">
                                 <input className="form-control me-sm-2" type="text" placeholder="Search" />
                                 <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

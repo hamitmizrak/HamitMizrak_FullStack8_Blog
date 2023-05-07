@@ -37,6 +37,5 @@ class Body extends Component {
     ) //end return
   } //end render
 } //end class
-
 //i18n sarmaladı
 export default withTranslation()(Body);
