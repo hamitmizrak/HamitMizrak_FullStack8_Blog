@@ -12,11 +12,11 @@ import './internationalization/i18nlanguage'
 // REACTDOM
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <React.Fragment>
-       <Blog />
-    </React.Fragment>
-  </React.StrictMode>
+    <React.StrictMode>
+        <React.Fragment>
+            <Blog/>
+        </React.Fragment>
+    </React.StrictMode>
 );
 
 reportWebVitals();

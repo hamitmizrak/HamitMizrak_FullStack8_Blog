@@ -15,7 +15,7 @@ class RegisterApi {
     // LIST
     // http://localhost:2222/admin/api/v1/list
     listApi() {
-       return axios.get(`${REGISTER_URL}/list`);
+        return axios.get(`${REGISTER_URL}/list`);
     }
 
     // FIND
@@ -36,7 +36,7 @@ class RegisterApi {
     // UPDATE
     // http://localhost:2222/admin/api/v1/update/1
     updateApi(id, registerDto) {
-        return axios.put(`${REGISTER_URL}/find/${id}`,registerDto)
+        return axios.put(`${REGISTER_URL}/find/${id}`, registerDto)
     }
 
 } //end class RegisterDto

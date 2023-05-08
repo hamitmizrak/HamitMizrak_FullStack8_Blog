@@ -44,7 +44,7 @@ public class PostmanDoc {
     */
 
 
-    // GET /admin/api/v1/list HTTP/1.1
+    // GET /admin/api/v1/list2 HTTP/1.1
     //Host: localhost:2222
     //Content-Type: application/json
     //Content-Length: 120

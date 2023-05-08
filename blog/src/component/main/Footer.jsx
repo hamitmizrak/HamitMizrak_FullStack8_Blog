@@ -1,5 +1,5 @@
 import React from 'react'
-import { withTranslation } from 'react-i18next';
+import {withTranslation} from 'react-i18next';
 
 // Arrow function Date
 let newDateYear = () => {
@@ -10,8 +10,9 @@ let newDateYear = () => {
 function Footer(props) {
     return (
         <React.Fragment>
-           
-            <footer className="text-center text-lg-start bg-dark text-white fixed-bottom44" style={{"marginTop":"20rem"}}>
+
+            <footer className="text-center text-lg-start bg-dark text-white fixed-bottom44"
+                    style={{"marginTop": "20rem"}}>
                 <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
                     <div className="me-5 d-none d-lg-block">
                         <span>Get connected with us on social networks:</span>
@@ -26,15 +27,6 @@ function Footer(props) {
                         <a href="blog/src/component/main/Footer" className="me-4 link-secondary">
                             <i className="text-primary  text-primary  fab fa-google"></i>
                         </a>
-                        <a href="blog/src/component/main/Footer" className="me-4 link-secondary">
-                            <i className="text-danger  fab fa-instagram"></i>
-                        </a>
-                        <a href="blog/src/component/main/Footer" className="me-4 link-secondary">
-                            <i className="text-success fab fa-linkedin"></i>
-                        </a>
-                        <a href="blog/src/component/main/Footer" className="me-4 link-secondary">
-                            <i className="fab fa-github"></i>
-                        </a>
                     </div>
                 </section>
 
@@ -45,17 +37,16 @@ function Footer(props) {
                                 <h6 className="text-uppercase fw-bold mb-4">
                                     <i className="fas fa-gem me-3 text-secondary"></i>{props.t('company')}
                                 </h6>
-                              
+
                                 <p>
-                                    Here you can use rows and columns to organize your footer content. Lorem ipsum
-                                    dolor sit amet, consectetur adipisicing elit.
+                                    Here you can use rows and columns to
                                 </p>
                             </div>
 
                             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
                                 <h6 className="text-uppercase fw-bold mb-4">
-                                {props.t('product')}
+                                    {props.t('product')}
                                 </h6>
                                 <p>
                                     <a href="blog/src/component/main/Footer#!" className="text-reset">Angular</a>
@@ -63,30 +54,15 @@ function Footer(props) {
                                 <p>
                                     <a href="blog/src/component/main/Footer#!" className="text-reset">React</a>
                                 </p>
-                                <p>
-                                    <a href="blog/src/component/main/Footer#!" className="text-reset">Vue</a>
-                                </p>
-                                <p>
-                                    <a href="blog/src/component/main/Footer#!" className="text-reset">Laravel</a>
-                                </p>
                             </div>
 
                             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                                 <h6 className="text-uppercase fw-bold mb-4">
-                                {props.t('useFullLink')}
+                                    {props.t('useFullLink')}
                                 </h6>
                                 <p>
                                     <a href="blog/src/component/main/Footer#!" className="text-reset">Pricing</a>
-                                </p>
-                                <p>
-                                    <a href="blog/src/component/main/Footer#!" className="text-reset">Settings</a>
-                                </p>
-                                <p>
-                                    <a href="blog/src/component/main/Footer#!" className="text-reset">Orders</a>
-                                </p>
-                                <p>
-                                    <a href="blog/src/component/main/Footer#!" className="text-reset">Help</a>
                                 </p>
                             </div>
 
@@ -104,7 +80,7 @@ function Footer(props) {
                     </div>
                 </section>
 
-                <div className="text-center p-4" style={{ "backgroundColor": "rgba(0, 0, 0, 0.025)" }} >
+                <div className="text-center p-4" style={{"backgroundColor": "rgba(0, 0, 0, 0.025)"}}>
                     2020
                     © {newDateYear()} Copyright:
                     <a className="text-reset fw-bold" href="blog/src/component/main/Footer">{props.site}</a>

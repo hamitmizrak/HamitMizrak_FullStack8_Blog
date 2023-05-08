@@ -1,15 +1,25 @@
-import React, { Component } from 'react'
-import { withTranslation } from 'react-i18next'
+import React, {Component} from 'react'
+import {withTranslation} from "react-i18next";
 
 class Home extends Component {
-  render() {
-    return (
-      <div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        Home</div>
-    )
-  }
-}
+    constructor(props) {
+        super(props);
+        //STATE
+        this.state = {}
+        //BIND
+    }
 
+    //CDM
 
-export default  withTranslation()(Home)
+    //RENDER
+    render() {
+        return (
+            <React.Fragment>
+                Login
+            </React.Fragment>
+        ) // end return
+    } // end render
+} // end class
+
+// Higher Order Component:  Monad Componanet
+export default withTranslation()(Home);
