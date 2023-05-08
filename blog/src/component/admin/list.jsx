@@ -29,7 +29,7 @@ export default class list extends Component {
     //RETURN
     return (
       <React.Fragment>
-        <br /><br /><br /><br /><br /><br /><br /><br />
+     
         <h1 className="text-center display-4">Register List</h1>
         <div className="container">
           <div className="row">

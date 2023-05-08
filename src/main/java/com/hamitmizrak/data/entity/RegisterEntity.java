@@ -1,5 +1,6 @@
 package com.hamitmizrak.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,18 +19,29 @@ import java.io.Serializable;
 
 // ENTITY
 @Entity
-@Table(name = "admin")
-public class AdminEntity extends BaseEntity implements Serializable  {
+@Table(name = "register")
+public class RegisterEntity extends BaseEntity implements Serializable  {
     // Serileştirme
     public static final Long serialVersionUID = 1L;
 
     // NAME
+    //String => columnDefinition = "varchar(255) default 'adınızı girmediniz'"
+    // INT    => columnDefinition = "integer default 44"
+    @Column(name = "name", columnDefinition = "varchar(255) default 'adınızı girmediniz'")
     private String name;
 
     // SURNAME
     private String surname;
 
     // PASSWORD
+    @Column(name = "password", columnDefinition = "varchar(255) default 'Hm123456@'")
+    // 1.YOL
+    // spring.jackson.mapper.default-view-inclusion=true
+     @JsonIgnore // bu field json görünmesini sağlamamak için
+    // 2.YOL
+    // PageableSerializer sınıfını ekledim
+    // @JsonView(Views.Base.Clas)
+    // @JsonView(ISpecialJsonView.Base.class)
     private String password;
 
     // LOB : büyük veriler
@@ -40,6 +52,11 @@ public class AdminEntity extends BaseEntity implements Serializable  {
     // Javada olsun ancak Database olmasın
     @Transient
     private Object specialObject;
+
+    /*
+    @Column(name = "is_check", columnDefinition = "boolean default false")
+    private String check;
+    */
 
     // EMAİL
     // virgüllü sayı: columnDefinition = "Decimal(10,2) default '100.00'")

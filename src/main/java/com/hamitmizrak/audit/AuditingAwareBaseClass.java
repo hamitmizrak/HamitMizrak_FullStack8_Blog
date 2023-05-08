@@ -1,5 +1,6 @@
 package com.hamitmizrak.audit;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
@@ -15,6 +16,7 @@ import java.util.Date;
 
 //SUPER CLASS
 @MappedSuperclass
+@JsonIgnoreProperties(value = {"created_date,updated_date"},allowGetters = true) // Json'a emir veriyoruz bunları takip etme
 public class AuditingAwareBaseClass {
     // Auditing: Database hangi kullanıcı ne zaman
     // ne ekledi veya ne güncelledi

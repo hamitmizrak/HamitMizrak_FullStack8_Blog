@@ -20,7 +20,6 @@ public class LocaleI18NBean extends AcceptHeaderLocaleResolver {
         interceptor.setParamName("tr");
         return interceptor;
     }
-
     List<Locale> localeList = Arrays.asList(new Locale("tr"), new Locale("en"), new Locale("ge"));
 
     @Override

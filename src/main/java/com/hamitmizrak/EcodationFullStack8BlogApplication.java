@@ -1,5 +1,4 @@
 package com.hamitmizrak;
-
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,18 +7,27 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
 import java.util.TimeZone;
+
+
+// Mongo aktif etmek ici
+// @EnableMongoRepositories
+
+// Aspect aktif etmek icin
+// @EnableAspectJAutoProxy(proxyTargetClass = true)
+
+// Asenkron açmak icin
+// @EnableAsync
+
+//SCAN
+//@EntityScan(basePackages = "com.hamitmizrak.data.entity") //Entity bulamadığı zaman
+//@EnableJpaRepositories(basePackages = "com.hamitmizrak.data.repository") //Repository bulamadığı zaman
 
 // Spring Cache aktif etmek gerekiyor
 @EnableCaching
 
 // auditorAware icin
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareMethod")
-
-//SCAN
-//@EntityScan(basePackages = "com.hamitmizrak.data.entity") //Entity bulamadığı zaman
-//@EnableJpaRepositories(basePackages = "com.hamitmizrak.data.repository") //Repository bulamadığı zaman
 
 // Spring Security
 @SpringBootApplication(exclude = {

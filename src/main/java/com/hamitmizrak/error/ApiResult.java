@@ -21,6 +21,7 @@ import java.util.Map;
 // validationError: null ise dönemsini istemeyebiliriz.
 // Eğer Sistemde Null bir değer varsa bu null değeri frontentte göndermemek için
 @JsonInclude(JsonInclude.Include.NON_NULL)
+
 // Backentten Frontend' bilgi göndermek istersek biz bu Class yardımızyla hata mesjalarımızı gönderebilieceğiz.
 public class ApiResult {
     //Field

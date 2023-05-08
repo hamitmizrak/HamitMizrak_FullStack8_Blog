@@ -27,7 +27,8 @@ public class CustomErrorHandleWebRequest implements ErrorController {
     //injection
     private final ErrorAttributes errorAttributes;
 
-    //http://localhost:4444/error
+    // 2.YOL
+    //http://localhost:2222/error
     //spring'ten gelen /error yakalayıp custom handle yapmak için
     @RequestMapping("/error")
     public ApiResult handleError(WebRequest webRequest) {

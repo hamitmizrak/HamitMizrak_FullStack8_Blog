@@ -13,9 +13,9 @@ export default class Register extends Component {
   //RENDER
   render() {
     return (
-      <div>
-        <br /><br /><br /><br /><br /><br /><br /><br />
-        Register</div>
+      <React.Fragment>
+        Register
+      </React.Fragment>
     )
   }
 }

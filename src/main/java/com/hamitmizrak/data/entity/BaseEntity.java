@@ -14,7 +14,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.util.Date;
 
 @Getter @Setter // LOMBOK
-@JsonIgnoreProperties(value = {"created_date,updated_date"}) // Json'a emir veriyoruz bunları takip etme
+@JsonIgnoreProperties(value = {"created_date,updated_date"},allowGetters = true) // Json'a emir veriyoruz bunları takip etme
 @EntityListeners(AuditingEntityListener.class) //Auditing
 @MappedSuperclass // Super
 abstract public class BaseEntity extends AuditingAwareBaseClass {

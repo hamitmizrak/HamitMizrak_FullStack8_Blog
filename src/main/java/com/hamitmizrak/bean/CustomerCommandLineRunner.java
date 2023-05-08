@@ -14,13 +14,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CustomerCommandLineRunner {
 
-    private final IGenericsServices customerServices;
+    private final IGenericsServices iGenericsServices;
 
     // proje ayağa kalkar kalmaz otomatik veri eklesin
     @Bean
     public CommandLineRunner projectDataProcess(){ // parametre olarak verebilirsin==> ICustomerServices customerServices
         return args -> {
-            customerServices.speedDataServices();
+            iGenericsServices.speedDataServices();
         };
     }
 }

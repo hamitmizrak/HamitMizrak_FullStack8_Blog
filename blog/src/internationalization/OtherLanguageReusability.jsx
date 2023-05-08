@@ -11,6 +11,7 @@ import en from "../image/flag/English.jpg"
 // Dil secenegi
 import { withTranslation } from 'react-i18next';
 import OtherLanguageServices from "./OtherLanguageServices";
+import { Link } from 'react-router-dom';
 
 //Funksiyon komponent
 function OtherLanguageReusability(props) {
@@ -29,13 +30,11 @@ function OtherLanguageReusability(props) {
         <React.Fragment>
             <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li className="nav-item">
-                    <a className="dropdown-item44" href="#" onClick={() => internationalizationLanguage('tr')}><img src={tr} style={{ height: "15px", width: "40px;" }} className="me-2 mt-2" alt="TR" /> </a>
+                    <Link className="nav-link" to="" onClick={() => internationalizationLanguage('tr')}><img src={tr} style={{ height: "20px" }} alt="TR" /></Link>
                 </li>
                 <li className="nav-item">
-                    <a className="dropdown-item44" href="#" onClick={() => internationalizationLanguage('en')}><img src={en} style={{ height: "15px", width: "20px" }} className="me-2 mt-2" alt="EN" /></a>
+                    <Link className="nav-link" to="" onClick={() => internationalizationLanguage('en')}><img src={en} style={{ height: "15px" }}  alt="EN" /></Link>
                 </li>
-                <div className="container">
-                </div>
             </ul>
         </React.Fragment>
     );

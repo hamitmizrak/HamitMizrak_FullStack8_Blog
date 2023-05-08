@@ -10,7 +10,7 @@ import { HashRouter as Router, Redirect, Route, Switch } from "react-router-dom"
 
 
 // Header Body Footer
-import Header from './component/main/Header'
+import Header from './component/main/Navbar'
 import Body from './component/main/Body'
 import Footer from './component/main/Footer'
 
@@ -24,7 +24,7 @@ import Register from './component/Register'
 import Login from './component/Login'
 import List from './component/admin/list'
 
-
+// CLASS
 class Blog extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +45,7 @@ class Blog extends Component {
               <Route path="/register" component={Register}></Route>
               <Route path="/login" component={Login}></Route>
               <Route path="/admin" component={List}></Route>
-              <Redirect to="/"/>
+              <Redirect to="/" />
             </Switch>
           </div>
           {/* <Body/> */}
@@ -58,4 +58,4 @@ class Blog extends Component {
 
 // Higher Order Component:  Monad Componanet
 // Monad Componanet => bir başka componentin çıktısı başka componentin girdisi
- export default withTranslation()(Blog);
+export default withTranslation()(Blog);

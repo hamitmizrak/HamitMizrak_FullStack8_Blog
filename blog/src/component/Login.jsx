@@ -13,10 +13,9 @@ export default class Login extends Component {
   //RENDER
   render() {
     return (
-      <div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <React.Fragment>
         Login
-        </div>
+      </React.Fragment>
     )
   }
 }
