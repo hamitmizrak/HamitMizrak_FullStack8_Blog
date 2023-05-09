@@ -18,13 +18,14 @@ class AdminList extends Component {
 
     //CDM
     componentDidMount() {
-        RegisterApi.listApi().then((response) => {
-            this.setState({
-                registerList: response.data
-            })
-        }).catch((error) => {
+        RegisterApi.listApi().then(
+            (response) => {
+                this.setState({
+                    registerList: response.data
+                })
+            }).catch((error) => {
 
-        });
+            });
     }
 
     //FUNCTION
@@ -46,15 +47,16 @@ class AdminList extends Component {
     }
 
     delete(id) {
-        RegisterApi.deleteApi(id).then((response) => {
-            this.setState({
-                registerList:this.state.registerList.filter(
-                    registerList=>registerList.id!=id
-                )
+        RegisterApi.deleteApi(id).then(
+            (response) => {
+                this.setState({
+                    registerList: this.state.registerList.filter(
+                        registerList => registerList.id != id
+                    )
+                });
+            }).catch(() => {
+                console.log("Delete Wrong")
             });
-        }).catch(() => {
-            console.log("Delete Wrong")
-        });
     }
 
 

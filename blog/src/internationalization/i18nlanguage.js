@@ -8,11 +8,13 @@ i18n.use(initReactI18next).init({
                 translations: {
                     'Register': 'Register',
                     'Login': 'Login',
-                    'username': 'Username',
+                    'name': 'Name',
+                    'surname': 'Surname',
                     'email': 'email address',
                     'password': 'password',
                     'Password mismatch': 'Password mismatch',
                     'submit': 'submit',
+                    'cleaner': 'cleaner',
                     'logout': "Logout",
                     'homepage': "Home Page",
                     'company': "Company Name",
@@ -22,6 +24,7 @@ i18n.use(initReactI18next).init({
                     'home': "Home",
                     'search': "search",
                     'admin': "Admin Page",
+                    'create': "Create",
 
                 }
             },
@@ -30,11 +33,13 @@ i18n.use(initReactI18next).init({
                 translations: {
                     'Register': 'Üye Kayıt',
                     'Login': 'Üye Girişi',
-                    'username': 'Kullanıcı adını giriniz',
-                    'email': 'email adresini Giriniz',
-                    'password': 'Şifrenizi Giriniz',
+                    'name': 'Kullanıcı Adı',
+                    'surname': 'Kullanıcı Soyadı',
+                    'email': 'Kullanıcı Email',
+                    'password': 'Kullanıcı Şifresi',
                     'Password mismatch': 'Aynı Şifreyi tekrar giriniz',
                     'submit': 'Gönder',
+                    'cleaner': 'Temizle',
                     'logout': "Çıkış Yap",
                     'homepage': "Anasayfa",
                     'company': "Şirket Adı",
@@ -44,6 +49,7 @@ i18n.use(initReactI18next).init({
                     'home': "Anasayfa",
                     'search': "Arama..",
                     'admin': "Yönetim Sayfası",
+                    'create': "Ekle",
                 }
             }
     },

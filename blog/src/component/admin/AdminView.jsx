@@ -13,12 +13,16 @@ class AdminView extends Component {
         super(props);
         // STATE
         this.state = {
-            id: null,
-            name: null,
-            surname: null,
-            password: null,
-            email: null,
-            systemDate: null
+            id: this.props.match.params.id,
+            // 1.YOL
+            // name: null,
+            // surname: null,
+            // password: null,
+            // email: null,
+            // systemDate: null
+
+            //2.YOL
+            registerDto: {}
         }
 
         //BIND
@@ -27,15 +31,18 @@ class AdminView extends Component {
 
     //CDM
     componentDidMount() {
-        RegisterApi.findByIdApi(2).then((response) => {
+        RegisterApi.findByIdApi(this.state.id).then((response) => {
             //console.log(response.data);
             //console.log(response.data.surname);
             this.setState({
-                name: response.data.name,
-                surname: response.data.surname,
-                password: response.data.password,
-                email: response.data.email,
-                systemDate: response.data.systemDate,
+                //1.YOL
+                // name: response.data.name,
+                // surname: response.data.surname,
+                // password: response.data.password,
+                // email: response.data.email,
+                // systemDate: response.data.systemDate,
+                //2.YOL
+                registerDto: response.data
             })
         }).catch((error) => {
             console.log(error);
@@ -51,20 +58,21 @@ class AdminView extends Component {
 
     //RENDER
     render() {
+        const { id, name, surname, email, password, createdDate } = this.state.registerDto;
         //RETURN
         return (
             <React.Fragment>
-                <div className="card w-75" style={{ marginTop: "5rem" }} >
+                <div className="card " style={{ marginTop: "5rem" }} >
                     <img className="img-fluid w-50 mx-auto" src={cardPicture} alt="Title" />
-                    <div className="card-body">
+                    <div className="card-body mx-auto">
                         <h4 className="card-title">View</h4>
                         <p className="card-text"> <b>ID:</b> {this.state.id}</p>
-                        <p className="card-text"><b>NAME:</b>  {this.state.name}</p>
-                        <p className="card-text"><b>SURNAME:</b> {this.state.surname}</p>
-                        <p className="card-text"><b>EMAİL:</b> {this.state.email}</p>
-                        <p className="card-text"><b>PASSWORD:</b> {this.state.password}</p>
-                        <button className="btn btn-primary" onClick={this.list}>Liste</button>
-
+                        <p className="card-text"><b>NAME:</b>  {this.state.registerDto.name}</p>
+                        <p className="card-text"><b>SURNAME:</b> {surname}</p>
+                        <p className="card-text"><b>EMAİL:</b> {email}</p>
+                        <p className="card-text"><b>PASSWORD:</b> {password}</p>
+                        <p className="text-danger"><b>DATE:</b> {createdDate}</p>
+                        <button className="btn btn-outline-primary" onClick={this.list}>Liste</button>
                     </div>
                 </div>
             </React.Fragment>
