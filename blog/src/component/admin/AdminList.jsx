@@ -95,9 +95,9 @@ class AdminList extends Component {
                                         <td>{temp.surname}</td>
                                         <td>{temp.email}</td>
                                         <td>{temp.password}</td>
-                                        <td><i style={{ "cursor": "pointer" }} class="text-primary fa-solid fa-pen-to-square" onClick={() => this.update(temp.id)} ></i></td>
-                                        <td><i style={{ "cursor": "pointer" }} class="text-warning fa-solid fa-expand" onClick={() => { this.view(temp.id) }}></i></td>
-                                        <td><i style={{ "cursor": "pointer" }} class="text-danger fa-solid fa-trash" onClick={() => {
+                                        <td><i style={{ "cursor": "pointer" }} className="text-primary fa-solid fa-pen-to-square" onClick={() => this.update(temp.id)} ></i></td>
+                                        <td><i style={{ "cursor": "pointer" }} className="text-warning fa-solid fa-expand" onClick={() => { this.view(temp.id) }}></i></td>
+                                        <td><i style={{ "cursor": "pointer" }} className="text-danger fa-solid fa-trash" onClick={() => {
                                             if (window.confirm("Silmek istediğinizden emin misiniz?")) {
                                                 this.delete(temp.id);
                                             } else {

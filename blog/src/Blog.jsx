@@ -50,8 +50,8 @@ class Blog extends Component {
                             <Route path="/login" component={Login}></Route>
                             <Route path="/admin" component={AdminList}></Route>
                             <Route path="/create" component={AdminCreate}></Route>
-                            <Route path="/update" component={AdminUpdate}></Route>
-                            <Route path="/view" component={AdminUpdate}></Route>
+                            <Route path="/update/:id" component={AdminUpdate}></Route>
+                            <Route path="/view/:id" component={AdminView}></Route>
                             <Redirect to="/"/>
                         </Switch>
                     </div>
