@@ -10,7 +10,6 @@ import {HashRouter as Router, Redirect, Route, Switch} from "react-router-dom"
 
 // Header Body Footer
 import Header from './component/main/Navbar'
-import Body from './component/main/Body'
 import Footer from './component/main/Footer'
 
 // Dil için
@@ -21,7 +20,11 @@ import './internationalization/i18nlanguage.js'
 import Home from './component/Home'
 import Register from './component/Register'
 import Login from './component/Login'
-import List from './component/admin/list2'
+import AdminCreate from './component/admin/AdminCreate'
+import AdminUpdate from './component/admin/AdminUpdate'
+import AdminView from './component/admin/AdminView'
+import AdminList from "./component/admin/AdminList";
+
 
 
 // CLASS
@@ -45,7 +48,10 @@ class Blog extends Component {
                             <Route path="/index" component={Home}></Route>
                             <Route path="/register" component={Register}></Route>
                             <Route path="/login" component={Login}></Route>
-                            <Route path="/admin" component={List}></Route>
+                            <Route path="/admin" component={AdminList}></Route>
+                            <Route path="/create" component={AdminCreate}></Route>
+                            <Route path="/update" component={AdminUpdate}></Route>
+                            <Route path="/view" component={AdminUpdate}></Route>
                             <Redirect to="/"/>
                         </Switch>
                     </div>

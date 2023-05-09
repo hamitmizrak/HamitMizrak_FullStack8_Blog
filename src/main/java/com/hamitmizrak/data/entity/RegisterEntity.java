@@ -35,13 +35,6 @@ public class RegisterEntity extends BaseEntity implements Serializable  {
 
     // PASSWORD
     @Column(name = "password", columnDefinition = "varchar(255) default 'Hm123456@'")
-    // 1.YOL
-    // spring.jackson.mapper.default-view-inclusion=true
-     @JsonIgnore // bu field json görünmesini sağlamamak için
-    // 2.YOL
-    // PageableSerializer sınıfını ekledim
-    // @JsonView(Views.Base.Clas)
-    // @JsonView(ISpecialJsonView.Base.class)
     private String password;
 
     // LOB : büyük veriler

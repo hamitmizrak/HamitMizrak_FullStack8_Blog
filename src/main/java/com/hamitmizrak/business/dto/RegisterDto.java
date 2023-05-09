@@ -51,7 +51,9 @@ public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
     @NotEmpty(message = "{admin.password.validation.constraints.NotNull.NotNull.message}")
     @Size(min = 7, max = 10, message = "{admin.password.pattern.validation.constraints.NotNull.message}")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).*$", message = "{admin.password.pattern.validation.constraints.NotNull.message}")
-    @JsonIgnore // bu field json görünmesini istemediğimiz Entity yazarı json görünmez.
+    // 1.YOL
+    // spring.jackson.mapper.default-view-inclusion=true
+    // @JsonIgnore // bu field json görünmesini istemediğimiz Entity yazarı json görünmez.
     private String password;
 
     // other info

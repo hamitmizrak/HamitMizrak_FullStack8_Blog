@@ -30,13 +30,13 @@ class RegisterApi {
     // DELETE
     // http://localhost:2222/admin/api/v1/delete/1
     deleteApi(id) {
-        return axios.delete(`${REGISTER_URL}/find/${id}`)
+        return axios.delete(`${REGISTER_URL}/delete/${id}`)
     }
 
     // UPDATE
     // http://localhost:2222/admin/api/v1/update/1
     updateApi(id, registerDto) {
-        return axios.put(`${REGISTER_URL}/find/${id}`, registerDto)
+        return axios.put(`${REGISTER_URL}/update/${id}`, registerDto)
     }
 
 } //end class RegisterDto

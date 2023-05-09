@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import {withTranslation} from "react-i18next";
 
-class View extends Component {
+class AdminCreate extends Component {
     render() {
         return (
             <div>
-                View
+                Create
             </div>
         );
     }
 }
-
 //i18n sarmaladı
-export default withTranslation()(View)
+export default withTranslation()(AdminCreate)
