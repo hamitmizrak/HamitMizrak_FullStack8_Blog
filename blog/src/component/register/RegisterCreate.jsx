@@ -17,6 +17,7 @@ class RegisterCreate extends Component {
     //BIND
     this.onChangeInputValue = this.onChangeInputValue.bind(this);
     this.registerCreateSubmit = this.registerCreateSubmit.bind(this);
+    this.onChangeIsRead = this.onChangeIsRead.bind(this);
   }
 
   //CDM
@@ -118,21 +119,22 @@ class RegisterCreate extends Component {
             <span className="text-danger"></span>
           </div>
 
+          {/*READING*/}
           <div className="form-group mt-3">
             <span htmlFor="name" className='me-2'>{t('isRead')}</span>
-            <input 
-            type="checkbox" className='form-check-label' 
-            id="is_read" name="is_read"
-            onChange={this.onChangeIsRead} />
+            <input
+              type="checkbox" className='form-check-label'
+              id="is_read" name="is_read"
+              onChange={this.onChangeIsRead} />
           </div>
-          
+
           {/* CLEAR */}
           <button className="btn btn-danger mt-4 me-4">Temizle</button>
           {/* SUBMIT */}
-          <button 
-          className="btn btn-primary mt-4" 
-          onClick={this.registerCreateSubmit}
-          disabled={!this.state.isRead}
+          <button
+            className="btn btn-primary mt-4"
+            onClick={this.registerCreateSubmit}
+            disabled={!this.state.isRead}
           >Gönder</button>
         </form>
       </React.Fragment>
