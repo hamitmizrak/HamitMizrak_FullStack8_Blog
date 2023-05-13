@@ -12,7 +12,10 @@ export default function ResuabilityRegisterInput(props) {
     // bootstrap validation 
     // valid: validation(Doğrulama)
     // invalid-feedback :hatayı göstermiyor 
-    const className = name ? "is-invalid form-control mb-3" : "form-control mb-3";
+    // 1.YOL ternary
+    // const className = name ? "is-invalid form-control mb-3" : "form-control mb-3";
+    // 2.YOL &&
+    const className = name && "is-invalid form-control mb-3";
 
     //RETURN
     return (
@@ -20,8 +23,9 @@ export default function ResuabilityRegisterInput(props) {
             <div className="form-group">
                 <label htmlFor={id}>{label}</label>
                 <input type={type} id={id} name={name}
-                    className={className} placeholder={placeholder} autoFocus={focus} onChange={onChangeInput} />
-                <div className="invalid-feedback">{error}</div>
+                    className={className} placeholder={placeholder}
+                    autoFocus={focus} onChange={onChangeInput} />
+                <div className={"invalid-feedback"} >{error}</div>
             </div>
         </React.Fragment>
     ) //end return

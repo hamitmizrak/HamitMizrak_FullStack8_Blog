@@ -39,14 +39,21 @@ class RegisterCreate extends Component {
 
     // Backendten gelen hataları yakalamak,
     // const backendError={}
-    console.log(...this.state.validationErrors);
-    const backendError = { ...this.state.validationErrors }
+    // ... anlamı kopyalama yapar.
+    const backendError = {...this.state.validationErrors }
     backendError[name] = undefined;
 
     // STATE
     this.setState({
       [name]: value, //state name,surname,email,password
       backendError, // state Backendten gelen hataları yakalamak,
+    })
+  }
+
+  // Okumadan Submit Butonu aktif olmasın
+  onChangeIsRead = (event) => {
+    this.setState({
+      isRead: event.target.checked,
     })
   }
 
@@ -62,15 +69,11 @@ class RegisterCreate extends Component {
     console.log(registerDto);
 
     // Spinner Data: çalışsın
-    this.setState({
-      spinnerData: true
-    })
+    this.setState({ spinnerData: true })
     RegisterApi.createApi(registerDto).then((response) => {
       if (response.status === 200) {
         // Veri gönderene kadar spinner(loading) çalışmasın
-        this.setState({
-          spinnerData: false
-        })
+        this.setState({ spinnerData: false })
       }
       //PHP
       this.props.history.push("/admin");
@@ -80,39 +83,28 @@ class RegisterCreate extends Component {
 
       // backentten gelen hataları yakala
       if (error.response.data.validationErrors) {
-        this.setState({
-          validationErrors: error.response.data.validationErrors
-        })//end state
-        console.log("HATA44=> " + error.response.data.validationErrors)
+        this.setState({ validationErrors: error.response.data.validationErrors })//end state
+        console.log(error.response.data.validationErrors)
       } //end if
 
-      this.setState({
-        spinnerData: true
-      })
+      this.setState({ spinnerData: true })
     });
   }
 
-  // Okumadan Submit Butonu aktif olmasın
-  onChangeIsRead = (event) => {
-    this.setState({
-      isRead: event.target.checked,
-    })
-  }
+
 
   // RENDER
   render() {
     // i18n
     const { t } = this.props;
 
-
     //this.state.validationErrors.name
-    const { validationErrors } = this.state;
+    const { validationErrors, isRead, spinnerData } = this.state;
     const { name, surname, email, password } = validationErrors;
 
     //RETURN
     return (
       <React.Fragment>
-
         <h1 className="text-center display-3">{this.props.t('create')}</h1>
         <form action="" method="post">
 
@@ -130,7 +122,7 @@ class RegisterCreate extends Component {
             </div>
           </div> */}
           <ResuabilityRegisterInput
-            type="text" focus={true} 
+            type="text" focus={true}
             name="name" id="name"
             placeholder={t('name')}
             label={t('name')}
@@ -154,7 +146,7 @@ class RegisterCreate extends Component {
             error={email} />
 
           <ResuabilityRegisterInput
-            type="password" focus={false} 
+            type="password" focus={false}
             name="password" id="password"
             placeholder={t('password')}
             label={t('password')}
@@ -180,12 +172,12 @@ class RegisterCreate extends Component {
 
             // hem okuma yapılmadan kapansın 
             // hemde çoklu isteklerde kapatılsın
-            disabled={(!this.state.isRead) || (this.state.spinnerData)}
+            disabled={(!isRead) || (spinnerData)}
           >
             {/* 1.YOL (ternary) Spinner data  */}
             {/* {(this.state.spinnerData) ? <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>:"" }   */}
             {/* 2.YOL (&&) Spinner data  */}
-            {(this.state.spinnerData) && <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>}
+            {(spinnerData) && <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>}
             Gönder
           </button>
         </form>
