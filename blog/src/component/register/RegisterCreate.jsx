@@ -14,7 +14,6 @@ class RegisterCreate extends Component {
       password: null,
       isRead: false,// Okumadan gönder butonu aktifleşmesin.
       spinnerData: false, // veri gönderirken loading olsun ve aynı anda birden fazla kayıt olunması
-
     }
     //BIND
     this.onChangeInputValue = this.onChangeInputValue.bind(this);
@@ -147,15 +146,21 @@ class RegisterCreate extends Component {
 
           {/* CLEAR */}
           <button className="btn btn-danger mt-4 me-4">Temizle</button>
+
           {/* SUBMIT */}
           <button
             className="btn btn-primary mt-4"
             onClick={this.registerCreateSubmit}
-            disabled={!this.state.isRead}
+            
+            // hem okuma yapılmadan kapansın 
+            // hemde çoklu isteklerde kapatılsın
+            disabled={(!this.state.isRead)||(this.state.spinnerData)} 
           >
-          {(this.state.spinnerData) ? <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>:"" }  
+            {/* 1.YOL (ternary) Spinner data  */}
+            {/* {(this.state.spinnerData) ? <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>:"" }   */}
+            {/* 2.YOL (&&) Spinner data  */}
+            {(this.state.spinnerData) && <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>}
             Gönder
-
           </button>
         </form>
       </React.Fragment>
