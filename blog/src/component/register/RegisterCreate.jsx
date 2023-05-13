@@ -13,8 +13,6 @@ class RegisterCreate extends Component {
       email: null,
       password: null,
       isRead: false,// Okumadan gönder butonu aktifleşmesin.
-      spinnerData: false, // veri gönderirken loading olsun ve aynı anda birden fazla kayıt olunması
-      validationErrors: {}, // backentten gelen hataları yakalamak
     }
     //BIND
     this.onChangeInputValue = this.onChangeInputValue.bind(this);
@@ -62,7 +60,7 @@ class RegisterCreate extends Component {
   // Okumadan Submit Butonu aktif olmasın
   onChangeIsRead = (event) => {
     this.setState({
-      isRead: event.target.checked
+      isRead: event.target.checked,
     })
   }
 
@@ -122,7 +120,10 @@ class RegisterCreate extends Component {
 
           <div className="form-group mt-3">
             <span htmlFor="name" className='me-2'>{t('isRead')}</span>
-            <input type="checkbox" className='form-check-label' onChange={this.onChangeIsRead} />
+            <input 
+            type="checkbox" className='form-check-label' 
+            id="is_read" name="is_read"
+            onChange={this.onChangeIsRead} />
           </div>
           
           {/* CLEAR */}
