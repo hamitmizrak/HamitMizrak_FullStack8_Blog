@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next'
 import cardPicture from "../../image/mountain.jpg"
 import RegisterApi from '../../services/RegisterApi';
 
-class AdminView extends Component {
+class RegisterView extends Component {
 
     constructor(props) {
         super(props);
@@ -80,4 +80,4 @@ class AdminView extends Component {
     }//end  render
 }//end  class
 
-export default withTranslation()(AdminView)
+export default withTranslation()(RegisterView)

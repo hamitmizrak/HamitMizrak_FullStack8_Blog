@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Map;
 
+// D => Dto
+// E => Entity
 public interface IGenericsServices<D,E> { //Generics
     // PROFILE
     public String getProfile(String name);
@@ -52,7 +54,7 @@ public interface IGenericsServices<D,E> { //Generics
     public List<D> getAllRegisters();
 
     // LIST : Pageable, page ,size
-    public Page<RegisterEntity> getAllRegisterPaginationEntity(int currentPage, int pageSize);
+    public Page<D> getAllRegisterPaginationEntity(int currentPage, int pageSize);
 
     // LIST : Pageable, Aktif Kullanıcı bilgisi: RegisterDto
     public Page<D> getAllRegisterPaginationEntityPageable(Pageable pageable, D d);

@@ -1,8 +1,8 @@
 # special data
-log
-memory_persist
-blog/node_modules
-dockerize
+/log
+/memory_persist
+/blog/node_modules
+/dockerize/
 
 
 HELP.md

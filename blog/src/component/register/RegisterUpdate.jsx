@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {withTranslation} from "react-i18next";
 
-class AdminUpdate extends Component {
+class RegisterUpdate extends Component {
     render() {
         return (
             <div>
@@ -11,4 +11,4 @@ class AdminUpdate extends Component {
     }
 }
 //i18n sarmaladı
-export default withTranslation()(AdminUpdate)
+export default withTranslation()(RegisterUpdate)

@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -114,7 +115,7 @@ public class RegisterServices implements IGenericsServices<RegisterDto, Register
             registerDto.setId(customerEntityRepository.getId());
             registerDto.setCreatedDate(customerEntityRepository.getCreatedDate());
         } else if (registerDto == null) {
-            throw new HamitMizrakException("Customer Dto Null geldi");
+            throw new HamitMizrakException("Register Dto Null geldi");
         }
         return registerDto;
     }
@@ -206,8 +207,11 @@ public class RegisterServices implements IGenericsServices<RegisterDto, Register
     }
 
     @Override
-    public Page<RegisterEntity> getAllRegisterPaginationEntity(int currentPage, int pageSize) {
-        return null;
+    public Page<RegisterDto> getAllRegisterPaginationEntity(int currentPage, int pageSize) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize);
+        Page<RegisterEntity>  registerEntity=iRegisterRepository.findAll(pageable);
+        Page<RegisterDto> dto= null;
+        return dto;
     }
 
     @Override

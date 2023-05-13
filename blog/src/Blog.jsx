@@ -20,12 +20,10 @@ import './internationalization/i18nlanguage.js'
 import Home from './component/Home'
 import Register from './component/Register'
 import Login from './component/Login'
-import AdminCreate from './component/admin/AdminCreate'
-import AdminUpdate from './component/admin/AdminUpdate'
-import AdminView from './component/admin/AdminView'
-import AdminList from "./component/admin/AdminList";
-
-
+import AdminCreate from './component/register/RegisterCreate'
+import AdminUpdate from './component/register/RegisterUpdate'
+import AdminView from './component/register/RegisterView'
+import AdminList from "./component/register/RegisterList";
 
 // CLASS
 class Blog extends Component {

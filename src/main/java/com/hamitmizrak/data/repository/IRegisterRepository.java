@@ -15,7 +15,6 @@ public interface IRegisterRepository extends JpaRepository<RegisterEntity,Long> 
     // @Query("SELECT u FROM AdminEntity u WHERE u.status = 1")
     // Collection<AdminEntity> findAllActiveAdminJPQL();
 
-
     // Native
     // @Query( value = "SELECT * FROM AdminEntity u WHERE u.status = 1", nativeQuery = true)
     // Collection<AdminEntity> findAllActiveAdminNative();

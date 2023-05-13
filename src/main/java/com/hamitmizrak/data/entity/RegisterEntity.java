@@ -25,7 +25,7 @@ public class RegisterEntity extends BaseEntity implements Serializable  {
     public static final Long serialVersionUID = 1L;
 
     // NAME
-    //String => columnDefinition = "varchar(255) default 'adınızı girmediniz'"
+    // String => columnDefinition = "varchar(255) default 'adınızı girmediniz'"
     // INT    => columnDefinition = "integer default 44"
     @Column(name = "name", columnDefinition = "varchar(255) default 'adınızı girmediniz'")
     private String name;

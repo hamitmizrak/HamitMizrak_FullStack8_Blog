@@ -65,4 +65,4 @@ public class EcodationFullStack8BlogApplication {
         SpringApplication.run(EcodationFullStack8BlogApplication.class, args);
     } //end PSVM
 
-} //end EcodationFullStack8BlogApplication
+} //end class

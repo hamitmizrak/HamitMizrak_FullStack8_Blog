@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import RegisterApi from '../../services/RegisterApi';
 import { withTranslation } from "react-i18next";
 
-class AdminList extends Component {
+class RegisterList extends Component {
     constructor(props) {
         super(props);
         //STATE
@@ -24,11 +24,11 @@ class AdminList extends Component {
                     registerList: response.data
                 })
             }).catch((error) => {
-
+                console.log("List Wrong")
             });
     }
 
-    //FUNCTION
+
     // FUNCTION
     // create function
     create() {
@@ -115,7 +115,7 @@ class AdminList extends Component {
             </React.Fragment>
         ) //end return
     } //end render
-} //end class AdminList
+} //end class RegisterList
 
 //i18n sarmaladı
-export default withTranslation()(AdminList)
+export default withTranslation()(RegisterList)

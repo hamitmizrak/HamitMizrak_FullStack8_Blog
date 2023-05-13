@@ -10,7 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -117,7 +118,7 @@ public class RegisterApiImpl implements IGenericsApi<RegisterDto> {
     // http://localhost:2222/admin/api/v1/list
     @Override
     @GetMapping("list")
-    @Cacheable(value = "cacheAdminList")
+    // @Cacheable(value = "cacheAdminList")  // Dikkat: bunu eklediğinde veriler değişikler göreyebilirsin
     public ResponseEntity<List<RegisterDto>> listApi() {
         return ResponseEntity.ok(registerServices.listServices());
     }
@@ -167,4 +168,35 @@ public class RegisterApiImpl implements IGenericsApi<RegisterDto> {
     public ResponseEntity<RegisterDto> updateApi(@PathVariable(name = "id", required = false) Long id, @Valid @RequestBody RegisterDto adminDto) {
         return ResponseEntity.ok(registerServices.updateServices(id, adminDto));
     }
+    ///////////////////////////////////////////////////////////////////////////////////
+
+
+    //ROOT
+    @GetMapping({"/","/index"})
+    public ResponseEntity<String> getRoot() {
+        return ResponseEntity.ok("index");
+    }
+
+    // LIST PAGINATION
+    // http://localhost:4444/api/v1/pagination?currentPage=0&pageSize=3
+    @Override
+    @GetMapping(value = "/pagination")
+    public ResponseEntity<Page<RegisterDto>> getAllRegisterPaginationEntity(
+            @RequestParam(name = "currentPage", required = false, defaultValue = "0") int currentPage,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "3") int pageSize) {
+        return ResponseEntity.ok(registerServices.getAllRegisterPaginationEntity(currentPage,pageSize));
+    }
+
+    // LIST PAGINATION
+    // spring.data.web.pageable.page-parameter=currentPage
+    // spring.data.web.pageable.size-parameter=pageSize
+    // http://localhost:4444/api/v1/pageable?currentPage=0&pageSize=3
+    // http://localhost:4444/api/v1/pageable?page=0&size=3
+    @Override
+    @GetMapping(value = "/pageable")
+    public ResponseEntity<Page<RegisterDto>> getAllRegisterPaginationEntityPageable(Pageable pageable, RegisterDto registerDto) {
+        return ResponseEntity.ok(registerServices.getAllRegisterPaginationEntityPageable(pageable,registerDto));
+    }
+
+
 } // end update

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withTranslation } from "react-i18next";
 import RegisterApi from '../../services/RegisterApi';
 
-class AdminCreate extends Component {
+class RegisterCreate extends Component {
   constructor(props) {
     super(props);
     //STATE
@@ -11,7 +11,10 @@ class AdminCreate extends Component {
       name: null,
       surname: null,
       email: null,
-      password: null
+      password: null,
+      isRead: false,// Okumadan gönder butonu aktifleşmesin.
+      spinnerData: false, // veri gönderirken loading olsun ve aynı anda birden fazla kayıt olunması
+      validationErrors: {}, // backentten gelen hataları yakalamak
     }
     //BIND
     this.onChangeInputValue = this.onChangeInputValue.bind(this);
@@ -20,7 +23,7 @@ class AdminCreate extends Component {
 
   //CDM
   // componentDidMount() {
-   
+
   // }
 
   // Input 
@@ -31,8 +34,10 @@ class AdminCreate extends Component {
     // 2.YOL
     const { name, value } = event.target;
     console.log(name + " " + value);
+
+    // STATE
     this.setState({
-      [name]: value //state name,surname,email,password
+      [name]: value, //state name,surname,email,password
     })
   }
 
@@ -48,11 +53,17 @@ class AdminCreate extends Component {
     console.log(registerDto);
 
     RegisterApi.createApi(registerDto).then((response) => {
-       this.props.history.push("/admin");
+      this.props.history.push("/admin");
     }).catch((error) => {
       console.error(error);
     });
+  }
 
+  // Okumadan Submit Butonu aktif olmasın
+  onChangeIsRead = (event) => {
+    this.setState({
+      isRead: event.target.checked
+    })
   }
 
   // RENDER
@@ -68,53 +79,65 @@ class AdminCreate extends Component {
         <form action="" method="post">
 
           <div className="form-group mt-3">
-            <span for="name">{t('name')}</span>
+            <span htmlFor="name">{t('name')}</span>
             <input
               type="text" id="name" name="name"
-              className="form-control" required="false"
-              placeholder={t('name')} autoFocus="true"
+              className="form-control" required={true}
+              placeholder={t('name')} autoFocus={true}
               onChange={this.onChangeInputValue}
             />
-            <span className="text-danger">is not username not null</span>
+            <span className="text-danger"></span>
           </div>
 
           <div className="form-group mt-3">
-            <span for="name">{t('surname')}</span>
+            <span htmlFor="name">{t('surname')}</span>
             <input
               type="text" id="surname" name="surname"
-              className="form-control" required="false"
-              placeholder={t('surname')} autoFocus="false"
+              className="form-control" required={true}
+              placeholder={t('surname')} autoFocus={false}
               onChange={this.onChangeInputValue}
             />
-            <span className="text-danger">is not surname not null</span>
+            <span className="text-danger"></span>
           </div>
 
           <div className="form-group mt-3">
-            <span for="name">{t('email')}</span>
+            <span htmlFor="name">{t('email')}</span>
             <input
               type="email" id="email" name="email"
-              className="form-control" required="false"
-              placeholder={t('email')} autoFocus="false"
+              className="form-control" required={true}
+              placeholder={t('email')} autoFocus={false}
               onChange={this.onChangeInputValue} />
-            <span className="text-danger">is not email not null</span>
+            <span className="text-danger"></span>
           </div>
 
           <div className="form-group mt-3">
-            <span for="name">{t('password')}</span>
+            <span htmlFor="name">{t('password')}</span>
             <input
               type="password" id="password" name="password"
-              className="form-control" required="false"
-              placeholder={t('password')} autoFocus="false"
+              className="form-control" required={true}
+              placeholder={t('password')} autoFocus={false}
               onChange={this.onChangeInputValue} />
-            <span className="text-danger">is not password not null</span>
+            <span className="text-danger"></span>
           </div>
+
+          <div className="form-group mt-3">
+            <span htmlFor="name" className='me-2'>{t('isRead')}</span>
+            <input type="checkbox" className='form-check-label' onChange={this.onChangeIsRead} />
+          </div>
+          
+          {/* CLEAR */}
           <button className="btn btn-danger mt-4 me-4">Temizle</button>
-          <button className="btn btn-primary mt-4" onClick={this.registerCreateSubmit}>Gönder</button>
+          {/* SUBMIT */}
+          <button 
+          className="btn btn-primary mt-4" 
+          onClick={this.registerCreateSubmit}
+          disabled={!this.state.isRead}
+          >Gönder</button>
         </form>
       </React.Fragment>
     ); //end return 
   } //end render
-} //end AdminCreate
+} //end RegisterCreate
 
 //i18n sarmaladı
-export default withTranslation()(AdminCreate)
+export default withTranslation()(RegisterCreate)

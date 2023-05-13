@@ -15,7 +15,6 @@ import java.util.Collection;
 public class UserDetailsEntity implements UserDetails {
 
 
-
     @Override
     //spring.jackson.mapper.default-view-inclusion=true
     @JsonIgnore // bu field json görünmesini sağlamamak için
