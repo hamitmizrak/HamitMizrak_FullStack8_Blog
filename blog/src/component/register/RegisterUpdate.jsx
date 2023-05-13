@@ -1,5 +1,3 @@
-
-////////////////////////////////////////////////////
 import React, { Component } from 'react';
 import { withTranslation } from "react-i18next";
 import RegisterApi from '../../services/RegisterApi';
@@ -123,7 +121,6 @@ class RegisterUpdate extends Component {
         //this.state.validationErrors.name
         const { validationErrors, isRead, spinnerData,
             name, surname, email, password,id } = this.state;
-
 
         //RETURN
         return (
