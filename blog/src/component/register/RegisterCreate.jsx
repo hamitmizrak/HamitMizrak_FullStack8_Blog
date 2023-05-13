@@ -13,6 +13,8 @@ class RegisterCreate extends Component {
       email: null,
       password: null,
       isRead: false,// Okumadan gönder butonu aktifleşmesin.
+      spinnerData: false, // veri gönderirken loading olsun ve aynı anda birden fazla kayıt olunması
+
     }
     //BIND
     this.onChangeInputValue = this.onChangeInputValue.bind(this);
@@ -51,10 +53,25 @@ class RegisterCreate extends Component {
     }
     console.log(registerDto);
 
+    // Spinner Data: çalışsın
+    this.setState({
+      spinnerData: true
+    })
     RegisterApi.createApi(registerDto).then((response) => {
+      if (response.status === 200) {
+        // Veri gönderene kadar spinner(loading) çalışmasın
+        this.setState({
+          spinnerData: false
+        })
+      }
+      //PHP
       this.props.history.push("/admin");
     }).catch((error) => {
       console.error(error);
+      // Hata varsa  spinner(loading) çalışsın.
+      this.setState({
+        spinnerData: true
+      })
     });
   }
 
@@ -135,7 +152,11 @@ class RegisterCreate extends Component {
             className="btn btn-primary mt-4"
             onClick={this.registerCreateSubmit}
             disabled={!this.state.isRead}
-          >Gönder</button>
+          >
+          {(this.state.spinnerData) ? <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>:"" }  
+            Gönder
+
+          </button>
         </form>
       </React.Fragment>
     ); //end return 
