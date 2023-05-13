@@ -78,11 +78,11 @@ class RegisterCreate extends Component {
       // Hata varsa  spinner(loading) çalışsın.
 
       // backentten gelen hataları yakala
-      if(error.response.data.validationErrors){
+      if (error.response.data.validationErrors) {
         this.setState({
-          validationErrors:error.response.data.validationErrors
+          validationErrors: error.response.data.validationErrors
         })//end state
-        console.log("HATA44=> "+error.response.data.validationErrors)
+        console.log("HATA44=> " + error.response.data.validationErrors)
       } //end if
 
       this.setState({
@@ -111,51 +111,67 @@ class RegisterCreate extends Component {
         <form action="" method="post">
 
           <div className="form-group mt-3">
-            <span htmlFor="name">{t('name')}</span>
+            <label htmlFor="name">{t('name')}</label>
             <input
               type="text" id="name" name="name"
               className="form-control" required="true"
               placeholder={t('name')} autoFocus={true}
               onChange={this.onChangeInputValue}
             />
-
-            <span className="text-danger">{this.state.validationErrors.name}</span>
+            {/* 
+            valid: validation(Doğrulama)
+            invalid-feedback :hatayı göstermiyor 
+            */}
+            <div 
+            className={this.state.validationErrors.name&&'invalid-feedback44 text-danger'} >
+              {this.state.validationErrors.name}
+            </div>
           </div>
 
           <div className="form-group mt-3">
-            <span htmlFor="name">{t('surname')}</span>
+            <label htmlFor="name">{t('surname')}</label>
             <input
               type="text" id="surname" name="surname"
               className="form-control" required="true"
               placeholder={t('surname')} autoFocus={false}
               onChange={this.onChangeInputValue}
             />
-             <span className="text-danger">{this.state.validationErrors.surname}</span>
+           
+            <div 
+            className={this.state.validationErrors.surname&&'invalid-feedback44 text-danger'} >
+              {this.state.validationErrors.surname}
+            </div>
           </div>
 
           <div className="form-group mt-3">
-            <span htmlFor="name">{t('email')}</span>
+            <label htmlFor="name">{t('email')}</label>
             <input
               type="email" id="email" name="email"
               className="form-control" required="true"
               placeholder={t('email')} autoFocus={false}
               onChange={this.onChangeInputValue} />
-            <span className="text-danger">{this.state.validationErrors.email}</span>
+             <div 
+            className={this.state.validationErrors.email&&'invalid-feedback44 text-danger'} >
+              {this.state.validationErrors.email}
+            </div>
           </div>
 
           <div className="form-group mt-3">
-            <span htmlFor="name">{t('password')}</span>
+            <label htmlFor="name">{t('password')}</label>
             <input
               type="password" id="password" name="password"
               className="form-control" required="true"
               placeholder={t('password')} autoFocus={false}
               onChange={this.onChangeInputValue} />
-             <span className="text-danger">{this.state.validationErrors.password}</span>
+             <div 
+            className={this.state.validationErrors.password&&'invalid-feedback44 text-danger'} >
+              {this.state.validationErrors.password}
+            </div>
           </div>
 
           {/*READING*/}
           <div className="form-group mt-3">
-            <span htmlFor="name" className='me-2'>{t('isRead')}</span>
+            <label htmlFor="name" className='me-2'>{t('isRead')}</label>
             <input
               type="checkbox" className='form-check-label'
               id="is_read" name="is_read"
@@ -169,10 +185,10 @@ class RegisterCreate extends Component {
           <button
             className="btn btn-primary mt-4"
             onClick={this.registerCreateSubmit}
-            
+
             // hem okuma yapılmadan kapansın 
             // hemde çoklu isteklerde kapatılsın
-            disabled={(!this.state.isRead)||(this.state.spinnerData)} 
+            disabled={(!this.state.isRead) || (this.state.spinnerData)}
           >
             {/* 1.YOL (ternary) Spinner data  */}
             {/* {(this.state.spinnerData) ? <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>:"" }   */}
