@@ -25,7 +25,7 @@ export default function ResuabilityRegisterInput(props) {
                 <input type={type} id={id} name={name}
                     className={className} placeholder={placeholder}
                     autoFocus={focus} onChange={onChangeInput} />
-                <div className={"invalid-feedback"} >{error}</div>
+                <div className={"text-danger"} >{error}</div>
             </div>
         </React.Fragment>
     ) //end return

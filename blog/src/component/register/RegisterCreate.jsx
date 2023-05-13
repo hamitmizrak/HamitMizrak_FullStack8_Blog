@@ -73,13 +73,11 @@ class RegisterCreate extends Component {
     RegisterApi.createApi(registerDto).then((response) => {
       if (response.status === 200) {
         // Veri gönderene kadar spinner(loading) çalışmasın
-        this.setState({ spinnerData: false })
       }
       //PHP
       this.props.history.push("/admin");
     }).catch((error) => {
       console.error(error);
-      // Hata varsa  spinner(loading) çalışsın.
 
       // backentten gelen hataları yakala
       if (error.response.data.validationErrors) {
@@ -87,7 +85,7 @@ class RegisterCreate extends Component {
         console.log(error.response.data.validationErrors)
       } //end if
 
-      this.setState({ spinnerData: true })
+      this.setState({ spinnerData: false })
     });
   }
 
