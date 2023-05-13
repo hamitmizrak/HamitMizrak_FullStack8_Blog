@@ -14,6 +14,7 @@ class RegisterCreate extends Component {
       password: null,
       isRead: false,// Okumadan gönder butonu aktifleşmesin.
       spinnerData: false, // veri gönderirken loading olsun ve aynı anda birden fazla kayıt olunması
+      validationErrors: {}, // backentten gelen hataları yakalamak  
     }
     //BIND
     this.onChangeInputValue = this.onChangeInputValue.bind(this);
@@ -29,15 +30,22 @@ class RegisterCreate extends Component {
   // Input 
   onChangeInputValue = (event) => {
     // 1.YOL
-    //const name = event.target.name;
-    //const value = event.target.value;
+    // const name = event.target.name;
+    // const value = event.target.value;
     // 2.YOL
     const { name, value } = event.target;
     console.log(name + " " + value);
 
+    // Backendten gelen hataları yakalamak,
+    // const backendError={}
+    console.log(...this.state.validationErrors);
+    const backendError = { ...this.state.validationErrors }
+    backendError[name] = undefined;
+
     // STATE
     this.setState({
       [name]: value, //state name,surname,email,password
+      backendError, // state Backendten gelen hataları yakalamak,
     })
   }
 
@@ -68,6 +76,15 @@ class RegisterCreate extends Component {
     }).catch((error) => {
       console.error(error);
       // Hata varsa  spinner(loading) çalışsın.
+
+      // backentten gelen hataları yakala
+      if(error.response.data.validationErrors){
+        this.setState({
+          validationErrors:error.response.data.validationErrors
+        })//end state
+        console.log("HATA44=> "+error.response.data.validationErrors)
+      } //end if
+
       this.setState({
         spinnerData: true
       })
@@ -97,42 +114,43 @@ class RegisterCreate extends Component {
             <span htmlFor="name">{t('name')}</span>
             <input
               type="text" id="name" name="name"
-              className="form-control" required={true}
+              className="form-control" required="true"
               placeholder={t('name')} autoFocus={true}
               onChange={this.onChangeInputValue}
             />
-            <span className="text-danger"></span>
+
+            <span className="text-danger">{this.state.validationErrors.name}</span>
           </div>
 
           <div className="form-group mt-3">
             <span htmlFor="name">{t('surname')}</span>
             <input
               type="text" id="surname" name="surname"
-              className="form-control" required={true}
+              className="form-control" required="true"
               placeholder={t('surname')} autoFocus={false}
               onChange={this.onChangeInputValue}
             />
-            <span className="text-danger"></span>
+             <span className="text-danger">{this.state.validationErrors.surname}</span>
           </div>
 
           <div className="form-group mt-3">
             <span htmlFor="name">{t('email')}</span>
             <input
               type="email" id="email" name="email"
-              className="form-control" required={true}
+              className="form-control" required="true"
               placeholder={t('email')} autoFocus={false}
               onChange={this.onChangeInputValue} />
-            <span className="text-danger"></span>
+            <span className="text-danger">{this.state.validationErrors.email}</span>
           </div>
 
           <div className="form-group mt-3">
             <span htmlFor="name">{t('password')}</span>
             <input
               type="password" id="password" name="password"
-              className="form-control" required={true}
+              className="form-control" required="true"
               placeholder={t('password')} autoFocus={false}
               onChange={this.onChangeInputValue} />
-            <span className="text-danger"></span>
+             <span className="text-danger">{this.state.validationErrors.password}</span>
           </div>
 
           {/*READING*/}
