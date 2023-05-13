@@ -7,7 +7,7 @@ import React from 'react'
 export default function ResuabilityRegisterInput(props) {
 
     //object destructing
-    const { label, type, id, name, placeholder, onChangeInput, error, focus } = props;
+    const { label, type, id, name, placeholder, onChangeInput, error, focus,value } = props;
 
     // bootstrap validation 
     // valid: validation(Doğrulama)
@@ -22,9 +22,11 @@ export default function ResuabilityRegisterInput(props) {
         <React.Fragment>
             <div className="form-group">
                 <label htmlFor={id}>{label}</label>
-                <input type={type} id={id} name={name}
+                <input 
+                     type={type} id={id} name={name}
                     className={className} placeholder={placeholder}
-                    autoFocus={focus} onChange={onChangeInput} />
+                    autoFocus={focus} onChange={onChangeInput} 
+                    value={value}/>
                 <div className={"text-danger"} >{error}</div>
             </div>
         </React.Fragment>

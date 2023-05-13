@@ -34,7 +34,6 @@ class Navbar extends Component {
                         <div className="container">
                             <a href={this.props.homePageLink} className='navbar-brand' to="/"><i
                                 className={this.props.logo}></i></a>
-                            <a className="navbar-brand" href="blog/src/component/main/Header#"></a>
                             <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                                     aria-expanded="false" aria-label="Toggle navigation">
@@ -43,22 +42,22 @@ class Navbar extends Component {
                             <div className="collapse navbar-collapse" id="collapsibleNavId">
                                 <ul className="navbar-nav me-auto mt-2 mt-lg-0">
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="blog/src/component/main/Header#"
+                                        <a className="nav-link active" href={this.props.homePageLink}
                                            aria-current="page">{this.props.t('home')} <span
                                             className="visually-hidden">(current)</span></a>
                                     </li>
                                     <li className="nav-item">
                                         <a className="nav-link"
-                                           href="blog/src/component/main/Header#">{this.props.contact}</a>
+                                           href="">{this.props.contact}</a>
                                     </li>
                                     <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="blog/src/component/main/Header#"
+                                        <a className="nav-link dropdown-toggle" href=""
                                            id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true"
                                            aria-expanded="false">Dropdown</a>
                                         <div className="dropdown-menu" aria-labelledby="dropdownId">
-                                            <a className="dropdown-item" href="blog/src/component/main/Header#">Action
+                                            <a className="dropdown-item" href="">Action
                                                 1</a>
-                                            <a className="dropdown-item" href="blog/src/component/main/Header#">Action
+                                            <a className="dropdown-item" href="">Action
                                                 2</a>
                                         </div>
                                     </li>

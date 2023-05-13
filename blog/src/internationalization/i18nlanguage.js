@@ -25,7 +25,8 @@ i18n.use(initReactI18next).init({
                     'search': "search",
                     'admin': "Admin Page",
                     'create': "Create",
-                    'isRead':' are you reading ?'
+                    'isRead':' are you reading ?',
+                    'update':"Update",
 
                 }
             },
@@ -51,7 +52,8 @@ i18n.use(initReactI18next).init({
                     'search': "Arama..",
                     'admin': "Yönetim Sayfası",
                     'create': "Ekle",
-                    'isRead':' Okudun mu ?'
+                    'isRead':' Okudun mu ?',
+                    'update':"Güncelle",
                 }
             }
     },
