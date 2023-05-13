@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from "react-i18next";
 import RegisterApi from '../../services/RegisterApi';
+import ResuabilityRegisterInput from '../../resuability/ResuabilityRegisterInput';
 
 class RegisterCreate extends Component {
   constructor(props) {
@@ -103,6 +104,11 @@ class RegisterCreate extends Component {
     // i18n
     const { t } = this.props;
 
+
+    //this.state.validationErrors.name
+    const { validationErrors } = this.state;
+    const { name, surname, email, password } = validationErrors;
+
     //RETURN
     return (
       <React.Fragment>
@@ -110,7 +116,7 @@ class RegisterCreate extends Component {
         <h1 className="text-center display-3">{this.props.t('create')}</h1>
         <form action="" method="post">
 
-          <div className="form-group mt-3">
+          {/* <div className="form-group mt-3">
             <label htmlFor="name">{t('name')}</label>
             <input
               type="text" id="name" name="name"
@@ -118,56 +124,42 @@ class RegisterCreate extends Component {
               placeholder={t('name')} autoFocus={true}
               onChange={this.onChangeInputValue}
             />
-            {/* 
-            valid: validation(Doğrulama)
-            invalid-feedback :hatayı göstermiyor 
-            */}
             <div 
             className={this.state.validationErrors.name&&'invalid-feedback44 text-danger'} >
               {this.state.validationErrors.name}
             </div>
-          </div>
+          </div> */}
+          <ResuabilityRegisterInput
+            type="text" focus={true} 
+            name="name" id="name"
+            placeholder={t('name')}
+            label={t('name')}
+            onChangeInput={this.onChangeInputValue}
+            error={name} />
 
-          <div className="form-group mt-3">
-            <label htmlFor="name">{t('surname')}</label>
-            <input
-              type="text" id="surname" name="surname"
-              className="form-control" required="true"
-              placeholder={t('surname')} autoFocus={false}
-              onChange={this.onChangeInputValue}
-            />
-           
-            <div 
-            className={this.state.validationErrors.surname&&'invalid-feedback44 text-danger'} >
-              {this.state.validationErrors.surname}
-            </div>
-          </div>
+          <ResuabilityRegisterInput
+            type="text" focus={false}
+            name="surname" id="surname"
+            placeholder={t('surname')}
+            label={t('surname')}
+            onChangeInput={this.onChangeInputValue}
+            error={surname} />
 
-          <div className="form-group mt-3">
-            <label htmlFor="name">{t('email')}</label>
-            <input
-              type="email" id="email" name="email"
-              className="form-control" required="true"
-              placeholder={t('email')} autoFocus={false}
-              onChange={this.onChangeInputValue} />
-             <div 
-            className={this.state.validationErrors.email&&'invalid-feedback44 text-danger'} >
-              {this.state.validationErrors.email}
-            </div>
-          </div>
+          <ResuabilityRegisterInput
+            type="email" focus={false}
+            name="email" id="email"
+            placeholder={t('email')}
+            label={t('email')}
+            onChangeInput={this.onChangeInputValue}
+            error={email} />
 
-          <div className="form-group mt-3">
-            <label htmlFor="name">{t('password')}</label>
-            <input
-              type="password" id="password" name="password"
-              className="form-control" required="true"
-              placeholder={t('password')} autoFocus={false}
-              onChange={this.onChangeInputValue} />
-             <div 
-            className={this.state.validationErrors.password&&'invalid-feedback44 text-danger'} >
-              {this.state.validationErrors.password}
-            </div>
-          </div>
+          <ResuabilityRegisterInput
+            type="password" focus={false} 
+            name="password" id="password"
+            placeholder={t('password')}
+            label={t('password')}
+            onChangeInput={this.onChangeInputValue}
+            error={password} />
 
           {/*READING*/}
           <div className="form-group mt-3">
