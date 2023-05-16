@@ -1,6 +1,5 @@
 package com.hamitmizrak.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,8 +18,8 @@ import java.io.Serializable;
 
 // ENTITY
 @Entity
-@Table(name = "register")
-public class RegisterEntity extends BaseEntity implements Serializable  {
+@Table(name = "customer")
+public class CustomerEntity extends BaseEntity implements Serializable  {
     // Serileştirme
     public static final Long serialVersionUID = 1L;
 

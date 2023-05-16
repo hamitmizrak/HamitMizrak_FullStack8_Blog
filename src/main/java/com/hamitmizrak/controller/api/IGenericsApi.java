@@ -1,13 +1,12 @@
 package com.hamitmizrak.controller.api;
 
-import com.hamitmizrak.business.dto.RegisterDto;
+import com.hamitmizrak.business.dto.CustomerDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -18,29 +17,30 @@ public interface IGenericsApi<T> {
     public String getProfile(String name);
 
     //Header Information
-    public void getAllHeaderData(Map<String,String> headers);
+    public void getAllHeaderData(Map<String, String> headers);
+
     //App Information
     public ResponseEntity<?> getAppInformation(HttpServletRequest request, HttpServletResponse response);
     ///////////////////////////////////////
 
     //SPEED DATA
-    public ResponseEntity<T>  speedDataApi();
+    public ResponseEntity<T> speedDataApi();
 
     // DELETE ALL
-    public ResponseEntity<String>  deleteApi();
+    public ResponseEntity<String> deleteApi();
     ///////////////////////////////////////
 
     // CREATE
-    public ResponseEntity<T>  createApi(T t);
+    public ResponseEntity<T> createApi(T t);
 
     // LIST
-    public ResponseEntity<List<T>>  listApi();
+    public ResponseEntity<List<T>> listApi();
 
     // FIND ID
-    public ResponseEntity<?>  findByIdApi(Long id);
+    public ResponseEntity<?> findByIdApi(Long id);
 
     // DELETE
-    public ResponseEntity<Map<String,Boolean>>  deleteApi(Long id);
+    public ResponseEntity<Map<String, Boolean>> deleteApi(Long id);
 
     // UPDATE
     public ResponseEntity<T> updateApi(Long id, T t);
@@ -49,8 +49,10 @@ public interface IGenericsApi<T> {
 
     // LIST PAGINATION
     // http://localhost:4444/api/v1/pagination?currentPage=0&pageSize=3
-    ResponseEntity<Page<RegisterDto>>  getAllRegisterPaginationEntity(int currentPage, int pageSize);
+    ResponseEntity<Page<CustomerDto>> getAllCustomerPaginationEntity(int currentPage, int pageSize);
 
     // LIST PAGINATION
-    ResponseEntity<Page<RegisterDto>> getAllRegisterPaginationEntityPageable(Pageable pageable, RegisterDto registerDto);
+    ResponseEntity<Page<CustomerDto>> getAllCustomerPaginationEntityPageable(Pageable pageable, T t);
 }
+
+

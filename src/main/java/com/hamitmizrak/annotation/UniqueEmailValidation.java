@@ -1,7 +1,7 @@
 package com.hamitmizrak.annotation;
 
-import com.hamitmizrak.data.entity.RegisterEntity;
-import com.hamitmizrak.data.repository.IRegisterRepository;
+import com.hamitmizrak.data.entity.CustomerEntity;
+import com.hamitmizrak.data.repository.ICustomerRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
@@ -13,13 +13,13 @@ import lombok.RequiredArgsConstructor;
 public class UniqueEmailValidation implements ConstraintValidator<UniqueEmail,String> {
 
     //Injection
-    private final IRegisterRepository iAdminRepository;
+    private final ICustomerRepository iCustomerRepository;
 
     // Database email bulunan  kullanıcıyı var mı yok mu ?
     @Override
     public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
-        //AdminEntity customerEntity= iAdminRepository.findByEmail(email).orElseThrow( ()->new NotFoundException(email+" bulunmadı"));
-        RegisterEntity customerEntity= iAdminRepository.findByEmail(email);
+        //CustomerEntity customerEntity= iCustomerRepository.findByEmail(email).orElseThrow( ()->new NotFoundException(email+" bulunmadı"));
+        CustomerEntity customerEntity= iCustomerRepository.findByEmail(email);
         // Eğer böyle bir email varsa return false döndürsün
         if(customerEntity!=null){
             return false;

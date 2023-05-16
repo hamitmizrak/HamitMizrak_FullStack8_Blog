@@ -1,6 +1,5 @@
 package com.hamitmizrak.business.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hamitmizrak.annotation.UniqueEmail;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -24,25 +23,25 @@ import java.util.Collection;
 @Log4j2
 
 // Validation
-public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
+public class CustomerDto extends AuditingAwareBaseDto implements Serializable {
 
     //Serileştirme
     public static final Long serialVersionUID = 1L;
 
     //NAME
-    @NotEmpty(message = "{admin.name.validation.constraints.NotNull.message}")
+    @NotEmpty(message = "{customer.name.validation.constraints.NotNull.message}")
     private String name;
 
     //SURNAME
-    @NotEmpty(message = "{admin.surname.validation.constraints.NotNull.message}")
+    @NotEmpty(message = "{customer.surname.validation.constraints.NotNull.message}")
     private String surname;
 
     //EMAİL
-    @NotEmpty(message = "{admin.email.validation.constraints.NotNull.message}")
-    @Email(message = "{admin.email.pattern.validation.constraints.NotNull.message}")
+    @NotEmpty(message = "{customer.email.validation.constraints.NotNull.message}")
+    @Email(message = "{customer.email.pattern.validation.constraints.NotNull.message}")
     @Size(max = 200)
     //Kendi Anontation yazdım
-    @UniqueEmail(message = "{admin.email.unique.validation.constraints.NotNull.message}")
+    @UniqueEmail(message = "{customer.email.unique.validation.constraints.NotNull.message}")
     private String email;
 
     //PASSWORD
@@ -50,7 +49,7 @@ public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
     //@Max(value = 7,message = "Şifreyi 10 büyük giremezsiniz")
     @NotEmpty(message = "{admin.password.validation.constraints.NotNull.NotNull.message}")
     @Size(min = 7, max = 10, message = "{admin.password.pattern.validation.constraints.NotNull.message}")
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).*$", message = "{admin.password.pattern.validation.constraints.NotNull.message}")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).*$", message = "{customer.password.pattern.validation.constraints.NotNull.message}")
     // 1.YOL
     // spring.jackson.mapper.default-view-inclusion=true
     // @JsonIgnore // bu field json görünmesini istemediğimiz Entity yazarı json görünmez.

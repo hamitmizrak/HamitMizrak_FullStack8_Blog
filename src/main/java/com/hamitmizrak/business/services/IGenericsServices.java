@@ -1,6 +1,6 @@
 package com.hamitmizrak.business.services;
 
-import com.hamitmizrak.data.entity.RegisterEntity;
+import com.hamitmizrak.business.dto.CustomerDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.data.domain.Page;
@@ -51,11 +51,12 @@ public interface IGenericsServices<D,E> { //Generics
     ////////////////////////////////////////
 
     // LIST : Pageable
-    public List<D> getAllRegisters();
+    public List<D> getAllCustomers();
 
     // LIST : Pageable, page ,size
-    public Page<D> getAllRegisterPaginationEntity(int currentPage, int pageSize);
+    public Page<D> getAllCustomerPaginationEntity(int currentPage, int pageSize);
 
-    // LIST : Pageable, Aktif Kullanıcı bilgisi: RegisterDto
-    public Page<D> getAllRegisterPaginationEntityPageable(Pageable pageable, D d);
+    // LIST : Pageable, Aktif Kullanıcı bilgisi: CustomerDto
+    public Page<D> getAllCustomerPaginationEntityPageable(Pageable pageable, D d);
+
 }

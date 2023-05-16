@@ -6,16 +6,16 @@ public class PostmanDoc {
 
 
     //  LIST (GET)
-    //  http://localhost:2222/admin/api/v1/list
+    //  http://localhost:2222/customer/api/v1/list
 
     // DELETE ALL (GET)
-    // http://localhost:2222/admin/api/v1/deleteall
+    // http://localhost:2222/customer/api/v1/deleteall
 
     // SPEED DATA (GET)
-    // http://localhost:2222/admin/api/v1/speedData
+    // http://localhost:2222/customer/api/v1/speedData
 
     // CREATE
-    // http://localhost:2222/admin/api/v1/create
+    // http://localhost:2222/customer/api/v1/create
     /*
     {
         "name":"Hamit11",
@@ -26,14 +26,14 @@ public class PostmanDoc {
     */
 
     // FIND (GET)
-    // http://localhost:2222/admin/api/v1/find/1
+    // http://localhost:2222/customer/api/v1/find/1
 
     // DELETE (DELETE)
-    // http://localhost:2222/admin/api/v1/delete/1
+    // http://localhost:2222/customer/api/v1/delete/1
 
 
     // UPDATE
-    // http://localhost:2222/admin/api/v1/update/1
+    // http://localhost:2222/customer/api/v1/update/1
         /*
     {
         "name":"Hamit11",
@@ -44,7 +44,7 @@ public class PostmanDoc {
     */
 
 
-    // GET /admin/api/v1/list2 HTTP/1.1
+    // GET /customer/api/v1/list2 HTTP/1.1
     //Host: localhost:2222
     //Content-Type: application/json
     //Content-Length: 120

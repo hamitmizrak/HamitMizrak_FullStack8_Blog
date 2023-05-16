@@ -38,6 +38,13 @@
     <!--dependencies-->
     <dependencies>
       <!-- COMPONENT -->
+
+        <!-- MAİL-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
         <!--Spring Web Mvc Rest-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

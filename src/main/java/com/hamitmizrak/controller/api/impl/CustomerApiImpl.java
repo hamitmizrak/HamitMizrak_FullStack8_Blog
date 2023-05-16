@@ -1,7 +1,7 @@
 package com.hamitmizrak.controller.api.impl;
 
-import com.hamitmizrak.business.dto.RegisterDto;
-import com.hamitmizrak.business.services.impl.RegisterServices;
+import com.hamitmizrak.business.dto.CustomerDto;
+import com.hamitmizrak.business.services.impl.CustomerServices;
 import com.hamitmizrak.controller.api.IGenericsApi;
 import com.hamitmizrak.error.ApiResult;
 import jakarta.annotation.PostConstruct;
@@ -26,8 +26,8 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 // CORS: eğer reactta package.json'da proxy yazarsam @CrossOrigin yazmasamda olur.
-@RequestMapping("/admin/api/v1")
-public class RegisterApiImpl implements IGenericsApi<RegisterDto> {
+@RequestMapping("/customer/api/v1")
+public class CustomerApiImpl implements IGenericsApi<CustomerDto> {
 
     // ERROR
     private ApiResult apiResult;
@@ -42,20 +42,20 @@ public class RegisterApiImpl implements IGenericsApi<RegisterDto> {
     //1.YOL => Field Injection
     /*
     @Autowired
-    private RegisterServices registerServices;
+    private CustomerServices customerServices;
     */
 
     //2.YOL => Constructor Injection
     /*
-    private final RegisterServices registerServices;
+    private final CustomerServices customerServices;
     @Autowired
-    public CustomerApi(RegisterServices registerServices) {
-        this.registerServices = registerServices;
+    public CustomerApi(CustomerServices customerServices) {
+        this.customerServices = customerServices;
     }
     */
 
     //3.YOL => Constructor Injection (LOMBOK)
-    private final RegisterServices registerServices;
+    private final CustomerServices customerServices;
 
     ///////////////////////////////////////////////////////////
 
@@ -64,70 +64,70 @@ public class RegisterApiImpl implements IGenericsApi<RegisterDto> {
     @GetMapping("/profile/{data}")
     public String getProfile(@PathVariable(name = "data") String name) {
         //log.info();
-        return registerServices.getProfile(name);
+        return customerServices.getProfile(name);
     }
 
     //HEADERS
     @Override
     @GetMapping("/header")
     public void getAllHeaderData(Map<String, String> headers) {
-        registerServices.getAllHeaderData(headers);
+        customerServices.getAllHeaderData(headers);
     }
 
     // APP INFORMATION
     @Override
     @GetMapping("/app/information")
     public ResponseEntity<?> getAppInformation(HttpServletRequest request, HttpServletResponse response) {
-        return ResponseEntity.ok(registerServices.getAppInformation(request,response));
+        return ResponseEntity.ok(customerServices.getAppInformation(request,response));
     }
     //////////////////////////////////////////////////////////
 
     // SPEED ALL
-    // http://localhost:2222/admin/api/v1/speedData
+    // http://localhost:2222/customer/api/v1/speedData
     @Override
     @GetMapping("/speedData")
-    public ResponseEntity<RegisterDto> speedDataApi() {
-        return ResponseEntity.ok(registerServices.speedDataServices());
+    public ResponseEntity<CustomerDto> speedDataApi() {
+        return ResponseEntity.ok(customerServices.speedDataServices());
     }
 
     // DELETE ALL
-    // http://localhost:2222/admin/api/v1/deleteall
+    // http://localhost:2222/customer/api/v1/deleteall
     @Override
     @GetMapping("/deleteall")
     public ResponseEntity<String> deleteApi() {
-        return ResponseEntity.ok(registerServices.allDeleteServices());
+        return ResponseEntity.ok(customerServices.allDeleteServices());
     }
     ////////////////////////////////////////////////////////////////////
 
     // CREATE
-    // http://localhost:2222/admin/api/v1/create
+    // http://localhost:2222/customer/api/v1/create
     @Override
     @PostMapping(value = "create")
-    public ResponseEntity<RegisterDto> createApi(@Valid @RequestBody RegisterDto registerDto) {
-        // return new ResponseEntity<>(registerDto, HttpStatus.OK);
-        // return  ResponseEntity.status(HttpStatus.OK).body(registerDto);
-        // return  ResponseEntity.status(200).body(registerDto);
-        // return  ResponseEntity.ok().body(registerDto);
+    public ResponseEntity<CustomerDto> createApi(@Valid @RequestBody CustomerDto customerDto) {
+        // return new ResponseEntity<>(customerDto, HttpStatus.OK);
+        // return  ResponseEntity.status(HttpStatus.OK).body(customerDto);
+        // return  ResponseEntity.status(200).body(customerDto);
+        // return  ResponseEntity.ok().body(customerDto);
 
         // ApiResult apiResult=new ApiResult(200,PATH,"created Employee");
         // return ResponseEntity.ok(apiResult);
-        return ResponseEntity.ok(registerServices.createServices(registerDto));
+        return ResponseEntity.ok(customerServices.createServices(customerDto));
     }
 
     // LIST
-    // http://localhost:2222/admin/api/v1/list
+    // http://localhost:2222/customer/api/v1/list
     @Override
     @GetMapping("list")
-    // @Cacheable(value = "cacheAdminList")  // Dikkat: bunu eklediğinde veriler değişikler göreyebilirsin
-    public ResponseEntity<List<RegisterDto>> listApi() {
-        return ResponseEntity.ok(registerServices.listServices());
+    // @Cacheable(value = "cachecustomerList")  // Dikkat: bunu eklediğinde veriler değişikler göreyebilirsin
+    public ResponseEntity<List<CustomerDto>> listApi() {
+        return ResponseEntity.ok(customerServices.listServices());
     }
 
     // FIND
-    // http://localhost:2222/admin/api/v1/find
-    // http://localhost:2222/admin/api/v1/find/0
-    // http://localhost:2222/admin/api/v1/find/-1
-    // http://localhost:2222/admin/api/v1/find/1
+    // http://localhost:2222/customer/api/v1/find
+    // http://localhost:2222/customer/api/v1/find/0
+    // http://localhost:2222/customer/api/v1/find/-1
+    // http://localhost:2222/customer/api/v1/find/1
     @Override
     @GetMapping({"/find", "/find/{id}"})
     public ResponseEntity<?> findByIdApi(@PathVariable(name = "id", required = false) Long id) {
@@ -136,7 +136,7 @@ public class RegisterApiImpl implements IGenericsApi<RegisterDto> {
             //return ResponseEntity.notFound().build();
         } else if (id == 0) {
             log.error("API => 400 BAD REQUEST");
-            apiResult = new ApiResult(400, "localhost:2222/customer/api/v1/register/0", "Kötü istek", "Bad Request");
+            apiResult = new ApiResult(400, "localhost:2222/customer/api/v1/customer/0", "Kötü istek", "Bad Request");
             //return ResponseEntity.badRequest().build();
             return ResponseEntity.badRequest().body(apiResult);
         } else if (id < 0) {
@@ -144,32 +144,31 @@ public class RegisterApiImpl implements IGenericsApi<RegisterDto> {
             apiResult = ApiResult.builder()
                     .error("unAuthorized")
                     .message("Yetkisiz Giriş")
-                    .path("localhost:2222/customer/api/v1/register/-1")
+                    .path("localhost:2222/customer/api/v1/customer/-1")
                     .status(401)
                     .build();
             return ResponseEntity.status(401).body(apiResult);
         }
-        System.out.println(registerServices.findByIdServices(id));
-        return ResponseEntity.ok(registerServices.findByIdServices(id));
+        System.out.println(customerServices.findByIdServices(id));
+        return ResponseEntity.ok(customerServices.findByIdServices(id));
     }
 
     // DELETE
-    // http://localhost:2222/admin/api/v1/delete/1
+    // http://localhost:2222/customer/api/v1/delete/1
     @Override
     @DeleteMapping({"/delete", "/delete/{id}"})
     public ResponseEntity<Map<String, Boolean>> deleteApi(@PathVariable(name = "id", required = false) Long id) {
-        return ResponseEntity.ok(registerServices.deleteServices(id));
+        return ResponseEntity.ok(customerServices.deleteServices(id));
     }
 
     // UPDATE
-    // http://localhost:2222/admin/api/v1/update/1
+    // http://localhost:2222/customer/api/v1/update/1
     @Override
     @PutMapping({"/update", "/update/{id}"})
-    public ResponseEntity<RegisterDto> updateApi(@PathVariable(name = "id", required = false) Long id, @Valid @RequestBody RegisterDto adminDto) {
-        return ResponseEntity.ok(registerServices.updateServices(id, adminDto));
+    public ResponseEntity<CustomerDto> updateApi(@PathVariable(name = "id", required = false) Long id, @Valid @RequestBody CustomerDto customerDto) {
+        return ResponseEntity.ok(customerServices.updateServices(id, customerDto));
     }
     ///////////////////////////////////////////////////////////////////////////////////
-
 
     //ROOT
     @GetMapping({"/","/index"})
@@ -181,22 +180,15 @@ public class RegisterApiImpl implements IGenericsApi<RegisterDto> {
     // http://localhost:4444/api/v1/pagination?currentPage=0&pageSize=3
     @Override
     @GetMapping(value = "/pagination")
-    public ResponseEntity<Page<RegisterDto>> getAllRegisterPaginationEntity(
+    public ResponseEntity<Page<CustomerDto>> getAllCustomerPaginationEntity(
             @RequestParam(name = "currentPage", required = false, defaultValue = "0") int currentPage,
             @RequestParam(name = "pageSize", required = false, defaultValue = "3") int pageSize) {
-        return ResponseEntity.ok(registerServices.getAllRegisterPaginationEntity(currentPage,pageSize));
+        return ResponseEntity.ok(customerServices.getAllCustomerPaginationEntity(currentPage,pageSize));
     }
 
-    // LIST PAGINATION
-    // spring.data.web.pageable.page-parameter=currentPage
-    // spring.data.web.pageable.size-parameter=pageSize
-    // http://localhost:4444/api/v1/pageable?currentPage=0&pageSize=3
-    // http://localhost:4444/api/v1/pageable?page=0&size=3
     @Override
-    @GetMapping(value = "/pageable")
-    public ResponseEntity<Page<RegisterDto>> getAllRegisterPaginationEntityPageable(Pageable pageable, RegisterDto registerDto) {
-        return ResponseEntity.ok(registerServices.getAllRegisterPaginationEntityPageable(pageable,registerDto));
+    public ResponseEntity<Page<CustomerDto>> getAllCustomerPaginationEntityPageable(Pageable pageable, CustomerDto customerDto) {
+        return null;
     }
-
 
 } // end update

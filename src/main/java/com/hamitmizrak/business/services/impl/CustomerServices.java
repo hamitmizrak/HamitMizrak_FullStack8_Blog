@@ -2,10 +2,10 @@ package com.hamitmizrak.business.services.impl;
 
 import com.hamitmizrak.bean.ModelMapperBean;
 import com.hamitmizrak.bean.PasswordEncoderBean;
-import com.hamitmizrak.business.dto.RegisterDto;
+import com.hamitmizrak.business.dto.CustomerDto;
 import com.hamitmizrak.business.services.IGenericsServices;
-import com.hamitmizrak.data.entity.RegisterEntity;
-import com.hamitmizrak.data.repository.IRegisterRepository;
+import com.hamitmizrak.data.entity.CustomerEntity;
+import com.hamitmizrak.data.repository.ICustomerRepository;
 import com.hamitmizrak.exception.HamitMizrakException;
 import com.hamitmizrak.exception.ResourceNotFoundException;
 import com.hamitmizrak.profile.IChooiseProfile;
@@ -16,6 +16,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,10 +29,10 @@ import java.util.*;
 
 @Service
 // Asıl iş yükünü yapan class
-public class RegisterServices implements IGenericsServices<RegisterDto, RegisterEntity> {
+public class CustomerServices implements IGenericsServices<CustomerDto, CustomerEntity> {
 
     // INJECTION
-    private final IRegisterRepository iRegisterRepository;
+    private final ICustomerRepository iCustomerRepository;
     private final ModelMapperBean modelMapperBean;
     private final PasswordEncoderBean passwordEncoderBean;
     private final IChooiseProfile profile;
@@ -66,10 +67,10 @@ public class RegisterServices implements IGenericsServices<RegisterDto, Register
     ////////////////////////////////////////
     // SPEED DATA
     @Override
-    public RegisterDto speedDataServices() {
-        RegisterDto customerDto = null;
+    public CustomerDto speedDataServices() {
+        CustomerDto customerDto = null;
         for (int i = 1; i <= 5; i++) {
-            customerDto = RegisterDto.builder()
+            customerDto = CustomerDto.builder()
                     .name("adı " + i)
                     .surname("soyadı " + i)
                     .email(UUID.randomUUID().toString().concat("@gmail.com"))
@@ -77,8 +78,8 @@ public class RegisterServices implements IGenericsServices<RegisterDto, Register
                     .build();
             customerDto.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(customerDto.getPassword()));
             // DTO ==> ENTITY Model Mapper
-            RegisterEntity customerEntityMapper = DtoToEntity(customerDto);
-            RegisterEntity customerEntityRepository = iRegisterRepository.save(customerEntityMapper);
+            CustomerEntity customerEntityMapper = DtoToEntity(customerDto);
+            CustomerEntity customerEntityRepository = iCustomerRepository.save(customerEntityMapper);
         }
         return customerDto;
     }
@@ -86,65 +87,65 @@ public class RegisterServices implements IGenericsServices<RegisterDto, Register
     // DELETE ALL
     @Override
     public String allDeleteServices() {
-        iRegisterRepository.deleteAll();
+        iCustomerRepository.deleteAll();
         return "Bütün veriler silindi";
     }
     ////////////////////////////////////////
     //MODEL MAPPER
     @Override
-    public RegisterDto EntityToDto(RegisterEntity customerEntity) {
-        return modelMapperBean.modelMapperMethod().map(customerEntity, RegisterDto.class);
+    public CustomerDto EntityToDto(CustomerEntity customerEntity) {
+        return modelMapperBean.modelMapperMethod().map(customerEntity, CustomerDto.class);
     }
 
     @Override
-    public RegisterEntity DtoToEntity(RegisterDto customerDto) {
-        return modelMapperBean.modelMapperMethod().map(customerDto, RegisterEntity.class);
+    public CustomerEntity DtoToEntity(CustomerDto customerDto) {
+        return modelMapperBean.modelMapperMethod().map(customerDto, CustomerEntity.class);
     }
     ////////////////////////////////////////
     // CREATE
     @Override
     @Transactional // create,delete,update
-    public RegisterDto createServices(RegisterDto registerDto) {
-        if (registerDto != null) {
+    public CustomerDto createServices(CustomerDto customerDto) {
+        if (customerDto != null) {
             // Passwork Masking
-            registerDto.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(registerDto.getPassword()));
+            customerDto.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(customerDto.getPassword()));
             // DTO ==> ENTITY Model Mapper
-            RegisterEntity customerEntityMapper = DtoToEntity(registerDto);
-            RegisterEntity customerEntityRepository = iRegisterRepository.save(customerEntityMapper);
+            CustomerEntity customerEntityMapper = DtoToEntity(customerDto);
+            CustomerEntity customerEntityRepository = iCustomerRepository.save(customerEntityMapper);
             // Kaydedilen verinin ID dönsün
-            registerDto.setId(customerEntityRepository.getId());
-            registerDto.setCreatedDate(customerEntityRepository.getCreatedDate());
-        } else if (registerDto == null) {
-            throw new HamitMizrakException("Register Dto Null geldi");
+            customerDto.setId(customerEntityRepository.getId());
+            customerDto.setCreatedDate(customerEntityRepository.getCreatedDate());
+        } else if (customerDto == null) {
+            throw new HamitMizrakException("Customer Dto Null geldi");
         }
-        return registerDto;
+        return customerDto;
     }
 
     // LIST
     @Override
-    public List<RegisterDto> listServices() {
-        Iterable<RegisterEntity> registerEntityList = iRegisterRepository.findAll();
+    public List<CustomerDto> listServices() {
+        Iterable<CustomerEntity> customerEntityList = iCustomerRepository.findAll();
         // EntityList ==> DtoList çevir
-        List<RegisterDto> entityToDtoList = new ArrayList<>();
-        for (RegisterEntity temp : registerEntityList) {
-            RegisterDto registerDto = EntityToDto(temp);
+        List<CustomerDto> entityToDtoList = new ArrayList<>();
+        for (CustomerEntity temp : customerEntityList) {
+            CustomerDto customerDto = EntityToDto(temp);
             //byte[] decodeAccessKeyPin = Base64.getDecoder().decode(passwordEncoderBean.passwordEncoderMethod().encode(customerDto.getPassword()));
             //String decodeString = new String(decodeAccessKeyPin);
             //customerDto.setPassword(decodeString);
-            entityToDtoList.add(registerDto);
+            entityToDtoList.add(customerDto);
         }
         return entityToDtoList;
     }
 
     // FIND
     @Override
-    public RegisterDto findByIdServices(Long id) {
+    public CustomerDto findByIdServices(Long id) {
 
          /*
          // 1.YOL
-         Optional<RegisterEntity> findEntity= iRegisterRepository.findById(id);
+         Optional<CustomerEntity> findEntity= iCustomerRepository.findById(id);
          //Model Mapper
-         RegisterDto findDto= EntityToDto(findEntity.get());
+         CustomerDto findDto= EntityToDto(findEntity.get());
          //findEntity.isPresent() VEYA findEntity!=null
          if(findEntity.isPresent()){
          return findDto;
@@ -152,14 +153,14 @@ public class RegisterServices implements IGenericsServices<RegisterDto, Register
          */
 
         // 2.YOL
-        RegisterEntity registerEntity = null;
+        CustomerEntity customerEntity = null;
         if (id != null) {
-            registerEntity = iRegisterRepository.findById(id)
+            customerEntity = iCustomerRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException(id + " nolu ID yoktur"));
         } else if (id == null) {
             throw new HamitMizrakException("Customer Dto Null geldi");
         }
-        return EntityToDto(registerEntity);
+        return EntityToDto(customerEntity);
     }
 
     // DELETE
@@ -168,11 +169,11 @@ public class RegisterServices implements IGenericsServices<RegisterDto, Register
     public Map<String, Boolean> deleteServices(Long id) {
         Map<String, Boolean> mapDelete = new HashMap<>();
         // FIND
-        RegisterDto registerDto = findByIdServices(id);
+        CustomerDto customerDto = findByIdServices(id);
         // Dto ==> Entity
-        RegisterEntity customerEntity = DtoToEntity(registerDto);
+        CustomerEntity customerEntity = DtoToEntity(customerDto);
         if (customerEntity != null) {
-            iRegisterRepository.delete(customerEntity);
+            iCustomerRepository.delete(customerEntity);
             mapDelete.put("Silindi", Boolean.TRUE);
         }
         return mapDelete;
@@ -181,41 +182,42 @@ public class RegisterServices implements IGenericsServices<RegisterDto, Register
     // UPDATE
     @Override
     @Transactional // create,delete,update
-    public RegisterDto updateServices(Long id, RegisterDto customerDto) {
+    public CustomerDto updateServices(Long id, CustomerDto customerDto) {
         // FIND
-        RegisterDto registerDtoFind = findByIdServices(id);
+        CustomerDto customerDtoFind = findByIdServices(id);
         // Dto ==> Entity
-        RegisterEntity registerEntity = DtoToEntity(registerDtoFind);
-        if (registerEntity != null) {
-            registerEntity.setName(customerDto.getName());
-            registerEntity.setSurname(customerDto.getSurname());
-            registerEntity.setEmail(customerDto.getEmail());
-            registerEntity.setImage(customerDto.getImage());
-            registerEntity.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(customerDto.getPassword()));
-            iRegisterRepository.save(registerEntity);
+        CustomerEntity customerEntity = DtoToEntity(customerDtoFind);
+        if (customerEntity != null) {
+            customerEntity.setName(customerDto.getName());
+            customerEntity.setSurname(customerDto.getSurname());
+            customerEntity.setEmail(customerDto.getEmail());
+            customerEntity.setImage(customerDto.getImage());
+            customerEntity.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(customerDto.getPassword()));
+            iCustomerRepository.save(customerEntity);
             // Kaydedilen verinin ID dönsün
-            customerDto.setId(registerEntity.getId());
-            customerDto.setCreatedDate(registerEntity.getCreatedDate());
+            customerDto.setId(customerEntity.getId());
+            customerDto.setCreatedDate(customerEntity.getCreatedDate());
         }
         return customerDto;
     }
 
     ////////////////////////////////////////
     @Override
-    public List<RegisterDto> getAllRegisters() {
+    public List<CustomerDto> getAllCustomers() {
         return null;
     }
 
     @Override
-    public Page<RegisterDto> getAllRegisterPaginationEntity(int currentPage, int pageSize) {
+    public Page<CustomerDto> getAllCustomerPaginationEntity(int currentPage, int pageSize) {
         Pageable pageable = PageRequest.of(currentPage, pageSize);
-        Page<RegisterEntity>  registerEntity=iRegisterRepository.findAll(pageable);
-        Page<RegisterDto> dto= null;
+        Page<CustomerEntity>  customerEntity= iCustomerRepository.findAll(pageable);
+        Page<CustomerDto> dto= null;
         return dto;
     }
 
     @Override
-    public Page<RegisterDto> getAllRegisterPaginationEntityPageable(Pageable pageable, RegisterDto registerDto) {
+    public Page<CustomerDto> getAllCustomerPaginationEntityPageable(Pageable pageable, CustomerDto customerDto) {
         return null;
     }
+
 } //end class
