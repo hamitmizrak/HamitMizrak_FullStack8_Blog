@@ -11,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter @Setter // LOMBOK
@@ -28,4 +29,10 @@ abstract public class BaseEntity extends AuditingAwareBaseClass {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date systemDate;
+    //private LocalDate systemDate;
+
+    //Constructor
+    public BaseEntity() {
+        //this.systemDate=LocalDate.now();
+    }
 }
