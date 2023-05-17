@@ -16,7 +16,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +28,7 @@ import java.util.*;
 
 @Service
 // Asıl iş yükünü yapan class
-public class CustomerServices implements IGenericsServices<CustomerDto, CustomerEntity> {
+public class CustomerServicesImpl implements IGenericsServices<CustomerDto, CustomerEntity> {
 
     // INJECTION
     private final ICustomerRepository iCustomerRepository;

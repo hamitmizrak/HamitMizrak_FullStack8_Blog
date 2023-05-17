@@ -1,7 +1,7 @@
 package com.hamitmizrak.controller.api.impl;
 
 import com.hamitmizrak.business.dto.CustomerDto;
-import com.hamitmizrak.business.services.impl.CustomerServices;
+import com.hamitmizrak.business.services.impl.CustomerServicesImpl;
 import com.hamitmizrak.controller.api.IGenericsApi;
 import com.hamitmizrak.error.ApiResult;
 import jakarta.annotation.PostConstruct;
@@ -55,7 +55,7 @@ public class CustomerApiImpl implements IGenericsApi<CustomerDto> {
     */
 
     //3.YOL => Constructor Injection (LOMBOK)
-    private final CustomerServices customerServices;
+    private final CustomerServicesImpl customerServices;
 
     ///////////////////////////////////////////////////////////
 
