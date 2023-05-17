@@ -1,6 +1,7 @@
 package com.hamitmizrak.business.dto;
 
 import com.hamitmizrak.annotation.UniqueEmail;
+import com.hamitmizrak.audit.AuditingAwareBaseDto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;

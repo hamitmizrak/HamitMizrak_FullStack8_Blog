@@ -1,12 +1,13 @@
-package com.hamitmizrak.business.dto;
-import lombok.Getter;
-import lombok.Setter;
+package com.hamitmizrak.audit;
+
+import lombok.Data;
+
 
 import java.io.Serializable;
 import java.util.Date;
 
 // LOMBOK
-@Getter @Setter
+@Data
 abstract public class AuditingAwareBaseDto  implements Serializable {
     //Serileştirme
     public static final Long serialVersionUID = 1L;
@@ -23,3 +24,4 @@ abstract public class AuditingAwareBaseDto  implements Serializable {
     protected String updatedUser;
     protected Date updatedDate;
 }
+

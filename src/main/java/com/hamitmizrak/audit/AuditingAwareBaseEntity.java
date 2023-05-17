@@ -8,7 +8,6 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
-
 import java.util.Date;
 
 // LOMBOK
@@ -17,7 +16,7 @@ import java.util.Date;
 //SUPER CLASS
 @MappedSuperclass
 @JsonIgnoreProperties(value = {"created_date,updated_date"},allowGetters = true) // Json'a emir veriyoruz bunları takip etme
-public class AuditingAwareBaseClass {
+public class AuditingAwareBaseEntity {
     // Auditing: Database hangi kullanıcı ne zaman
     // ne ekledi veya ne güncelledi
 
