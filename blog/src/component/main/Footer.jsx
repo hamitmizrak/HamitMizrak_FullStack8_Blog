@@ -33,40 +33,8 @@ function Footer(props) {
                 <section className="">
                     <div className="container text-center text-md-start mt-5">
                         <div className="row mt-3">
-                            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                                <h6 className="text-uppercase fw-bold mb-4">
-                                    <i className="fas fa-gem me-3 text-secondary"></i>{props.t('company')}
-                                </h6>
 
-                                <p>
-                                    Here you can use rows and columns to
-                                </p>
-                            </div>
-
-                            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                                <h6 className="text-uppercase fw-bold mb-4">
-                                    {props.t('product')}
-                                </h6>
-                                <p>
-                                    <a href="blog/src/component/main/Footer#!" className="text-reset">Angular</a>
-                                </p>
-                                <p>
-                                    <a href="blog/src/component/main/Footer#!" className="text-reset">React</a>
-                                </p>
-                            </div>
-
-                            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                                <h6 className="text-uppercase fw-bold mb-4">
-                                    {props.t('useFullLink')}
-                                </h6>
-                                <p>
-                                    <a href="blog/src/component/main/Footer#!" className="text-reset">Pricing</a>
-                                </p>
-                            </div>
-
-                            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <div className="col-md-4 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
                                 <h6 className="text-uppercase fw-bold mb-4">{props.t('contact')}</h6>
                                 <p><i className="fas fa-home me-3 text-secondary"></i> New York, NY 10012, US</p>
                                 <p>
@@ -75,6 +43,39 @@ function Footer(props) {
                                 </p>
                                 <p><i className="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
                                 <p><i className="fas fa-print me-3 text-secondary"></i> + 01 234 567 89</p>
+                            </div>
+
+                            <div className="col-md-2 col-lg-2 col-xl-4 mx-auto mb-4">
+                                <h6 className="text-uppercase fw-bold mb-4">
+                                    <i className="fas fa-gem me-3 text-secondary"></i>{props.t('company')}
+                                </h6>
+                                <p>Company INC Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda beatae distinctio eligendi fugiat iusto neque quidem quo sapiente voluptates voluptatibus?</p>
+                            </div>
+
+                            <div className="col-md-6 col-lg-6 col-xl mx-auto mb-4">
+                                <h6 className="text-uppercase fw-bold mb-4">
+                                   MAIL
+                                </h6>
+                                <form action="">
+                                    <div className="form-group mb-3">
+                                        <input type="email" className="form-control" placeholder="Email Addres"/>
+                                    </div>
+
+                                    <div className="form-group mb-3">
+                                        <input type="email" className="form-control" placeholder="Konu"/>
+                                    </div>
+
+                                    <div className="form-group mb-3">
+                                        <textarea className="form-control" placeholder="İçerik" cols="20" rows="4"
+                                                  id="floatingTextarea2" ></textarea>
+                                    </div>
+
+                                    <div className="form-group mb-3">
+                                        <button className="btn btn-danger me-3">Temizle</button>
+                                        <button className="btn btn-primary">Gönder</button>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>
