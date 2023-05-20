@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {withTranslation} from 'react-i18next';
 import RegisterApi from "../../services/RegisterApi";
 import EmailApi from "../../services/EmailApi";
+import ResuabilityEmailInput from "../../resuability/ResuabilityEmailInput";
+import ResuabilityRegisterInput from "../../resuability/ResuabilityRegisterInput";
 
 // Arrow function Date
 let newDateYear = () => {
@@ -23,7 +25,7 @@ class Footer extends Component {
 
         //BIND
         this.onChangeInputValue = this.onChangeInputValue.bind(this);
-        this.emailSendSubmit=this.emailSendSubmit.bind(this);
+        this.emailSendSubmit = this.emailSendSubmit.bind(this);
     } //end constructor
 
     //CDM
@@ -47,19 +49,19 @@ class Footer extends Component {
     }
 
     // EMAIL
-    emailSendSubmit= async (event) => {
+    emailSendSubmit = async (event) => {
         //browser sen dur bir şey yapma
         event.preventDefault();
 
         //STATE
-        const { emailTo, emailSubject, emailText } = this.state;
+        const {emailTo, emailSubject, emailText} = this.state;
         const emailDto = {
             emailTo, emailSubject, emailText
         }
         console.log(emailDto);
 
         // Spinner Data: çalışsın
-        this.setState({ spinnerData: true })
+        this.setState({spinnerData: true})
         EmailApi.blogSendEmail(emailDto).then((response) => {
             if (response.status === 200) {
                 // Veri gönderene kadar spinner(loading) çalışmasın
@@ -68,19 +70,24 @@ class Footer extends Component {
             this.props.history.push("/");
         }).catch((error) => {
             console.error(error);
-            this.setState({ spinnerData: false })
+            this.setState({spinnerData: false})
         });
     }
 
+    // Konuyu liste olarak al
+    // validation
+    // error eklemelisin.
+    // i18n
+    // security
 
     //RENDER
     render() {
 
         // i18n
-        const { t } = this.props;
+        const {t} = this.props;
 
         //State
-        const { emailTo, emailSubject,emailText, spinnerData } = this.state;
+        const {emailTo, emailSubject, emailText, spinnerData} = this.state;
 
         //RETURN
         return (
@@ -128,24 +135,26 @@ class Footer extends Component {
                                 </div>
 
                                 <div className="col-md-6 col-lg-6 col-xl mx-auto mb-4">
-                                    <h6 className="text-uppercase fw-bold mb-4">
-                                        MAIL
-                                    </h6>
-
+                                    <h6 className="text-uppercase fw-bold mb-4">MAIL</h6>
 
                                     <form action="">
-                                        <div className="form-group mb-3">
-                                            <input type="email" className="form-control" placeholder="Email Addres" name="emailTo" id="emailTo"
-                                                   onChange={this.onChangeInputValue}/>
-                                        </div>
+                                        <ResuabilityEmailInput
+                                            type="email" focus={true}
+                                            name="emailTo" id="emailTo"
+                                            placeholder="Email Addres"
+                                            onChangeInput={this.onChangeInputValue}
+                                            error={emailTo}/>
+
+                                        <ResuabilityEmailInput
+                                            type="text" focus={false}
+                                            name="emailSubject" id="emailSubject"
+                                            placeholder="Konu"
+                                            onChangeInput={this.onChangeInputValue}
+                                            error={emailSubject}/>
 
                                         <div className="form-group mb-3">
-                                            <input type="text" className="form-control" placeholder="Konu"  name="emailSubject" id="emailSubject"
-                                                   onChange={this.onChangeInputValue}/>
-                                        </div>
-
-                                        <div className="form-group mb-3">
-                                        <textarea className="form-control" placeholder="İçerik" cols="20" rows="4"  name="emailText" id="emailText"
+                                        <textarea className="form-control" placeholder="İçerik" cols="20" rows="4"
+                                                  name="emailText" id="emailText"
                                                   onChange={this.onChangeInputValue}></textarea>
                                         </div>
 
@@ -156,7 +165,9 @@ class Footer extends Component {
                                                 onClick={this.emailSendSubmit}
                                                 // hemde çoklu isteklerde kapatılsın
                                                 disabled={(spinnerData)}>
-                                                {(spinnerData) && <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>}
+                                                {(spinnerData) &&
+                                                    <div className="spinner-border spinner-border-sm text-warning me-2"
+                                                         role="status"></div>}
                                                 Gönder
                                             </button>
                                         </div>
