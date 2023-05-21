@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import RegisterApi from '../../services/CustomerApi';
+import CustomerApi from '../../services/CustomerApi';
 import { withTranslation } from "react-i18next";
 
-class RegisterList extends Component {
+class CustomerList extends Component {
     constructor(props) {
         super(props);
         //STATE
@@ -18,7 +18,7 @@ class RegisterList extends Component {
 
     //CDM
     componentDidMount() {
-        RegisterApi.listApi().then(
+        CustomerApi.listApi().then(
             (response) => {
                 this.setState({
                     registerList: response.data
@@ -47,7 +47,7 @@ class RegisterList extends Component {
     }
 
     delete(id) {
-        RegisterApi.deleteApi(id).then(
+        CustomerApi.deleteApi(id).then(
             (response) => {
                 this.setState({
                     registerList: this.state.registerList.filter(
@@ -115,7 +115,7 @@ class RegisterList extends Component {
             </React.Fragment>
         ) //end return
     } //end render
-} //end class RegisterList
+} //end class CustomerList
 
 //i18n sarmaladı
-export default withTranslation()(RegisterList)
+export default withTranslation()(CustomerList)

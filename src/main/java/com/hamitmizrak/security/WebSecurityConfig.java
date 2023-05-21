@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 // LOMBOK
@@ -40,9 +39,14 @@ public class WebSecurityConfig {
         // http.httpBasic(); //http düzeyinde
         // http.formLogin(); // Form sayfası düzeyinde
         http.authorizeHttpRequests()
+                .requestMatchers("/user/**").hasAnyRole("ADMIN","SUPER_ADMIN")
+                .requestMatchers("/api/**").hasAnyRole("ADMIN","SUPER_ADMIN")
+                .requestMatchers("/swagger-ui/**").hasAnyRole("ADMIN","SUPER_ADMIN")  // swagger-ui
+                .requestMatchers("/h2-console/**").hasAnyRole("ADMIN","SUPER_ADMIN")  //h2-console
+
                 .requestMatchers("/", "/index", "/login").permitAll() // index izin ver
                 .requestMatchers("/email/api/v1/basic/email").permitAll() // Email Göndermeye izin ver
-                .requestMatchers("/swagger-ui/**").permitAll() // Email Göndermeye izin ver
+
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -63,11 +67,17 @@ public class WebSecurityConfig {
     public void myUserAddUserRoles(AuthenticationManagerBuilder auth) {
         //inMemoryAuthentication() = database olmadan login
         // noEncrpted: yani maskesiz olarak sakla
+        // SUPER ADMIN
         auth.inMemoryAuthentication()
-                .withUser(this.user)
-                .password(passwordEncoderBean.passwordEncoderMethod().encode(this.password))
-                //.password("root")
+                .withUser(this.user) // super
+                .password(passwordEncoderBean.passwordEncoderMethod().encode(this.password))//root
                 .roles(this.roles);
+
+        // NORMAL USER
+        auth.inMemoryAuthentication()
+                .withUser("user")
+                .password(passwordEncoderBean.passwordEncoderMethod().encode("root"))
+                .roles("USER");
     }
 
     // 1. YOL Şifre Maskelensin

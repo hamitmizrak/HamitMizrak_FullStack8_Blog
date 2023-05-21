@@ -5,9 +5,9 @@ import { withTranslation } from 'react-i18next'
 
 //resim
 import cardPicture from "../../image/mountain.jpg"
-import RegisterApi from '../../services/CustomerApi';
+import CustomerApi from '../../services/CustomerApi';
 
-class RegisterView extends Component {
+class CustomerView extends Component {
 
     constructor(props) {
         super(props);
@@ -31,7 +31,7 @@ class RegisterView extends Component {
 
     //CDM
     componentDidMount() {
-        RegisterApi.findByIdApi(this.state.id).then((response) => {
+        CustomerApi.findByIdApi(this.state.id).then((response) => {
             //console.log(response.data);
             //console.log(response.data.surname);
             this.setState({
@@ -80,4 +80,4 @@ class RegisterView extends Component {
     }//end  render
 }//end  class
 
-export default withTranslation()(RegisterView)
+export default withTranslation()(CustomerView)

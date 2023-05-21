@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withTranslation } from "react-i18next";
-import RegisterApi from '../../services/CustomerApi';
+import CustomerApi from '../../services/CustomerApi';
 import ResuabilityRegisterInput from '../../resuability/ResuabilityRegisterInput';
 
-class RegisterUpdate extends Component {
+class CustomerUpdate extends Component {
     constructor(props) {
         super(props);
         //STATE
@@ -28,7 +28,7 @@ class RegisterUpdate extends Component {
 
     //CDM
     componentDidMount() {
-        RegisterApi.findByIdApi(this.state.id).then(
+        CustomerApi.findByIdApi(this.state.id).then(
             (response) => {
                 const findRegisterDto = response.data;
                 //console.log(findRegisterDto);
@@ -93,7 +93,7 @@ class RegisterUpdate extends Component {
         // Spinner Data: çalışsın
         this.setState({ spinnerData: true })
         //   updateApi(id, registerDto) {
-        RegisterApi.updateApi(this.state.id, registerDto).then((response) => {
+        CustomerApi.updateApi(this.state.id, registerDto).then((response) => {
             if (response.status === 200) {
                 // Veri gönderene kadar spinner(loading) çalışmasın
             }
@@ -209,7 +209,7 @@ class RegisterUpdate extends Component {
             </React.Fragment>
         ); //end return 
     } //end render
-} //end RegisterUpdate
+} //end CustomerUpdate
 
 //i18n sarmaladı
-export default withTranslation()(RegisterUpdate)
+export default withTranslation()(CustomerUpdate)

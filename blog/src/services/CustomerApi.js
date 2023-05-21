@@ -8,8 +8,8 @@ class CustomerApi {
 
     // CREATE
     // http://localhost:2222/customer/api/v1/create
-    createApi(registerDto) {
-        return axios.post(`${REGISTER_URL}/create`, registerDto)
+    createApi(customerDto) {
+        return axios.post(`${REGISTER_URL}/create`, customerDto)
     }
 
     // LIST
@@ -35,10 +35,10 @@ class CustomerApi {
 
     // UPDATE
     // http://localhost:2222/customer/api/v1/update/1
-    updateApi(id, registerDto) {
-        return axios.put(`${REGISTER_URL}/update/${id}`, registerDto)
+    updateApi(id, customerDto) {
+        return axios.put(`${REGISTER_URL}/update/${id}`, customerDto)
     }
 
-} //end class RegisterDto
+} //end class customerDto
 
 export default new CustomerApi();

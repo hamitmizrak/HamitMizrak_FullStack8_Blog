@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withTranslation } from "react-i18next";
-import RegisterApi from '../../services/CustomerApi';
+import CustomerApi from '../../services/CustomerApi';
 import ResuabilityRegisterInput from '../../resuability/ResuabilityRegisterInput';
 
-class RegisterCreate extends Component {
+class CustomerCreate extends Component {
   constructor(props) {
     super(props);
     //STATE
@@ -70,7 +70,7 @@ class RegisterCreate extends Component {
 
     // Spinner Data: çalışsın
     this.setState({ spinnerData: true })
-    RegisterApi.createApi(registerDto).then((response) => {
+    CustomerApi.createApi(registerDto).then((response) => {
       if (response.status === 200) {
         // Veri gönderene kadar spinner(loading) çalışmasın
       }
@@ -182,7 +182,7 @@ class RegisterCreate extends Component {
       </React.Fragment>
     ); //end return 
   } //end render
-} //end RegisterCreate
+} //end CustomerCreate
 
 //i18n sarmaladı
-export default withTranslation()(RegisterCreate)
+export default withTranslation()(CustomerCreate)
