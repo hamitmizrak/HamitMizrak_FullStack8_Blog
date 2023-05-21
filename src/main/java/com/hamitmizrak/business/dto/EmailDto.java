@@ -1,5 +1,6 @@
 package com.hamitmizrak.business.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,12 +17,16 @@ import java.util.Date;
 public class EmailDto {
 
     private Long id;
+
+    @NotEmpty(message = "{email.to.validation.constraints.NotNull.message}")
     private String emailTo; //KİME
     //private String[] emailToArray; //KİMLERE
 
     @Value("${spring.mail.username}")
     //@Builder.Default
     private String emailFrom; //KİMDEN GELİYOR
+
+    @NotEmpty(message = "{email.subject.validation.constraints.NotNull.message}")
     private String emailSubject; //KONU
 
     /*private String emailCc;// CC
@@ -32,6 +37,9 @@ public class EmailDto {
 
     @Builder.Default
     private Date sentDate=new Date(System.currentTimeMillis()); //NE ZAMAN
+
+
+    @NotEmpty(message = "{email.text.validation.constraints.NotNull.message}")
     private String emailText;
 
     @Builder.Default

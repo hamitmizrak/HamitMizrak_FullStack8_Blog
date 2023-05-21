@@ -27,6 +27,10 @@ i18n.use(initReactI18next).init({
                     'create': "Create",
                     'isRead':' are you reading ?',
                     'update':"Update",
+                    'email':"Email",
+                    'email_address':"Your email address",
+                    'email_subject':"Email Subject",
+                    'email_text':"Email Content",
 
                 }
             },
@@ -54,6 +58,10 @@ i18n.use(initReactI18next).init({
                     'create': "Ekle",
                     'isRead':' Okudun mu ?',
                     'update':"Güncelle",
+                    'email':"Email",
+                    'email_address':"Email Addresiniz",
+                    'email_subject':"Email Konu",
+                    'email_text':"Email İçerik",
                 }
             }
     },

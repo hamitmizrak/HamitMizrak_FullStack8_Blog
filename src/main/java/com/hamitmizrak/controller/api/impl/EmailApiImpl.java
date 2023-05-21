@@ -4,6 +4,7 @@ import com.hamitmizrak.business.dto.EmailDto;
 import com.hamitmizrak.business.services.IEmailServices;
 import com.hamitmizrak.controller.api.IEmailApi;
 import com.hamitmizrak.util.FrontendURL;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class EmailApiImpl implements IEmailApi<EmailDto> {
     // http://localhost:2222/email/api/v1/basic/email
     @Override
     @PostMapping("/basic/email")
-    public EmailDto blogSendEmail(@RequestBody EmailDto emailDto) {
+    public EmailDto blogSendEmail(@Valid @RequestBody EmailDto emailDto) {
         return (EmailDto) iEmailServices.blogSendEmail(emailDto);
     }
 }

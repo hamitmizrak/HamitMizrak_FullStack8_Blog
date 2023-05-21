@@ -21,6 +21,7 @@ class Footer extends Component {
             emailSubject: null,
             emailText: null,
             spinnerData: false, // veri gönderirken loading olsun ve aynı anda birden fazla kayıt olunması
+            validationErrors: {}, // backentten gelen hataları yakalamak
         }
 
         //BIND
@@ -29,8 +30,7 @@ class Footer extends Component {
     } //end constructor
 
     //CDM
-    componentDidMount() {
-    }
+    //componentDidMount() {}
 
     //FUNCTION
     // Input
@@ -42,9 +42,16 @@ class Footer extends Component {
         const {name, value} = event.target;
         console.log(name + " " + value);
 
+        // Backendten gelen hataları yakalamak,
+        // const backendError={}
+        // ... anlamı kopyalama yapar.
+        const backendError = {...this.state.validationErrors }
+        backendError[name] = undefined;
+
         // STATE
         this.setState({
             [name]: value, //state name,surname,email,password
+            backendError, // state Backendten gelen hataları yakalamak,
         })
     }
 
@@ -70,6 +77,13 @@ class Footer extends Component {
             this.props.history.push("/");
         }).catch((error) => {
             console.error(error);
+
+            // backentten gelen hataları yakala
+            if (error.response.data.validationErrors) {
+                this.setState({ validationErrors: error.response.data.validationErrors })//end state
+                console.log(error.response.data.validationErrors)
+            } //end if
+
             this.setState({spinnerData: false})
         });
     }
@@ -87,7 +101,8 @@ class Footer extends Component {
         const {t} = this.props;
 
         //State
-        const {emailTo, emailSubject, emailText, spinnerData} = this.state;
+        const { spinnerData,validationErrors} = this.state;
+        const { emailTo, emailSubject, emailText, } = validationErrors;
 
         //RETURN
         return (
@@ -135,27 +150,31 @@ class Footer extends Component {
                                 </div>
 
                                 <div className="col-md-6 col-lg-6 col-xl mx-auto mb-4">
-                                    <h6 className="text-uppercase fw-bold mb-4">MAIL</h6>
-
+                                    <h6 className="text-uppercase fw-bold mb-4">{t('email')}</h6>
+                 
                                     <form action="">
                                         <ResuabilityEmailInput
                                             type="email" focus={true}
                                             name="emailTo" id="emailTo"
-                                            placeholder="Email Addres"
+                                            placeholder={t('email_address')}
                                             onChangeInput={this.onChangeInputValue}
                                             error={emailTo}/>
 
                                         <ResuabilityEmailInput
                                             type="text" focus={false}
                                             name="emailSubject" id="emailSubject"
-                                            placeholder="Konu"
+                                            placeholder={t('email_subject')}
                                             onChangeInput={this.onChangeInputValue}
                                             error={emailSubject}/>
 
                                         <div className="form-group mb-3">
-                                        <textarea className="form-control" placeholder="İçerik" cols="20" rows="4"
+                                        <textarea className="form-control"
+                                                     placeholder={t('email_text')}
+                                                  cols="20" rows="4"
                                                   name="emailText" id="emailText"
-                                                  onChange={this.onChangeInputValue}></textarea>
+                                                  onChange={this.onChangeInputValue}
+                                                  ></textarea>
+                                                   <div className={"text-danger"} >{emailText}</div>
                                         </div>
 
                                         <div className="form-group mb-3">
