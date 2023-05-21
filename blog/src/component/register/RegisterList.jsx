@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import RegisterApi from '../../services/RegisterApi';
+import RegisterApi from '../../services/CustomerApi';
 import { withTranslation } from "react-i18next";
 
 class RegisterList extends Component {

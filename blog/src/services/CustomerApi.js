@@ -1,44 +1,44 @@
 import axios from "axios";
 
 // Sabit URL
-const REGISTER_URL = "admin/api/v1";
+const REGISTER_URL = "customer/api/v1";
 
 // CLASS
-class RegisterApi {
+class CustomerApi {
 
     // CREATE
-    // http://localhost:2222/admin/api/v1/create
+    // http://localhost:2222/customer/api/v1/create
     createApi(registerDto) {
         return axios.post(`${REGISTER_URL}/create`, registerDto)
     }
 
     // LIST
-    // http://localhost:2222/admin/api/v1/list
+    // http://localhost:2222/customer/api/v1/list
     listApi() {
         return axios.get(`${REGISTER_URL}/list`);
     }
 
     // FIND
-    // http://localhost:2222/admin/api/v1/find
-    // http://localhost:2222/admin/api/v1/find/0
-    // http://localhost:2222/admin/api/v1/find/-1
-    // http://localhost:2222/admin/api/v1/find/1
+    // http://localhost:2222/customer/api/v1/find
+    // http://localhost:2222/customer/api/v1/find/0
+    // http://localhost:2222/customer/api/v1/find/-1
+    // http://localhost:2222/customer/api/v1/find/1
     findByIdApi(id) {
         return axios.get(`${REGISTER_URL}/find/${id}`)
     }
 
     // DELETE
-    // http://localhost:2222/admin/api/v1/delete/1
+    // http://localhost:2222/customer/api/v1/delete/1
     deleteApi(id) {
         return axios.delete(`${REGISTER_URL}/delete/${id}`)
     }
 
     // UPDATE
-    // http://localhost:2222/admin/api/v1/update/1
+    // http://localhost:2222/customer/api/v1/update/1
     updateApi(id, registerDto) {
         return axios.put(`${REGISTER_URL}/update/${id}`, registerDto)
     }
 
 } //end class RegisterDto
 
-export default new RegisterApi();
+export default new CustomerApi();

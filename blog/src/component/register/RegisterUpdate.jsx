@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTranslation } from "react-i18next";
-import RegisterApi from '../../services/RegisterApi';
+import RegisterApi from '../../services/CustomerApi';
 import ResuabilityRegisterInput from '../../resuability/ResuabilityRegisterInput';
 
 class RegisterUpdate extends Component {

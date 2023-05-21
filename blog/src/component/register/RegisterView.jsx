@@ -5,7 +5,7 @@ import { withTranslation } from 'react-i18next'
 
 //resim
 import cardPicture from "../../image/mountain.jpg"
-import RegisterApi from '../../services/RegisterApi';
+import RegisterApi from '../../services/CustomerApi';
 
 class RegisterView extends Component {
 

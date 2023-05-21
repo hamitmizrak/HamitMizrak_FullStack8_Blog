@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
-import RegisterApi from "../../services/RegisterApi";
+import RegisterApi from "../../services/CustomerApi";
 import EmailApi from "../../services/EmailApi";
 import ResuabilityEmailInput from "../../resuability/ResuabilityEmailInput";
 import ResuabilityRegisterInput from "../../resuability/ResuabilityRegisterInput";
@@ -96,17 +96,6 @@ class Footer extends Component {
     }
 
 
-    // Email DropDownList Handle
-    handleDropdownChange = async (event) => {
-        //browser sen dur bir şey yapma
-        event.preventDefault();
-        this.setState({
-            dropDownValue: event.target.value,
-        })
-        console.log(this.state.dropDownValue)
-    }
-
-
     // Konuyu liste olarak al
     // validation
     // error eklemelisin.
@@ -186,8 +175,11 @@ class Footer extends Component {
                                             onChangeInput={this.onChangeInputValue}
                                             error={emailSubject} />
 
-                                        {/* <div className="form-group mb-3">
-                                            <select className="custom-select"  name="emailSubject" id="emailSubject" onChange={this.handleDropdownChange} value={dropDownValue}>
+                                        <div className="form-group mb-3">
+                                            <select className="form-control"
+                                                name="emailSubject" id="emailSubject"
+                                                onChange={this.onChangeInputValue}
+                                                value={dropDownValue}>
                                                 {
                                                     options.map(item => (
                                                         <option key={item.value} value={item.value}>{item.name}</option>
@@ -195,7 +187,7 @@ class Footer extends Component {
                                                 }
                                             </select>
                                             <div className={"text-danger"} >{emailSubject}</div>
-                                        </div> */}
+                                        </div>
 
                                         <div className="form-group mb-3">
                                             <textarea
