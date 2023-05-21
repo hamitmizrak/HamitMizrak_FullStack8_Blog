@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {withTranslation} from 'react-i18next';
+import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import RegisterApi from "../../services/RegisterApi";
 import EmailApi from "../../services/EmailApi";
 import ResuabilityEmailInput from "../../resuability/ResuabilityEmailInput";
@@ -22,6 +22,13 @@ class Footer extends Component {
             emailText: null,
             spinnerData: false, // veri gönderirken loading olsun ve aynı anda birden fazla kayıt olunması
             validationErrors: {}, // backentten gelen hataları yakalamak
+            options: [ // Select options email
+                { name: 'Seçiniz', value: null },
+                { name: 'Frontend', value: "Html5" },
+                { name: 'Backend', value: "java" },
+                { name: 'Database', value: "Hibernate" },
+            ],
+            dropDownValue: null,
         }
 
         //BIND
@@ -39,13 +46,13 @@ class Footer extends Component {
         // const name = event.target.name;
         // const value = event.target.value;
         // 2.YOL
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         console.log(name + " " + value);
 
         // Backendten gelen hataları yakalamak,
         // const backendError={}
         // ... anlamı kopyalama yapar.
-        const backendError = {...this.state.validationErrors }
+        const backendError = { ...this.state.validationErrors }
         backendError[name] = undefined;
 
         // STATE
@@ -61,14 +68,14 @@ class Footer extends Component {
         event.preventDefault();
 
         //STATE
-        const {emailTo, emailSubject, emailText} = this.state;
+        const { emailTo, emailSubject, emailText } = this.state;
         const emailDto = {
             emailTo, emailSubject, emailText
         }
         console.log(emailDto);
 
         // Spinner Data: çalışsın
-        this.setState({spinnerData: true})
+        this.setState({ spinnerData: true })
         EmailApi.blogSendEmail(emailDto).then((response) => {
             if (response.status === 200) {
                 // Veri gönderene kadar spinner(loading) çalışmasın
@@ -84,9 +91,21 @@ class Footer extends Component {
                 console.log(error.response.data.validationErrors)
             } //end if
 
-            this.setState({spinnerData: false})
+            this.setState({ spinnerData: false })
         });
     }
+
+
+    // Email DropDownList Handle
+    handleDropdownChange = async (event) => {
+        //browser sen dur bir şey yapma
+        event.preventDefault();
+        this.setState({
+            dropDownValue: event.target.value,
+        })
+        console.log(this.state.dropDownValue)
+    }
+
 
     // Konuyu liste olarak al
     // validation
@@ -98,17 +117,17 @@ class Footer extends Component {
     render() {
 
         // i18n
-        const {t} = this.props;
+        const { t } = this.props;
 
         //State
-        const { spinnerData,validationErrors} = this.state;
+        const { spinnerData, validationErrors, options, dropDownValue } = this.state;
         const { emailTo, emailSubject, emailText, } = validationErrors;
 
         //RETURN
         return (
             <React.Fragment>
                 <footer className="text-center text-lg-start bg-dark text-white fixed-bottom44"
-                        style={{"marginTop": "20rem"}}>
+                    style={{ "marginTop": "20rem" }}>
                     <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
                         <div className="me-5 d-none d-lg-block">
                             <span>Get connected with us on social networks:</span>
@@ -151,30 +170,42 @@ class Footer extends Component {
 
                                 <div className="col-md-6 col-lg-6 col-xl mx-auto mb-4">
                                     <h6 className="text-uppercase fw-bold mb-4">{t('email')}</h6>
-                 
+
                                     <form action="">
                                         <ResuabilityEmailInput
                                             type="email" focus={true}
                                             name="emailTo" id="emailTo"
                                             placeholder={t('email_address')}
                                             onChangeInput={this.onChangeInputValue}
-                                            error={emailTo}/>
+                                            error={emailTo} />
 
                                         <ResuabilityEmailInput
                                             type="text" focus={false}
                                             name="emailSubject" id="emailSubject"
                                             placeholder={t('email_subject')}
                                             onChangeInput={this.onChangeInputValue}
-                                            error={emailSubject}/>
+                                            error={emailSubject} />
+
+                                        {/* <div className="form-group mb-3">
+                                            <select className="custom-select"  name="emailSubject" id="emailSubject" onChange={this.handleDropdownChange} value={dropDownValue}>
+                                                {
+                                                    options.map(item => (
+                                                        <option key={item.value} value={item.value}>{item.name}</option>
+                                                    ))
+                                                }
+                                            </select>
+                                            <div className={"text-danger"} >{emailSubject}</div>
+                                        </div> */}
 
                                         <div className="form-group mb-3">
-                                        <textarea className="form-control"
-                                                     placeholder={t('email_text')}
-                                                  cols="20" rows="4"
-                                                  name="emailText" id="emailText"
-                                                  onChange={this.onChangeInputValue}
-                                                  ></textarea>
-                                                   <div className={"text-danger"} >{emailText}</div>
+                                            <textarea
+                                                className="form-control"
+                                                placeholder={t('email_text')}
+                                                cols="20" rows="4"
+                                                name="emailText" id="emailText"
+                                                onChange={this.onChangeInputValue}
+                                            ></textarea>
+                                            <div className={"text-danger"} >{emailText}</div>
                                         </div>
 
                                         <div className="form-group mb-3">
@@ -186,7 +217,7 @@ class Footer extends Component {
                                                 disabled={(spinnerData)}>
                                                 {(spinnerData) &&
                                                     <div className="spinner-border spinner-border-sm text-warning me-2"
-                                                         role="status"></div>}
+                                                        role="status"></div>}
                                                 Gönder
                                             </button>
                                         </div>
@@ -196,7 +227,7 @@ class Footer extends Component {
                         </div>
                     </section>
 
-                    <div className="text-center p-4" style={{"backgroundColor": "rgba(0, 0, 0, 0.025)"}}>
+                    <div className="text-center p-4" style={{ "backgroundColor": "rgba(0, 0, 0, 0.025)" }}>
                         2020
                         © {newDateYear()} Copyright:
                         <a className="text-reset fw-bold" href="blog/src/component/main/Footer">{this.props.site}</a>
