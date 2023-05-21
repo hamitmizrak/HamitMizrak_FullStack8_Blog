@@ -13,6 +13,7 @@ public class RoleDto extends AuditingAwareBaseDto {
 
     private Long rolesId;
 
+    // Eğer Bir kullanıcı Admin belirlememişse Bu kullanıcı USER olduk
     @Builder.Default
     private String roleName= ERoles.USER.toString();
     //private String roleName;
