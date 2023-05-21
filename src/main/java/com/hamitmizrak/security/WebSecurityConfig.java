@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -41,7 +40,7 @@ public class WebSecurityConfig {
         // http.httpBasic(); //http düzeyinde
         // http.formLogin(); // Form sayfası düzeyinde
         http.authorizeHttpRequests()
-                .requestMatchers("/","/index","/login").permitAll() // index izin ver
+                .requestMatchers("/", "/index", "/login").permitAll() // index izin ver
                 .requestMatchers("/email/api/v1/basic/email").permitAll() // Email Göndermeye izin ver
                 .requestMatchers("/swagger-ui/**").permitAll() // Email Göndermeye izin ver
                 .anyRequest()
@@ -61,7 +60,7 @@ public class WebSecurityConfig {
     // Kullanıcı Eklemek
     @Autowired
     @SneakyThrows //throws Exception
-    public void myUserAddUserRoles(AuthenticationManagerBuilder auth)  {
+    public void myUserAddUserRoles(AuthenticationManagerBuilder auth) {
         //inMemoryAuthentication() = database olmadan login
         // noEncrpted: yani maskesiz olarak sakla
         auth.inMemoryAuthentication()
@@ -71,7 +70,23 @@ public class WebSecurityConfig {
                 .roles(this.roles);
     }
 
+    // 1. YOL Şifre Maskelensin
+     /*
+     @Bean
+     public PasswordEncoder passwordEncoder() {
+     PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+          return passwordEncoder;
+     }
+     */
 
+    // 2.YOL Şifre maskelenmesin
+    //Deprecated olan bir metot ve artık kullanmamıza gerek yok noop derken yetiyor.
+   /*
+   @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
+    */
 } //end class
 
 
