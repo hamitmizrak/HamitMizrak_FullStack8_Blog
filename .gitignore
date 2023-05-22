@@ -3,6 +3,7 @@
 /memory_persist
 /blog/node_modules
 /dockerize/
+/src/main/resources/application.properties
 
 
 HELP.md

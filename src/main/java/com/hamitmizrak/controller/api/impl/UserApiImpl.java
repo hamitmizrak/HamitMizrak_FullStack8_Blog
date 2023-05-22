@@ -38,8 +38,8 @@ public class UserApiImpl implements IUserApi {
         return ResponseEntity.ok(iUserService.getRoles(roleDto));
     }
 
-    // http://localhost:2222/user/api/v1/user/1
-    @PostMapping("/user/{path_id}")
+    // http://localhost:2222/user/api/v1/create/1
+    @PostMapping("/create/{path_id}")
     @Override
     public ResponseEntity<UserDto> signUp(@PathVariable(name="path_id") Integer rolesId, @RequestBody UserDto userDto) {
         return ResponseEntity.ok(iUserService.signUp(rolesId,userDto));

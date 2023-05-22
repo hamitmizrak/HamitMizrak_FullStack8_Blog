@@ -29,15 +29,14 @@ public class EmailDto {
     @NotEmpty(message = "{email.subject.validation.constraints.NotNull.message}")
     private String emailSubject; //KONU
 
-    /*private String emailCc;// CC
+    private String emailCc;// CC
     private String[] emailCcArray;
 
     private String emailBcc; //BCC
-    private String[] emailBccArray;*/
+    private String[] emailBccArray;
 
     @Builder.Default
     private Date sentDate=new Date(System.currentTimeMillis()); //NE ZAMAN
-
 
     @NotEmpty(message = "{email.text.validation.constraints.NotNull.message}")
     private String emailText;

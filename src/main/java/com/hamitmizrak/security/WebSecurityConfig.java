@@ -39,13 +39,17 @@ public class WebSecurityConfig {
         // http.httpBasic(); //http düzeyinde
         // http.formLogin(); // Form sayfası düzeyinde
         http.authorizeHttpRequests()
-                .requestMatchers("/user/**").hasAnyRole("ADMIN","SUPER_ADMIN")
-                .requestMatchers("/api/**").hasAnyRole("ADMIN","SUPER_ADMIN")
-                .requestMatchers("/swagger-ui/**").hasAnyRole("ADMIN","SUPER_ADMIN")  // swagger-ui
-                .requestMatchers("/h2-console/**").hasAnyRole("ADMIN","SUPER_ADMIN")  //h2-console
 
+                .requestMatchers("/user/api/v1/create/**").permitAll() // Register
                 .requestMatchers("/", "/index", "/login").permitAll() // index izin ver
                 .requestMatchers("/email/api/v1/basic/email").permitAll() // Email Göndermeye izin ver
+
+                //.requestMatchers("/user/**").hasAnyRole("ADMIN","SUPER_ADMIN")
+                .requestMatchers("/api/**").hasAnyRole("ADMIN","SUPER_ADMIN")
+                .requestMatchers("/customer/**").hasAnyRole("ADMIN","SUPER_ADMIN") // Customer izin ver
+
+                .requestMatchers("/swagger-ui/**").hasAnyRole("ADMIN","SUPER_ADMIN")  // swagger-ui
+                .requestMatchers("/h2-console/**").hasAnyRole("ADMIN","SUPER_ADMIN")  //h2-console
 
                 .anyRequest()
                 .authenticated()

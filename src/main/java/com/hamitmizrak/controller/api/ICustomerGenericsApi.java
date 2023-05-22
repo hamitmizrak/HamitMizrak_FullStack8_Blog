@@ -6,12 +6,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.Map;
 
-public interface IGenericsApi<T> {
+public interface ICustomerGenericsApi<T> {
 
     //PROFILE
     public String getProfile(String name);

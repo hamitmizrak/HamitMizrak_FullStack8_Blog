@@ -82,7 +82,7 @@ public class UserServicesImpl extends CustomUserDetailsService implements UserDe
     public RoleDto getRoles(RoleDto roleDto) {
         // RoleDto ==> RoleEntity
         RoleEntity roleEntity = modelMapperBean.modelMapperMethod().map(roleDto, RoleEntity.class);
-        roleEntity.setRoleName(ROLE.concat(roleEntity.getRoleName()));
+        roleEntity.setRoleName(ROLE.concat(roleEntity.getRoleName().toUpperCase()));
         RoleEntity roleEntityData = iRoleRepository.save(roleEntity);
         // Set RoleDto
         roleDto.setRolesId(roleEntityData.getRolesId());

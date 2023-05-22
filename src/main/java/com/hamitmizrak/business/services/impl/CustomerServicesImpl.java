@@ -3,7 +3,7 @@ package com.hamitmizrak.business.services.impl;
 import com.hamitmizrak.bean.ModelMapperBean;
 import com.hamitmizrak.bean.PasswordEncoderBean;
 import com.hamitmizrak.business.dto.CustomerDto;
-import com.hamitmizrak.business.services.IGenericsServices;
+import com.hamitmizrak.business.services.ICustomerGenericsServices;
 import com.hamitmizrak.data.entity.CustomerEntity;
 import com.hamitmizrak.data.repository.ICustomerRepository;
 import com.hamitmizrak.exception.HamitMizrakException;
@@ -28,7 +28,7 @@ import java.util.*;
 
 @Service
 // Asıl iş yükünü yapan class
-public class CustomerServicesImpl implements IGenericsServices<CustomerDto, CustomerEntity> {
+public class CustomerServicesImpl implements ICustomerGenericsServices<CustomerDto, CustomerEntity> {
 
     // INJECTION
     private final ICustomerRepository iCustomerRepository;

@@ -1,6 +1,5 @@
 package com.hamitmizrak.business.services;
 
-import com.hamitmizrak.business.dto.CustomerDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.data.domain.Page;
@@ -10,7 +9,7 @@ import java.util.Map;
 
 // D => Dto
 // E => Entity
-public interface IGenericsServices<D,E> { //Generics
+public interface ICustomerGenericsServices<D,E> { //Generics
     // PROFILE
     public String getProfile(String name);
 

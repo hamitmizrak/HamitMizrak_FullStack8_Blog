@@ -2,7 +2,7 @@ package com.hamitmizrak.controller.api.impl;
 
 import com.hamitmizrak.business.dto.CustomerDto;
 import com.hamitmizrak.business.services.impl.CustomerServicesImpl;
-import com.hamitmizrak.controller.api.IGenericsApi;
+import com.hamitmizrak.controller.api.ICustomerGenericsApi;
 import com.hamitmizrak.error.ApiResult;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +27,7 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 // CORS: eğer reactta package.json'da proxy yazarsam @CrossOrigin yazmasamda olur.
 @RequestMapping("/customer/api/v1")
-public class CustomerApiImpl implements IGenericsApi<CustomerDto> {
+public class CustomerApiImpl implements ICustomerGenericsApi<CustomerDto> {
 
     // ERROR
     private ApiResult apiResult;
@@ -58,6 +58,12 @@ public class CustomerApiImpl implements IGenericsApi<CustomerDto> {
     private final CustomerServicesImpl customerServices;
 
     ///////////////////////////////////////////////////////////
+
+    //ROOT
+    @GetMapping({"/","/index"})
+    public ResponseEntity<String> getRoot() {
+        return ResponseEntity.ok("index");
+    }
 
     //PROFILE
     @Override
@@ -170,11 +176,6 @@ public class CustomerApiImpl implements IGenericsApi<CustomerDto> {
     }
     ///////////////////////////////////////////////////////////////////////////////////
 
-    //ROOT
-    @GetMapping({"/","/index"})
-    public ResponseEntity<String> getRoot() {
-        return ResponseEntity.ok("index");
-    }
 
     // LIST PAGINATION
     // http://localhost:4444/api/v1/pagination?currentPage=0&pageSize=3

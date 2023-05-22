@@ -32,7 +32,7 @@ public class EmailServicesImpl implements IEmailServices<EmailDto, EmailEntity> 
         return modelMapperBean.modelMapperMethod().map(emailDto, EmailEntity.class);
     }
 
-    // Email Send
+    // Email Basic Send
     @Override
     public EmailDto blogSendEmail(EmailDto emailDto) {
         // MODEL MAPPER, SAVE
