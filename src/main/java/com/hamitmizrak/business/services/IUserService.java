@@ -12,21 +12,20 @@ public interface IUserService {
     public UserEntity DtoToEntity(UserDto userDto);
 
     public UserDto EntityToDto(UserEntity userEntity);
-    ////////////////////////////////////
 
+    ////////////////////////////////////
     // ROLES
     public RoleDto getRoles( RoleDto roleDto);
+
     //SIGN UP(Kayıt ol)
-    public UserDto signUp( Integer rolesId,  UserDto userDto);
+    public UserDto signUp( Long rolesId,  UserDto userDto);
 
     ////////////////////////////////////
-
     // EMAIL CONFIRMATION
     public void emailTokenConfirmation(TokenConfirmationEntity tokenConfirmationEntity);
 
     public Optional<TokenConfirmationEntity> findTokenConfirmation(String token);
 
-
     //SIGN IN (Giriş yap)
     public UserDto singIn(UserDto userDto);
-}
+} //end Class

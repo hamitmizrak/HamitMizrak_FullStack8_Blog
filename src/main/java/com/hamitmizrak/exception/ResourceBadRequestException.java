@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 // 400: bad request
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
 public class ResourceBadRequestException extends RuntimeException {
+
+    //parametreli constructor
     public ResourceBadRequestException(String message) {
         super(message);
     }
-
-
 
 }

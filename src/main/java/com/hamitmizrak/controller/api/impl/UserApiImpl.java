@@ -5,8 +5,11 @@ import com.hamitmizrak.business.dto.UserDto;
 import com.hamitmizrak.business.services.IUserService;
 import com.hamitmizrak.controller.api.IUserApi;
 import com.hamitmizrak.data.entity.TokenConfirmationEntity;
+import com.hamitmizrak.util.FrontendURL;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
@@ -15,7 +18,7 @@ import java.util.Optional;
 
 // REST
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = FrontendURL.FRONTEND_URL)// @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/user/api/v1")
 public class UserApiImpl implements IUserApi {
 
@@ -31,17 +34,25 @@ public class UserApiImpl implements IUserApi {
     }
 
     /////////////////////////////////////////////////////////
+    // ROLES CREATE
     // http://localhost:2222/user/api/v1/roles
     @PostMapping("/roles")
     @Override
     public ResponseEntity<RoleDto> getRoles(@RequestBody RoleDto roleDto) {
+        //Sisteme olan kullancılar
+        /**Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        if(authentication!=null && authentication.isAuthenticated()){
+            System.out.println(authentication.getName());
+            System.out.println(authentication.getPrincipal());
+        }*/
         return ResponseEntity.ok(iUserService.getRoles(roleDto));
     }
 
+    // REGISTER CREATE
     // http://localhost:2222/user/api/v1/create/1
     @PostMapping("/create/{path_id}")
     @Override
-    public ResponseEntity<UserDto> signUp(@PathVariable(name="path_id") Integer rolesId, @RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> signUp(@PathVariable(name="path_id") Long rolesId, @RequestBody UserDto userDto) {
         return ResponseEntity.ok(iUserService.signUp(rolesId,userDto));
     }
 
@@ -54,7 +65,6 @@ public class UserApiImpl implements IUserApi {
         tokenConfirmationEntity.ifPresent(iUserService::emailTokenConfirmation);
         return ResponseEntity.ok("Üyeliğiniz Aktif olunmuştur. Ana sayafa için tıklayınız http://localhost:2222");
     }
-
 
     //http://localhost:2222/user/api/v1/signin
     @Override

@@ -29,6 +29,7 @@ public class ApiResult {
     private String path;
     private String message;
     private String error;
+
     //tarih
     private Date createdDate = new Date(System.currentTimeMillis());
     //private String createdDate=nowDate();

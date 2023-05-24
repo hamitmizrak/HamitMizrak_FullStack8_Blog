@@ -1,4 +1,4 @@
-package com.hamitmizrak.persist;
+package com.hamitmizrak.util;
 
 public class PersistLink {
 

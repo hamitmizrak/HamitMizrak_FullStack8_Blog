@@ -14,30 +14,33 @@ import java.util.Date;
 
 // LOMBOK
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Log4j2
 // @SneakyThrows
 
+// ENTITY
 @Entity
-@Table(name="roles")
-public class RoleEntity  extends AuditingAwareBaseEntity implements Serializable {
-    // Serileştirme
-    public static final Long serialVersionUID = 1L;
+@Table(name = "roles")
+public class RoleEntity extends AuditingAwareBaseEntity implements Serializable {
 
-    // ID
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //unique id
-    @Column(name="roles_id")
-    private Long rolesId;
+	// Serileştirme
+	public static final Long serialVersionUID = 1L;
 
-    @Column(name="role_name")
-    private String roleName;
+	@Id
+	@Column(name = "role_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //unique id
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long rolesId;
 
-    // DATE
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date systemDate;
-    //private LocalDate systemDate;
-}
+	@Column(name="role_name",columnDefinition = "varchar(255) default 'Role Adı girmediniz'")
+	private String roleName;
+
+	// DATE
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date systemDate;
+	//private LocalDate systemDate;
+	
+} //end class

@@ -16,23 +16,27 @@ import java.util.Date;
 //SUPER CLASS
 @MappedSuperclass
 @JsonIgnoreProperties(value = {"created_date,updated_date"},allowGetters = true) // Json'a emir veriyoruz bunları takip etme
-public class AuditingAwareBaseEntity {
+abstract public class AuditingAwareBaseEntity {
     // Auditing: Database hangi kullanıcı ne zaman
     // ne ekledi veya ne güncelledi
 
+    // KİM EKLEDİ
     @CreatedBy
     @Column(name="created_user")
-    private String createdUser;
+    protected String createdUser;
 
+    // KİM NE ZAMAN EKLEDİ
     @CreatedDate
     @Column(name="created_date")
-    private Date createdDate;
+    protected Date createdDate;
 
+    // KİM GÜNCELLEDİ
     @LastModifiedBy
     @Column(name="updated_user")
-    private String updatedUser;
+    protected String updatedUser;
 
+    // KİM NE ZAMAN GÜNCELLEDİ
     @LastModifiedDate
     @Column(name="updated_date")
-    private Date updatedDate;
-}
+    protected Date updatedDate;
+} //end class

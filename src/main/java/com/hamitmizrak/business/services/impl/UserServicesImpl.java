@@ -12,25 +12,23 @@ import com.hamitmizrak.data.entity.UserEntity;
 import com.hamitmizrak.data.repository.IRoleRepository;
 import com.hamitmizrak.data.repository.ITokenRepository;
 import com.hamitmizrak.data.repository.IUserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.*;
 
 // LOMBOK
-//@RequiredArgsConstructor // injection
+@RequiredArgsConstructor // injection
 
 // SERVICE
 @Service
-@Component //spring'in bir parçası olduğunu teyit ediyorum.
-public class UserServicesImpl extends CustomUserDetailsService implements UserDetailsService, IUserService {
+@Component("userServiceImpl") //spring'in bir parçası olduğunu teyit ediyorum.
+public class UserServicesImpl implements IUserService {
 
     // INJECTION
     private final ITokenRepository iTokenRepository; // Token oluşturma
@@ -43,20 +41,6 @@ public class UserServicesImpl extends CustomUserDetailsService implements UserDe
 
     private final IUserRepository iUserRepository; // kullanıcı oluşturma
     private final IRoleRepository iRoleRepository;
-
-    // PARAMETRELI CONSTRUCTOR
-    @Autowired
-    public UserServicesImpl(IUserRepository iUserRepository, ITokenRepository iTokenRepository, ITokenServices tokenServices,
-                            PasswordEncoderBean passwordEncoderBean, ModelMapperBean modelMapperBean,
-                            IUserRepository iUserRepository1, IRoleRepository iRoleRepository) {
-        super(iUserRepository);
-        this.iTokenRepository = iTokenRepository;
-        this.tokenServices = tokenServices;
-        this.passwordEncoderBean = passwordEncoderBean;
-        this.modelMapperBean = modelMapperBean;
-        this.iUserRepository = iUserRepository1;
-        this.iRoleRepository = iRoleRepository;
-    }
 
     ////////////////////////////////////////
     @Value("${spring.mail.username}")
@@ -73,39 +57,47 @@ public class UserServicesImpl extends CustomUserDetailsService implements UserDe
     public UserDto EntityToDto(UserEntity userEntity) {
         return modelMapperBean.modelMapperMethod().map(userEntity, UserDto.class);
     }
-    /////////////////////////////////////////////
 
-    //Spring Security için Başında mutlaka ROLE_ olmalıdır
+    /////////////////////////////////////////////
+    // Spring Security için Başında mutlaka ROLE_ olmalıdır
+    // hasRole ve hasAnyRole için başına ROLE_ ekle
+    // Spring Security için Başında mutlaka ROLE_ olmalıdır
     private final static String ROLE = "ROLE_";
 
+    @Transactional // Create, delete, update için kullanmalısın
     @Override
     public RoleDto getRoles(RoleDto roleDto) {
         // RoleDto ==> RoleEntity
         RoleEntity roleEntity = modelMapperBean.modelMapperMethod().map(roleDto, RoleEntity.class);
-        roleEntity.setRoleName(ROLE.concat(roleEntity.getRoleName().toUpperCase()));
+        //roleEntity.setRoleName(ROLE.concat(roleEntity.getRoleName().toUpperCase()));
+        roleEntity.setRoleName(roleEntity.getRoleName().toUpperCase());
         RoleEntity roleEntityData = iRoleRepository.save(roleEntity);
         // Set RoleDto
         roleDto.setRolesId(roleEntityData.getRolesId());
-        roleDto.setCreatedDate(roleEntityData.getCreatedDate());
-        roleDto.setUpdatedDate(roleEntityData.getUpdatedDate());
-        roleDto.setUpdatedUser(roleEntityData.getUpdatedUser());
-        roleDto.setCreatedUser(roleEntityData.getCreatedUser());
+        //roleDto.setCreatedDate(roleEntityData.getCreatedDate());
+        //roleDto.setUpdatedDate(roleEntityData.getUpdatedDate());
+        //roleDto.setUpdatedUser(roleEntityData.getUpdatedUser());
+        //roleDto.setCreatedUser(roleEntityData.getCreatedUser());
         return roleDto;
     }
 
+    @Transactional // Create, delete, update için kullanmalısın
     @Override
-    public UserDto signUp(Integer rolesId, UserDto userDto) {
+    public UserDto signUp(Long rolesId, UserDto userDto) {
         UserEntity userEntity = modelMapperBean.modelMapperMethod().map(userDto, UserEntity.class);
-        RoleEntity roleEntity=iRoleRepository.findAll().get(rolesId-1);
-        List<RoleEntity> rolList=new ArrayList<>();
+        userEntity.getUserDetailsEmbeddable().setIsAccountNonLocked(userDto.getIsAccountNonLocked());
+        userEntity.getUserDetailsEmbeddable().setIsEnabled(userDto.getIsEnabled());
+        userEntity.getUserDetailsEmbeddable().setIsAccountNonExpired(userDto.getIsAccountNonExpired());
+        userEntity.getUserDetailsEmbeddable().setIsCredentialsNonExpired(userDto.getIsCredentialsNonExpired());
+
+        int dataInt=Integer.valueOf(Math.toIntExact(rolesId));
+        RoleEntity roleEntity=iRoleRepository.findAll().get(dataInt-1 );
+        Set<RoleEntity> rolList=new HashSet<>();
         rolList.add(roleEntity);
         userEntity.setRoles(rolList);
-        //User details: Mailden sonra değiştireceğim.
-        //userEntity.setEnabled(true);
-        //userEntity.setAccountNonLocked(true);
-        //userEntity.setAccountNonExpired(true);
-        //userEntity.setCredentialsNonExpired(true);
+        userEntity.setPassword( passwordEncoderBean.passwordEncoderMethod().encode(userDto.getPassword()));
         iUserRepository.save(userEntity);
+
         //MAIL GONDER VE TOKEN OLUŞTUR
         // TOKEN OLUŞTUR
         TokenConfirmationEntity tokenConfirmationEntity = new TokenConfirmationEntity(userEntity);
@@ -126,13 +118,15 @@ public class UserServicesImpl extends CustomUserDetailsService implements UserDe
 
     /////////////////////////////////////////////
     // ## IGenericUserService ############################################################
+    @Transactional // Create, delete, update için kullanmalısın
     @Override
     public void emailTokenConfirmation(TokenConfirmationEntity tokenConfirmationEntity) {
         // @OneToOne(1-1) ilişkideki veriyi almak
         // TokenConfirmationEntity'den UserEntity almak
         final UserEntity userEntity = tokenConfirmationEntity.getUserEntity();
         // üyeliği aktif et
-        userEntity.setIsAccountNonLocked(Boolean.TRUE);
+        // Embeddable eklediğim
+        userEntity.getUserDetailsEmbeddable().setIsAccountNonLocked(Boolean.TRUE);
         iUserRepository.save(userEntity);
         // Mail onaylanması sonrasında database Tokenı sil
         tokenServices.deleteToken(tokenConfirmationEntity.getId());
