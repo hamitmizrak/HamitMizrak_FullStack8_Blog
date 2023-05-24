@@ -82,6 +82,7 @@ public class WebSecurityConfig {
 
                 //.requestMatchers("/").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
                 .requestMatchers("/blog/api/v1/list").hasAnyAuthority(ERoles.WRITER.toString(), ERoles.ADMIN.toString(), ERoles.SuperAdmin.toString()) //admin admin
+                .requestMatchers("/blog/api/v1/create ").hasAnyAuthority(ERoles.WRITER.toString(), ERoles.ADMIN.toString(), ERoles.SuperAdmin.toString()) //admin admin
                 .requestMatchers("/blog/**").hasAnyAuthority(ERoles.WRITER.toString(), ERoles.ADMIN.toString(), ERoles.SuperAdmin.toString()) // Blog izin ver
 
                 //.requestMatchers("/user/**").hasAnyRole("ADMIN","SUPER_ADMIN")

@@ -6,6 +6,7 @@ import com.hamitmizrak.business.services.IUserService;
 import com.hamitmizrak.controller.api.IUserApi;
 import com.hamitmizrak.data.entity.TokenConfirmationEntity;
 import com.hamitmizrak.util.FrontendURL;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -38,7 +39,7 @@ public class UserApiImpl implements IUserApi {
     // http://localhost:2222/user/api/v1/roles
     @PostMapping("/roles")
     @Override
-    public ResponseEntity<RoleDto> getRoles(@RequestBody RoleDto roleDto) {
+    public ResponseEntity<RoleDto> getRoles(@Valid @RequestBody RoleDto roleDto) {
         //Sisteme olan kullancılar
         /**Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         if(authentication!=null && authentication.isAuthenticated()){

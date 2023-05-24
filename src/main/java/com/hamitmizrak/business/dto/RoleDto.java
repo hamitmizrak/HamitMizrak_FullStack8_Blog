@@ -1,5 +1,6 @@
 package com.hamitmizrak.business.dto;
 
+import com.hamitmizrak.annotation.RoleNameUnique;
 import com.hamitmizrak.audit.AuditingAwareBaseDto;
 import com.hamitmizrak.util.ERoles;
 import jakarta.validation.constraints.NotEmpty;
@@ -29,5 +30,6 @@ public class RoleDto extends AuditingAwareBaseDto implements Serializable {
     // Eğer Bir kullanıcı Admin belirlememişse Bu kullanıcı USER olduk
     @Builder.Default
     @NotEmpty(message = "{role.name.validation.constraints.NotNull.message}")
+    @RoleNameUnique // Kendi Annotation RolName yazdım
     private String roleName= ERoles.USER.toString();
 }
