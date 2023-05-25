@@ -138,7 +138,6 @@ public class UserServicesImpl implements IUserService {
         return iTokenRepository.findTokenConfirmationEntityByToken(token);
     }
 
-
     //signIn(LOGİN)
     @Override
     public UserDto singIn(UserDto userDto) {
