@@ -51,7 +51,6 @@ public class BlogApiImpl implements IBlogGenericsApi<BlogDto> {
     private final BlogServicesImpl blogServices;
 
     ///////////////////////////////////////////////////////////
-
     // ERROR
     private ApiResult apiResult;
 

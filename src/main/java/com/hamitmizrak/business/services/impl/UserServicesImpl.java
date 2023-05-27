@@ -2,7 +2,6 @@ package com.hamitmizrak.business.services.impl;
 
 import com.hamitmizrak.bean.ModelMapperBean;
 import com.hamitmizrak.bean.PasswordEncoderBean;
-import com.hamitmizrak.business.dto.RoleDto;
 import com.hamitmizrak.business.dto.UserDto;
 import com.hamitmizrak.business.services.ITokenServices;
 import com.hamitmizrak.business.services.IUserService;
@@ -35,18 +34,16 @@ public class UserServicesImpl implements IUserService {
     private final ITokenServices tokenServices;
     private final PasswordEncoderBean passwordEncoderBean; // şifre maskeleme
     private final ModelMapperBean modelMapperBean; // DTO => ENTITY
-
     @Autowired
     private JavaMailSender mailSender; // Mail oluşturma
-
     private final IUserRepository iUserRepository; // kullanıcı oluşturma
     private final IRoleRepository iRoleRepository;
-
     ////////////////////////////////////////
+
     @Value("${spring.mail.username}")
     private String serverMailAddress;
-
     ////////////////////////////////////////
+
     // MODEL MAPPER
     @Override
     public UserEntity DtoToEntity(UserDto userDto) {
@@ -58,32 +55,10 @@ public class UserServicesImpl implements IUserService {
         return modelMapperBean.modelMapperMethod().map(userEntity, UserDto.class);
     }
 
-    /////////////////////////////////////////////
-    // Spring Security için Başında mutlaka ROLE_ olmalıdır
-    // hasRole ve hasAnyRole için başına ROLE_ ekle
-    // Spring Security için Başında mutlaka ROLE_ olmalıdır
-    private final static String ROLE = "ROLE_";
-
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
     @Transactional // Create, delete, update için kullanmalısın
     @Override
-    public RoleDto getRoles(RoleDto roleDto) {
-        // RoleDto ==> RoleEntity
-        RoleEntity roleEntity = modelMapperBean.modelMapperMethod().map(roleDto, RoleEntity.class);
-        //roleEntity.setRoleName(ROLE.concat(roleEntity.getRoleName().toUpperCase()));
-        roleEntity.setRoleName(roleEntity.getRoleName().toUpperCase());
-        RoleEntity roleEntityData = iRoleRepository.save(roleEntity);
-        // Set RoleDto
-        roleDto.setRolesId(roleEntityData.getRolesId());
-        //roleDto.setCreatedDate(roleEntityData.getCreatedDate());
-        //roleDto.setUpdatedDate(roleEntityData.getUpdatedDate());
-        //roleDto.setUpdatedUser(roleEntityData.getUpdatedUser());
-        //roleDto.setCreatedUser(roleEntityData.getCreatedUser());
-        return roleDto;
-    }
-
-    @Transactional // Create, delete, update için kullanmalısın
-    @Override
-    public UserDto signUp(Long rolesId, UserDto userDto) {
+    public UserDto userCreate(Long rolesId, UserDto userDto) {
         UserEntity userEntity = modelMapperBean.modelMapperMethod().map(userDto, UserEntity.class);
         userEntity.getUserDetailsEmbeddable().setIsAccountNonLocked(userDto.getIsAccountNonLocked());
         userEntity.getUserDetailsEmbeddable().setIsEnabled(userDto.getIsEnabled());

@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.annotations.CreationTimestamp;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,7 +20,7 @@ import java.util.Date;
 // @SneakyThrows
 
 // ENTITY
-@Entity
+@Entity(name="Roles")
 @Table(name = "roles")
 public class RoleEntity extends AuditingAwareBaseEntity implements Serializable {
 

@@ -59,6 +59,7 @@ public class MyUserDetails implements UserDetails {
 	@Override
 	public boolean isAccountNonLocked() {
 		return userEntity.getUserDetailsEmbeddable().getIsAccountNonLocked();
+		//return true;
 	}
 
 	// Kimlik Bilgileri Kontol Eder

@@ -1,6 +1,5 @@
 package com.hamitmizrak.controller.api;
 
-import com.hamitmizrak.business.dto.RoleDto;
 import com.hamitmizrak.business.dto.UserDto;
 import org.springframework.http.ResponseEntity;
 
@@ -12,18 +11,16 @@ import org.springframework.http.ResponseEntity;
 // abstract public interface IProfileHeaderApp
 public interface IUserApi {
 
+    // ROOT
     public ResponseEntity<String> root();
 
-    // ROLES
-    public ResponseEntity<RoleDto>  getRoles(RoleDto roleDto);
+    // USER CREATE(Kayıt ol)
+    public ResponseEntity<UserDto>  userCreate(Long rolesId, UserDto userDto);
 
-    //SIGN UP(Kayıt ol)
-    public ResponseEntity<UserDto>  signUp(Long rolesId, UserDto userDto);
-
+    //////////////////////////////////////////////////////////////////////////
     // EMAIL CONFIRMATION
     public ResponseEntity<String> emailTokenConfirmation(String token);
 
     //SIGN IN (Giriş yap)
     public ResponseEntity<UserDto> singIn(UserDto userDto);
-
 } // end class

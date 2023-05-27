@@ -76,6 +76,10 @@ public class WebSecurityConfig {
                 .requestMatchers("/email/api/v1/basic/email").permitAll() // Email Göndermeye izin ver
                 .requestMatchers("/user/api/v1/confirm/**").permitAll() // Email Confirim izin ver
                 .requestMatchers("/login/api/v1/authentication").permitAll() // Login authentication
+                .requestMatchers("/user/api/v1/create/**").permitAll() // Register izin vermek
+                .requestMatchers("/roles/api/v1/roles/**").permitAll() // Role Sorgulaması izin vermek
+
+
 
                 .requestMatchers("/swagger-ui/**").hasAnyAuthority(ERoles.ADMIN.toString(), ERoles.SuperAdmin.toString())  // swagger-ui
                 .requestMatchers("/h2-console/**").hasAnyAuthority(ERoles.ADMIN.toString(), ERoles.SuperAdmin.toString())  //h2-console
@@ -93,8 +97,8 @@ public class WebSecurityConfig {
                 .anyRequest()
                 .authenticated()
                 .and()
-                //.formLogin().permitAll();
-                .httpBasic();
+                //.httpBasic(); // Postman çalışması için açmalısın
+                .formLogin();//Eğer React ile kullanmak istiyorsan bunu açmalısın
                /* .and()
                 .logout().permitAll()
                 .and()

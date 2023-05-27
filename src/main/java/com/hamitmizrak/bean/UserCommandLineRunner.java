@@ -53,22 +53,6 @@ public class UserCommandLineRunner {
                 Long writerRoleId= iRoleRepository.save(RoleEntity.builder().rolesId(0L).roleName(ERoles.WRITER.toString()).build()).getRolesId();
                 Long userRoleId= iRoleRepository.save(RoleEntity.builder().rolesId(0L).roleName(ERoles.USER.toString()).build()).getRolesId();
 
-               /* UserDto userDto = new UserDto();
-                userDto.setName("Hamit");
-                userDto.setSurname("Mızrak");
-                userDto.setEmail("hamitmizrak@gmail.com");
-                //userDto.setPassword(UUID.randomUUID().toString());
-                userDto.setPassword("Hm4444@.");
-
-                userDto.setIsAccountNonExpired(Boolean.TRUE);
-                userDto.setIsCredentialsNonExpired(Boolean.TRUE);
-                userDto.setIsAccountNonLocked(Boolean.FALSE);
-                userDto.setIsEnabled(Boolean.TRUE);
-                //KAYDET
-                iUserService.signUp(superRoleId, userDto);
-                System.out.println(userDto);
-                System.out.println("User Eklendi");*/
-
                 for (long i = 1; i <=4; i++) {
                     //USER
                     UserDto userDto = new UserDto();
@@ -83,10 +67,28 @@ public class UserCommandLineRunner {
                     userDto.setIsAccountNonLocked(Boolean.TRUE);
                     userDto.setIsEnabled(Boolean.TRUE);
                     //KAYDET
-                    iUserService.signUp(i, userDto);
+                    iUserService.userCreate(i, userDto);
                     System.out.println(userDto);
                     System.out.println("User Eklendi");
                 } //end for
+
+                // User 2 tane eklemek
+                //USER
+                UserDto userDto = new UserDto();
+                userDto.setName("Hamit"+5);
+                userDto.setSurname("Mızrak"+5);
+                userDto.setEmail("hamitmizrak"+5+"@gmail.com");
+                //userDto.setPassword(UUID.randomUUID().toString());
+                userDto.setPassword("Hm4444@.");
+
+                userDto.setIsAccountNonExpired(Boolean.TRUE);
+                userDto.setIsCredentialsNonExpired(Boolean.TRUE);
+                userDto.setIsAccountNonLocked(Boolean.TRUE);
+                userDto.setIsEnabled(Boolean.TRUE);
+                //KAYDET  4: USER
+                iUserService.userCreate(4L, userDto);
+                System.out.println(userDto);
+                System.out.println("User-2 Eklendi");
 
                 //BLOG EKLE
                 for (int i = 1; i <=10 ; i++) {

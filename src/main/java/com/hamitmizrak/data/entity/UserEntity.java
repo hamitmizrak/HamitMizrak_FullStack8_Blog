@@ -1,5 +1,6 @@
 package com.hamitmizrak.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hamitmizrak.audit.AuditingAwareBaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ import java.util.Set;
 @Builder
 
 // ENTITY
-@Entity
+@Entity(name="Users")
 @Table(name = "users")
 public class UserEntity extends AuditingAwareBaseEntity {
 
@@ -35,6 +36,7 @@ public class UserEntity extends AuditingAwareBaseEntity {
     private String surname;
 
     // PASSWORD
+    @JsonIgnore // backentte giden veriyi saklar
     private String password;
 
     // PAGE AUTHORIZATION (O Sayfaya yetkili Kişiler)
@@ -52,8 +54,7 @@ public class UserEntity extends AuditingAwareBaseEntity {
 
     // ROLE ENTITIY
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_roles",
+    @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
@@ -78,6 +79,5 @@ public class UserEntity extends AuditingAwareBaseEntity {
     // @EmbeddedId
     @Embedded
     private UserDetailsEmbeddable userDetailsEmbeddable=new UserDetailsEmbeddable();
-
 
 } //end class

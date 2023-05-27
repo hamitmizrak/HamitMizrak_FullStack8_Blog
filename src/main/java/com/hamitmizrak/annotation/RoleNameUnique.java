@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint( validatedBy = {RoleNameUniqueValidation.class})
 public @interface RoleNameUnique {
-    String message() default "{role.rol.name.unique.validation.constraints.NotNull.message}";
+    String message() default "{role.name.unique.validation.constraints.NotNull.messagee}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

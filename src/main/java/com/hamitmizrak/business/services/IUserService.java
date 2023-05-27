@@ -1,6 +1,5 @@
 package com.hamitmizrak.business.services;
 
-import com.hamitmizrak.business.dto.RoleDto;
 import com.hamitmizrak.business.dto.UserDto;
 import com.hamitmizrak.data.entity.TokenConfirmationEntity;
 import com.hamitmizrak.data.entity.UserEntity;
@@ -14,11 +13,9 @@ public interface IUserService {
     public UserDto EntityToDto(UserEntity userEntity);
 
     ////////////////////////////////////
-    // ROLES
-    public RoleDto getRoles( RoleDto roleDto);
 
     //SIGN UP(Kayıt ol)
-    public UserDto signUp( Long rolesId,  UserDto userDto);
+    public UserDto userCreate( Long rolesId,  UserDto userDto);
 
     ////////////////////////////////////
     // EMAIL CONFIRMATION

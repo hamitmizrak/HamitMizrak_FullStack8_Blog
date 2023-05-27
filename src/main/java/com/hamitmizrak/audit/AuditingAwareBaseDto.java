@@ -10,13 +10,14 @@ import java.util.Date;
 
 // Auditing atabase hangi kullanıcı ne zaman => ne ekledi veya ne güncelledi
 abstract public class AuditingAwareBaseDto  implements Serializable {
+
     //Serileştirme
     public static final Long serialVersionUID = 1L;
 
-    //ID
+    // ID
     private Long id;
 
-    //DATE
+    // DATE
     private Date systemDate;
 
     @JsonIgnore // backentte giden veriyi saklar

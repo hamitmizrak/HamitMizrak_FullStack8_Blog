@@ -18,9 +18,10 @@ public class RoleNameUniqueValidation implements ConstraintValidator<RoleNameUni
     @Override
     public boolean isValid(String rolName, ConstraintValidatorContext constraintValidatorContext) {
         //UserEntity userEntity= iUserRepository.findByEmail(email).orElseThrow( ()->new NotFoundException(email+" bulunmadı"));
-       Boolean  userEntity= iRoleRepository.findByRoleName(rolName).isPresent();
+       Boolean  rolesFind= iRoleRepository.findByRoleName(rolName).isPresent();
         // Eğer böyle bir email varsa return false döndürsün
-        if(userEntity){
+        System.out.println();
+        if(rolesFind){
             return false;
         }
         return true;

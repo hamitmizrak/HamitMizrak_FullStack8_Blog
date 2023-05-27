@@ -28,8 +28,9 @@ public class RoleDto extends AuditingAwareBaseDto implements Serializable {
 
     // ROLE NAME
     // Eğer Bir kullanıcı Admin belirlememişse Bu kullanıcı USER olduk
-    @Builder.Default
     @NotEmpty(message = "{role.name.validation.constraints.NotNull.message}")
     @RoleNameUnique // Kendi Annotation RolName yazdım
+    @Builder.Default
     private String roleName= ERoles.USER.toString();
-}
+
+} //end class

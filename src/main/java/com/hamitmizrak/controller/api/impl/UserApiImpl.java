@@ -1,21 +1,20 @@
 package com.hamitmizrak.controller.api.impl;
 
-import com.hamitmizrak.business.dto.RoleDto;
 import com.hamitmizrak.business.dto.UserDto;
 import com.hamitmizrak.business.services.IUserService;
 import com.hamitmizrak.controller.api.IUserApi;
 import com.hamitmizrak.data.entity.TokenConfirmationEntity;
+import com.hamitmizrak.error.ApiResult;
 import com.hamitmizrak.util.FrontendURL;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 // LOMBOK
 @RequiredArgsConstructor
+@Log4j2
 
 // REST
 @RestController
@@ -26,6 +25,9 @@ public class UserApiImpl implements IUserApi {
     // INJECTION
     private final IUserService iUserService;
 
+    // ERROR
+    private ApiResult apiResult;
+
     // ROOT
     // http://localhost:2222/user/api/v1
     @Override
@@ -33,28 +35,14 @@ public class UserApiImpl implements IUserApi {
     public ResponseEntity<String> root() {
         return ResponseEntity.status(200).body("index");
     }
-
-    /////////////////////////////////////////////////////////
-    // ROLES CREATE
-    // http://localhost:2222/user/api/v1/roles
-    @PostMapping("/roles")
-    @Override
-    public ResponseEntity<RoleDto> getRoles(@Valid @RequestBody RoleDto roleDto) {
-        //Sisteme olan kullancılar
-        /**Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
-        if(authentication!=null && authentication.isAuthenticated()){
-            System.out.println(authentication.getName());
-            System.out.println(authentication.getPrincipal());
-        }*/
-        return ResponseEntity.ok(iUserService.getRoles(roleDto));
-    }
+    //////////////////////////////////////////////////////////
 
     // REGISTER CREATE
     // http://localhost:2222/user/api/v1/create/1
     @PostMapping("/create/{path_id}")
     @Override
-    public ResponseEntity<UserDto> signUp(@PathVariable(name="path_id") Long rolesId, @RequestBody UserDto userDto) {
-        return ResponseEntity.ok(iUserService.signUp(rolesId,userDto));
+    public ResponseEntity<UserDto> userCreate(@PathVariable(name="path_id") Long rolesId, @RequestBody UserDto userDto) {
+        return ResponseEntity.ok(iUserService.userCreate(rolesId,userDto));
     }
 
     /////////////////////////////////////////////////////////

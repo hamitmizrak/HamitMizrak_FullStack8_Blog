@@ -1,6 +1,5 @@
 package com.hamitmizrak.business.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hamitmizrak.annotation.UserUniqueEmail;
 import com.hamitmizrak.audit.AuditingAwareBaseDto;
 import jakarta.validation.constraints.Email;
@@ -42,7 +41,7 @@ public class UserDto extends AuditingAwareBaseDto implements Serializable {
     private String email;
 
     //PASSWORD
-    @JsonIgnore // backentte giden veriyi saklar
+    //@JsonIgnore // backentte giden veriyi saklar
     @NotEmpty(message = "{user.password.validation.constraints.NotNull.NotNull.message}")
     @Size(min = 7, max = 10, message = "{user.password.pattern.validation.constraints.NotNull.message}")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).*$", message = "{user.password.pattern.validation.constraints.NotNull.message}")
