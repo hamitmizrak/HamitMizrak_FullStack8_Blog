@@ -1,9 +1,20 @@
-import React, { Component } from 'react';
-import { withTranslation } from "react-i18next";
-import CustomerApi from '../../services/CustomerApi';
-import ResuabilityRegisterInput from '../../resuability/ResuabilityRegisterInput';
+// React
+import React, {Component} from 'react';
 
-class CustomerUpdate extends Component {
+// i18n dil için
+import {withTranslation} from "react-i18next";
+
+// Services
+import RegisterApi from '../../services/RegisterApi';
+
+// ResuabilityRegisterInput
+import ResuabilityRegisterInput from './ResuabilityRegisterInput';
+
+class RegisterUpdate extends Component {
+
+    // Componentte görünür adı      
+    static displayName = "RegisterUpdate"
+
     constructor(props) {
         super(props);
         //STATE
@@ -23,12 +34,12 @@ class CustomerUpdate extends Component {
         this.onChangeInputValue = this.onChangeInputValue.bind(this);
         this.registerUpdateSubmit = this.registerUpdateSubmit.bind(this);
         this.onChangeIsRead = this.onChangeIsRead.bind(this);
-        this.cleanerData=this.cleanerData.bind(this);
+        this.cleanerData = this.cleanerData.bind(this);
     }
 
     //CDM
     componentDidMount() {
-        CustomerApi.findByIdApi(this.state.id).then(
+        RegisterApi.findByIdApi(this.state.id).then(
             (response) => {
                 const findRegisterDto = response.data;
                 //console.log(findRegisterDto);
@@ -50,13 +61,13 @@ class CustomerUpdate extends Component {
         // const name = event.target.name;
         // const value = event.target.value;
         // 2.YOL
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         console.log(name + " " + value);
 
         // Backendten gelen hataları yakalamak,
         // const backendError={}
         // ... anlamı kopyalama yapar.
-        const backendError = { ...this.state.validationErrors }
+        const backendError = {...this.state.validationErrors}
         backendError[name] = undefined;
 
         // STATE
@@ -84,43 +95,44 @@ class CustomerUpdate extends Component {
         //browser sen dur bir şey yapma
         event.preventDefault();
 
-        const { name, surname, email, password } = this.state;
+        const {name, surname, email, password} = this.state;
         const registerDto = {
             name, surname, email, password
         }
         console.log(registerDto);
 
         // Spinner Data: çalışsın
-        this.setState({ spinnerData: true })
+        this.setState({spinnerData: true})
         //   updateApi(id, registerDto) {
-        CustomerApi.updateApi(this.state.id, registerDto).then((response) => {
+        RegisterApi.updateApi(this.state.id, registerDto).then((response) => {
             if (response.status === 200) {
                 // Veri gönderene kadar spinner(loading) çalışmasın
             }
             //PHP
-            this.props.history.push("/admin");
+            this.props.history.push("/login");
         }).catch((error) => {
             console.error(error);
 
             // backentten gelen hataları yakala
             if (error.response.data.validationErrors) {
-                this.setState({ validationErrors: error.response.data.validationErrors })//end state
+                this.setState({validationErrors: error.response.data.validationErrors})//end state
                 console.log(error.response.data.validationErrors)
             } //end if
-            this.setState({ spinnerData: false })
+            this.setState({spinnerData: false})
         });
     }
-
 
 
     // RENDER
     render() {
         // i18n
-        const { t } = this.props;
+        const {t} = this.props;
 
         //this.state.validationErrors.name
-        const { validationErrors, isRead, spinnerData,
-            name, surname, email, password,id } = this.state;
+        const {
+            validationErrors, isRead, spinnerData,
+            name, surname, email, password, id
+        } = this.state;
 
         //RETURN
         return (
@@ -141,6 +153,7 @@ class CustomerUpdate extends Component {
               {this.state.validationErrors.name}
             </div>
           </div> */}
+
                     <ResuabilityRegisterInput
                         type="text" focus={true}
                         name="name" id="name"
@@ -158,7 +171,7 @@ class CustomerUpdate extends Component {
                         label={t('surname')}
                         onChangeInput={this.onChangeInputValue}
                         error={validationErrors.surname}
-                        value={surname} />
+                        value={surname}/>
 
                     <ResuabilityRegisterInput
                         type="email" focus={false}
@@ -167,7 +180,7 @@ class CustomerUpdate extends Component {
                         label={t('email')}
                         onChangeInput={this.onChangeInputValue}
                         error={validationErrors.email}
-                        value={email} />
+                        value={email}/>
 
                     <ResuabilityRegisterInput
                         type="password" focus={false}
@@ -176,7 +189,7 @@ class CustomerUpdate extends Component {
                         label={t('password')}
                         onChangeInput={this.onChangeInputValue}
                         error={validationErrors.password}
-                        value={password} />
+                        value={password}/>
 
                     {/*READING*/}
                     <div className="form-group mt-3">
@@ -184,11 +197,11 @@ class CustomerUpdate extends Component {
                         <input
                             type="checkbox" className='form-check-label'
                             id="is_read" name="is_read"
-                            onChange={this.onChangeIsRead} />
+                            onChange={this.onChangeIsRead}/>
                     </div>
 
                     {/* CLEAR */}
-                    <button className="btn btn-danger mt-4 me-4" onClick={()=>this.cleanerData(id)} >Temizle</button>
+                    <button className="btn btn-danger mt-4 me-4" onClick={() => this.cleanerData(id)}>Temizle</button>
 
                     {/* SUBMIT */}
                     <button
@@ -202,14 +215,15 @@ class CustomerUpdate extends Component {
                         {/* 1.YOL (ternary) Spinner data  */}
                         {/* {(this.state.spinnerData) ? <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>:"" }   */}
                         {/* 2.YOL (&&) Spinner data  */}
-                        {(spinnerData) && <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>}
+                        {(spinnerData) &&
+                            <div className="spinner-border spinner-border-sm text-warning me-2" role="status"></div>}
                         Gönder
                     </button>
                 </form>
             </React.Fragment>
         ); //end return 
     } //end render
-} //end CustomerUpdate
+} //end RegisterUpdate
 
 //i18n sarmaladı
-export default withTranslation()(CustomerUpdate)
+export default withTranslation()(RegisterUpdate)

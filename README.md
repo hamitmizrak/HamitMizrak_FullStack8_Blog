@@ -66,7 +66,6 @@ Extensisons
 - Prettier Code formatter
 - Project Manager
 - Reactjs code Snippets
-
 ---
 
 ## Tecnology

@@ -44,6 +44,6 @@ function OtherLanguageReusability(props) {
 }
 
 // export default UserRegister
-//  Higher Order Component: monad componenti başka bir componentin içine  ekleyip oradanda yeni sonuclar elde etmek
+// Higher Order Component: monad componenti başka bir componentin içine  ekleyip oradanda yeni sonuclar elde etmek
 export default withTranslation()(OtherLanguageReusability)
 

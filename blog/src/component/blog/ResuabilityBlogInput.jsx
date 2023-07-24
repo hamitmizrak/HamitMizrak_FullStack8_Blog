@@ -4,11 +4,10 @@
 import React from 'react'
 
 //Stateless (Function Component)
-export default function ResuabilityEmailInput(props) {
-
+export default function ResuabilityBlogInput(props) {
 
     //object destructing
-    const {  type, id, name, placeholder, onChangeInput, focus,value,error } = props;
+    const { label, type, id, name, placeholder, onChangeInput, error, focus, value } = props;
 
     // bootstrap validation 
     // valid: validation(Doğrulama)
@@ -21,12 +20,14 @@ export default function ResuabilityEmailInput(props) {
     //RETURN
     return (
         <React.Fragment>
-            <div className="form-group mb-3">
+            <div className="form-group">
+                <label htmlFor={id}>{label}</label>
                 <input
                     type={type} id={id} name={name}
                     className={className} placeholder={placeholder}
-                    autoFocus={focus} onChange={onChangeInput}
-                    value={value}/>
+                    autoFocus={focus}
+                    onChange={onChangeInput}
+                    value={value} />
                 <div className={"text-danger"} >{error}</div>
             </div>
         </React.Fragment>

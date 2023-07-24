@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
-import CustomerApi from '../../services/CustomerApi';
+
+// Services
+import BlogApi from '../../services/BlogApi';
+
+// i18n için
 import { withTranslation } from "react-i18next";
 
-class CustomerList extends Component {
+class BlogList extends Component {
+
+    // Componentte görünür adı      
+    static displayName = "Blog_List"
+
     constructor(props) {
         super(props);
         //STATE
         this.state = {
-            registerList: [],
+            blogList: [],
         }
         //BIND
         this.create = this.create.bind(this);
@@ -18,47 +26,48 @@ class CustomerList extends Component {
 
     //CDM
     componentDidMount() {
-        CustomerApi.listApi().then(
+        BlogApi.blogListApi().then(
             (response) => {
                 this.setState({
-                    registerList: response.data
+                    blogList: response.data
                 })
             }).catch((error) => {
                 console.log("List Wrong")
             });
     }
 
-
     // FUNCTION
-    // create function
+    // PUSH CREATE
     create() {
         // PHP
-        this.props.history.push("/create")
+        this.props.history.push("/blog/create")
     }
 
+    // PUSH VIEW
     view(id) {
         // PHP
-        this.props.history.push("/view/" + id)
+        this.props.history.push("/blog/view/" + id)
     }
 
+    // PUSH UPDATE
     update(id) {
         // PHP
-        this.props.history.push(`/update/${id}`)
+        this.props.history.push(`/blog/update/${id}`)
     }
 
+    //DELETE
     delete(id) {
-        CustomerApi.deleteApi(id).then(
+        BlogApi.blogDeleteApi(id).then(
             (response) => {
                 this.setState({
-                    registerList: this.state.registerList.filter(
-                        registerList => registerList.id != id
+                    blogList: this.state.blogList.filter(
+                        blogList => blogList.id != id
                     )
                 });
             }).catch(() => {
-                console.log("Delete Wrong")
+                console.log("Blog Delete Wrong")
             });
     }
-
 
     //RENDER
     render() {
@@ -66,8 +75,7 @@ class CustomerList extends Component {
         //RETURN
         return (
             <React.Fragment>
-
-                <h1 className="text-center display-4">Register List</h1>
+                <h1 className="text-center display-4">Blog List</h1>
                 <div className="container">
                     <div className="row">
                         <div className="mx-auto">
@@ -79,10 +87,9 @@ class CustomerList extends Component {
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>NAME</th>
-                                <th>SURNAME</th>
-                                <th>EMAİL</th>
-                                <th>PASSWORD</th>
+                                <th>HEADER</th>
+                                <th>CONTENT</th>
+                                <th>IMAGE</th>
                                 <th>Güncelle</th>
                                 <th>Göster</th>
                                 <th>Sil</th>
@@ -90,17 +97,17 @@ class CustomerList extends Component {
                         </thead>
                         <tbody>
                             {
-                                this.state.registerList.map(temp =>
+
+                                this.state.blogList.map(temp =>
                                     <tr key={temp.id}>
                                         <td>{temp.id}</td>
-                                        <td>{temp.name}</td>
-                                        <td>{temp.surname}</td>
-                                        <td>{temp.email}</td>
-                                        <td>{temp.password}</td>
+                                        <td>{temp.header}</td>
+                                        <td>{temp.content}</td>
+                                        <td>{temp.image}</td>
                                         <td><i style={{ "cursor": "pointer" }} className="text-primary fa-solid fa-pen-to-square" onClick={() => this.update(temp.id)} ></i></td>
                                         <td><i style={{ "cursor": "pointer" }} className="text-warning fa-solid fa-expand" onClick={() => { this.view(temp.id) }}></i></td>
                                         <td><i style={{ "cursor": "pointer" }} className="text-danger fa-solid fa-trash" onClick={() => {
-                                            if (window.confirm("Silmek istediğinizden emin misiniz?")) {
+                                            if (window.confirm("Blogu Silmek istediğinizden Emin misiniz?")) {
                                                 this.delete(temp.id);
                                             } else {
                                                 window.alert("Silinmedi !!!")
@@ -108,6 +115,7 @@ class CustomerList extends Component {
                                         }}></i></td>
                                     </tr>
                                 )
+
                             }
                         </tbody>
                     </table>
@@ -115,7 +123,7 @@ class CustomerList extends Component {
             </React.Fragment>
         ) //end return
     } //end render
-} //end class CustomerList
+} //end class BlogList
 
 //i18n sarmaladı
-export default withTranslation()(CustomerList)
+export default withTranslation()(BlogList)

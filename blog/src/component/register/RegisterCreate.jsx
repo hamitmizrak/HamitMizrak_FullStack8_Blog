@@ -1,13 +1,25 @@
+// React
 import React, { Component } from 'react';
-import { withTranslation } from "react-i18next";
-import CustomerApi from '../../services/CustomerApi';
-import ResuabilityRegisterInput from '../../resuability/ResuabilityRegisterInput';
 
-class CustomerCreate extends Component {
+// i18n
+import { withTranslation } from "react-i18next";
+
+// Services
+import RegisterApi from '../../services/RegisterApi';
+
+// ResuabilityRegisterInput
+import ResuabilityRegisterInput from './ResuabilityRegisterInput';
+
+class RegisterCreate extends Component {
+
+  // Componentte görünür adı      
+  static displayName = "RegisterCreate"
+
   constructor(props) {
     super(props);
     //STATE
     this.state = {
+      isAdmin: false,
       registerDto: {},
       name: null,
       surname: null,
@@ -24,9 +36,7 @@ class CustomerCreate extends Component {
   }
 
   //CDM
-  // componentDidMount() {
-
-  // }
+   componentDidMount() {}
 
   // Input 
   onChangeInputValue = (event) => {
@@ -40,7 +50,7 @@ class CustomerCreate extends Component {
     // Backendten gelen hataları yakalamak,
     // const backendError={}
     // ... anlamı kopyalama yapar.
-    const backendError = {...this.state.validationErrors }
+    const backendError = { ...this.state.validationErrors }
     backendError[name] = undefined;
 
     // STATE
@@ -62,34 +72,37 @@ class CustomerCreate extends Component {
     //browser sen dur bir şey yapma
     event.preventDefault();
 
-    const { name, surname, email, password } = this.state;
+    const { name, surname, email, password, isAdmin } = this.state;
     const registerDto = {
       name, surname, email, password
     }
     console.log(registerDto);
 
     // Spinner Data: çalışsın
-    this.setState({ spinnerData: true })
-    CustomerApi.createApi(registerDto).then((response) => {
-      if (response.status === 200) {
-        // Veri gönderene kadar spinner(loading) çalışmasın
-      }
-      //PHP
-      this.props.history.push("/admin");
-    }).catch((error) => {
-      console.error(error);
+    this.setState({ spinnerData: true });
 
-      // backentten gelen hataları yakala
-      if (error.response.data.validationErrors) {
-        this.setState({ validationErrors: error.response.data.validationErrors })//end state
-        console.log(error.response.data.validationErrors)
-      } //end if
+    // Admin veya Super Admin ise
+    if (isAdmin) {
 
-      this.setState({ spinnerData: false })
-    });
-  }
+    } else { // Normal Kullanıcı ise
+      RegisterApi.createApi(registerDto).then((response) => {
+        if (response.status === 200) {
+          // Veri gönderene kadar spinner(loading) çalışmasın
+        }
+        //PHP
+        this.props.history.push("/login");
+      }).catch((error) => {
+        console.error(error);
+        // backentten gelen hataları yakala
+        if (error.response.data.validationErrors) {
+          this.setState({ validationErrors: error.response.data.validationErrors })//end state
+          console.log(error.response.data.validationErrors)
+        } //end if
 
-
+        this.setState({ spinnerData: false })
+      });
+    }
+  } // end submit
 
   // RENDER
   render() {
@@ -119,6 +132,7 @@ class CustomerCreate extends Component {
               {this.state.validationErrors.name}
             </div>
           </div> */}
+
           <ResuabilityRegisterInput
             type="text" focus={true}
             name="name" id="name"
@@ -182,7 +196,7 @@ class CustomerCreate extends Component {
       </React.Fragment>
     ); //end return 
   } //end render
-} //end CustomerCreate
+} //end RegisterCreate
 
 //i18n sarmaladı
-export default withTranslation()(CustomerCreate)
+export default withTranslation()(RegisterCreate)

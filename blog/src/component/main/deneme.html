@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Kdv Hesapla</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+
+    </style>
+</head>
+
+<body class="bg-primary">
+<div class="container mt-5">
+    <p class="display-4 text-center text-uppercase text-white">KDV</p>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 bg-dark p-4 text-white">
+            <div class="row">
+                <p>Vergi Oranını Seçiniz.</p>
+
+                <form name="formA">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-warning ">
+                            <input type="radio" name="taxName" value="1" checked> %1
+                        </label>
+                        <label class="btn btn-outline-warning">
+                            <input type="radio" name="taxName" value="8"> %8
+                        </label>
+                        <label class="btn btn-outline-warning">
+                            <input type="radio" name="taxName" value="18"> %18
+                        </label>
+                        <label class="btn btn-outline-warning active">
+                            <input type="radio" name="taxName" value="0"> Yüzde Gir
+                        </label>
+                    </div>
+                </form>
+
+                <form class="form-inline mt-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group  mb-2 mt-3 ">
+                                <input type="text" class="form-control" id="taxRate" placeholder="Vergi Oranı">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group  mb-2 mt-3">
+                                <input type="text" class="form-control" id="amount" placeholder="Tutar">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="btn-group btn-group-toggle mt-4" data-toggle="buttons">
+                    <label class="btn btn-primary ">
+                        <input type="radio" name="IsTaxIncluded" value="true" checked> Vergi Dahil
+                    </label>
+                    <label class="btn btn-outline-primary">
+                        <input type="radio" name="IsTaxIncluded" value="false">Vergi Hariç
+                    </label>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-6">Ara Toplam</div>
+                    <div class="col-md-6" id="subTotal">0.00</div>
+                    <div class="col-md-6">Vergi</div>
+                    <div class="col-md-6" id="tax">0.00</div>
+                    <div class="col-md-6">Genel Toplam</div>
+                    <div class="col-md-6" id="grand_total">0.00</div>
+                </div>
+                <button class="btn btn-danger" onclick="radioButtonTax()">KDV HESAPLA</button>
+
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+<script>
+
+    var taxName = document.forms["formA"].elements["taxName"];
+    for (var i = 0, max = taxName.length; i < max; i++) {
+        taxName[i].onclick = function () {
+            document.getElementById("taxRate").value = this.value;
+        }
+    }
+
+    let isTaxIncluded=true;
+    var radioIncludeValue = document.getElementsByName("IsTaxIncluded");
+    for (var i = 0, max = radioIncludeValue.length; i < max; i++) {
+        radioIncludeValue[i].onclick = function () {
+            //console.log(this.value);
+            let isTax=this.value;
+            if(isTax=="true"){
+                isTaxIncluded=true;
+            }else{
+                isTaxIncluded=false;
+            }
+
+        }
+    }
+
+    let radioButtonTax = () => {
+        let radioValue = document.getElementsByName("taxRate");
+        //console.log(radioValue);
+
+        // hangi radio buttona tıkladnığını bilsin
+        for (let i = 0; i < radioValue.length; i++) {
+            //alert(radioValue[i].checked)
+            if (radioValue[i].checked) {
+                document.getElementById("taxRate").value = radioValue[i].value;
+            }
+        }
+
+        let taxRate = Number(document.getElementById("taxRate").value);
+        let amount = Number(document.getElementById("amount").value);
+
+        document.getElementById("subTotal").innerText = amount;
+        let taxData=document.getElementById("tax").innerText;
+        if(isTaxIncluded){
+            taxData= taxRate;
+        }else{
+            taxData = 0;
+        }
+        document.getElementById("tax").value = taxData;
+        document.getElementById("grand_total").innerText = (amount + (amount * taxData / 100));
+
+    }
+
+    // Vergi Oranı ve Tutar Kdv hesaplaması
+
+    /*
+    bütün dataları sıfırla
+    Yüzde tıkladığımda Vergi oranı Focus olsun
+    LocalStorage Eklensin
+    */
+
+</script>
+
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+</script>
+</body>
+
+</html>

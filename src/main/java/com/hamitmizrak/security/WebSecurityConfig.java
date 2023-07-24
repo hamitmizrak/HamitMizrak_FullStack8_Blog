@@ -79,8 +79,6 @@ public class WebSecurityConfig {
                 .requestMatchers("/user/api/v1/create/**").permitAll() // Register izin vermek
                 .requestMatchers("/roles/api/v1/roles/**").permitAll() // Role Sorgulaması izin vermek
 
-
-
                 .requestMatchers("/swagger-ui/**").hasAnyAuthority(ERoles.ADMIN.toString(), ERoles.SuperAdmin.toString())  // swagger-ui
                 .requestMatchers("/h2-console/**").hasAnyAuthority(ERoles.ADMIN.toString(), ERoles.SuperAdmin.toString())  //h2-console
 
@@ -188,7 +186,6 @@ public class WebSecurityConfig {
         return NoOpPasswordEncoder.getInstance();
     }
     */
-
 
 
 } //end class

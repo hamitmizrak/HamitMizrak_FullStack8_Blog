@@ -25,14 +25,14 @@ import java.util.TimeZone;
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareMethod")
 
 // Spring Security
-/*@SpringBootApplication(exclude = {
+@SpringBootApplication(exclude = {
         //SecurityAutoConfiguration.class,
         org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
         org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration.class
 }
-)*/
+)
 
-@SpringBootApplication
+//@SpringBootApplication
 public class EcodationFullStack8BlogApplication {
 
     @PostConstruct

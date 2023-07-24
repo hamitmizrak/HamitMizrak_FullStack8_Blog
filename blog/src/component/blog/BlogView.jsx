@@ -5,9 +5,11 @@ import { withTranslation } from 'react-i18next'
 
 //resim
 import cardPicture from "../../image/mountain.jpg"
-import CustomerApi from '../../services/CustomerApi';
+import BlogApi from '../../services/BlogApi';
 
-class CustomerView extends Component {
+class BlogView extends Component {
+    // Componentte görünür adı      
+    static displayName = "Blog_View"
 
     constructor(props) {
         super(props);
@@ -15,10 +17,9 @@ class CustomerView extends Component {
         this.state = {
             id: this.props.match.params.id,
             // 1.YOL
-            // name: null,
-            // surname: null,
-            // password: null,
-            // email: null,
+            // header: null,
+            // content: null,
+            // image: null,
             // systemDate: null
 
             //2.YOL
@@ -31,15 +32,14 @@ class CustomerView extends Component {
 
     //CDM
     componentDidMount() {
-        CustomerApi.findByIdApi(this.state.id).then((response) => {
+        BlogApi.blogFindByIdApi(this.state.id).then((response) => {
             //console.log(response.data);
-            //console.log(response.data.surname);
+            //console.log(response.data.content);
             this.setState({
                 //1.YOL
-                // name: response.data.name,
-                // surname: response.data.surname,
-                // password: response.data.password,
-                // email: response.data.email,
+                // header: response.data.header,
+                // content: response.data.content,
+                // image: response.data.image,
                 // systemDate: response.data.systemDate,
                 //2.YOL
                 registerDto: response.data
@@ -53,12 +53,12 @@ class CustomerView extends Component {
 
     //FUNCTION
     list() {
-        this.props.history.push("/admin");
+        this.props.history.push("/blog/list");
     }
 
     //RENDER
     render() {
-        const { id, name, surname, email, password, createdDate } = this.state.registerDto;
+        const { id, header, content, image, createdDate } = this.state.registerDto;
         //RETURN
         return (
             <React.Fragment>
@@ -67,10 +67,9 @@ class CustomerView extends Component {
                     <div className="card-body mx-auto">
                         <h4 className="card-title">View</h4>
                         <p className="card-text"> <b>ID:</b> {this.state.id}</p>
-                        <p className="card-text"><b>NAME:</b>  {this.state.registerDto.name}</p>
-                        <p className="card-text"><b>SURNAME:</b> {surname}</p>
-                        <p className="card-text"><b>EMAİL:</b> {email}</p>
-                        <p className="card-text"><b>PASSWORD:</b> {password}</p>
+                        <p className="card-text"><b>header:</b>  {this.state.registerDto.header}</p>
+                        <p className="card-text"><b>content:</b> {content}</p>
+                        <p className="card-text"><b>image:</b> {image}</p>
                         <p className="text-danger"><b>DATE:</b> {createdDate}</p>
                         <button className="btn btn-outline-primary" onClick={this.list}>Liste</button>
                     </div>
@@ -80,4 +79,4 @@ class CustomerView extends Component {
     }//end  render
 }//end  class
 
-export default withTranslation()(CustomerView)
+export default withTranslation()(BlogView)
