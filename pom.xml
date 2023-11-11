@@ -11,12 +11,20 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <!--for project informartion-->
+    <!--for project information-->
     <groupId>com.hamitmizrak</groupId>
     <artifactId>EcodationFullStack8Blog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>EcodationFullStack8Blog</name>
     <description>EcodationFullStack8Blog</description>
+
+    <!--
+    war: java EE için kullanalım. JSP,servlet,html,css3
+    jar: Spring Boot için kullanalım
+    -->
+    <!--apache tomcat manuel için war ekliyorum-->
+    <!--<packaging>war</packaging>-->
+    <packaging>jar</packaging>
 
     <!--properties-->
     <properties>
@@ -38,6 +46,22 @@
     <!--dependencies-->
     <dependencies>
       <!-- COMPONENT -->
+
+        <!--for apache Tomcat-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--apache Tomcat-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
 
         <!-- MAİL-->
         <dependency>
@@ -293,7 +317,13 @@
         </dependency>-->
     </dependencies>
 
+    <!--build-->
     <build>
+        <!--manuel deployment için-->
+        <defaultGoal>spring-boot:run</defaultGoal>
+        <finalName>${project.artifactId}}</finalName>
+
+
         <plugins>
             <!-- for maven -->
             <plugin>

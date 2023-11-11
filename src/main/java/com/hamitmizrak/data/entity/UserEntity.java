@@ -29,6 +29,8 @@ public class UserEntity extends AuditingAwareBaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Global Variable (6)
+    // Dikkat: message sonunda boşluk olmasın
     // NAME
     private String name;
 

@@ -26,7 +26,8 @@ import java.util.*;
 
 // SERVICE
 @Service
-@Component("userServiceImpl") //spring'in bir parçası olduğunu teyit ediyorum.
+//@Component("userServiceImpl") //spring'in bir parçası olduğunu teyit ediyorum.
+@Component //spring'in bir parçası olduğunu teyit ediyorum.
 public class UserServicesImpl implements IUserService {
 
     // INJECTION

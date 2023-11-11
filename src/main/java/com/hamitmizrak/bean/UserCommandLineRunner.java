@@ -99,7 +99,7 @@ public class UserCommandLineRunner {
                             .build();
                     iBlogGenericsServices.blogServiceCreate(blogDto);
                 } // end blog
-            } //end if
+            } //end if*/
 
            /* Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
             if(authentication!=null && authentication.isAuthenticated()){

@@ -58,20 +58,20 @@ public class UserDto extends AuditingAwareBaseDto implements Serializable {
 
     // #######################################################
     // USER DETAILS
-    // Kullanıcı başlangıçta kilitli yani sisteme giremezsin
+    // Kullanıcı başlangıçta kilitli yani sisteme giremezsin(Mail ile aktif etsin)
     @Builder.Default
     private Boolean isAccountNonLocked = false;
 
     // Kullanıcını Hesap süresi Doldu mu ?
     @Builder.Default
-    private Boolean isAccountNonExpired = false;
+    private Boolean isAccountNonExpired = true;
 
     // Kulllanıcının Bilgi Süresi Doldu mu?
     @Builder.Default
-    private Boolean isCredentialsNonExpired = false;
+    private Boolean isCredentialsNonExpired = true;
 
     // Kullanıcı Aktif mi ? pasif mi
     @Builder.Default
-    private Boolean isEnabled = false;
+    private Boolean isEnabled = true;
 
 } //end class

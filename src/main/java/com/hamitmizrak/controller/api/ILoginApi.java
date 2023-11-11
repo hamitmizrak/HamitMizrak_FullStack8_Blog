@@ -7,14 +7,15 @@ import org.springframework.http.ResponseEntity;
 
 import java.net.http.HttpResponse;
 
-// NOT: interface için önemli bilgiler
-// 1-) interface extends ile başka bir interface ekleyebilirsin. =>
-// public interface IProfileHeaderApp extends IModelMapperService
-
-// 2-) interface abstract ekleyerek implements eden class bütün metotları eklemez. =>
-// abstract public interface IProfileHeaderApp
+// Authentication: Kimlik Doğrulama
+// Authorization : Kimlik Yetkilendirme
 public interface ILoginApi {
 
+    // LOGIN Basic Authentication
     public ResponseEntity<?> loginHandleAuthentication(String authorization);
+
+    // LOGOUT
+    // import jakarta.servlet.http.HttpServletRequest;
+    // import jakarta.servlet.http.HttpServletResponse;
     public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response);
 }
