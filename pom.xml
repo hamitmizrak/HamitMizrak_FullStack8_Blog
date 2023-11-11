@@ -40,45 +40,15 @@
         <modelmapper.version>2.4.4</modelmapper.version>
         <swagger.version>2.0.0</swagger.version>
         <gson.version>2.8.6</gson.version>
-        <swagger.fox.version>3.0.0</swagger.fox.version>
+      <!--  <swagger.fox.version>3.0.0</swagger.fox.version>-->
     </properties>
 
-    <!--dependencies-->
     <dependencies>
-      <!-- COMPONENT -->
-
-        <!--for apache Tomcat-->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!--apache Tomcat-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-
+        <!-- #### ÖNEMLİ KÜTÜPHANLER #################################################  -->
         <!-- MAİL-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
-
-        <!--Spring Web Mvc Rest-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!--Cache-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
 
         <!--lombok-->
@@ -101,119 +71,6 @@
             <version>${modelmapper.version}</version>
         </dependency>
 
-        <!-- swagger open-api-3.0-->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-
-        <!-- swagger open-api-3.0-->
-        <!--unutma ==> @SpringBootApplication @EnableSwagger2 eklemek gerekiyor-->
-       <!-- <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.5</version>
-        </dependency>-->
-
-        <!-- swagger springfox-->
-       <!-- <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>-->
-
-        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
-      <!--  <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>${swagger.fox.version}</version>
-        </dependency>-->
-
-        <!-- Spring data-jpa-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <!-- JDBC Template-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-
-        <!--Database-->
-        <!--h2DB-->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!--Mysql-->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!--postgresql-->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!--Mongo DB Kalıcı veri-->
-        <!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>-->
-
-        <!--Mongo DB Embedded Test icin -->
-        <!--<dependency>
-            <groupId>de.flapdoodle.embed</groupId>
-            <artifactId>de.flapdoodle.embed.mongo</artifactId>
-            <scope>test</scope>
-        </dependency>-->
-
-        <!--security-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!--actuator-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-
-        <!--Templates thymeleaf-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-
-        <!--TEST-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!--tools-->
         <!-- JSON işlemleri için gson-->
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -236,25 +93,184 @@
             <optional>true</optional>
         </dependency>
 
-        <!--  json web token JWT-->
-       <!-- <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.9.1</version>
-        </dependency>-->
+        <!-- jackson: JSON donusturmelerinde XML -->
+        <!--
+          <dependency>
+             <groupId>com.fasterxml.jackson.dataformat</groupId>
+             <artifactId>jackson-dataformat-xml</artifactId>
+         </dependency>
+         -->
 
-        <!--mail send-->
+        <!-- web jar Bootstrap-->
+        <!--
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.7-1</version>
+        </dependency>
+        -->
+
+        <!-- web jar jquery-->
+        <!--
+        <dependency>
+             <groupId>org.webjars</groupId>
+             <artifactId>jquery</artifactId>
+             <version>3.3.1-1</version>
+         </dependency>
+         -->
+
+        <!-- #### DEPLOYMENT #################################################  -->
+        <!--for apache Tomcat-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--apache Tomcat-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- #### MVC / API #################################################  -->
+        <!--Spring Web Mvc Rest-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <!--Templates thymeleaf-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- swagger open-api-3.0-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+
+        <!-- swagger open-api-3.0-->
+        <!--unutma ==> @SpringBootApplication @EnableSwagger2 eklemek gerekiyor-->
+        <!--
+            <dependency>
+                 <groupId>org.springdoc</groupId>
+                 <artifactId>springdoc-openapi-ui</artifactId>
+                 <version>1.6.5</version>
+             </dependency>
+         -->
+
+        <!-- swagger springfox-->
+        <!--
+            <dependency>
+                 <groupId>io.springfox</groupId>
+                 <artifactId>springfox-boot-starter</artifactId>
+                 <version>${swagger.version}</version>
+             </dependency>
+         -->
+
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
+        <!--
+            <dependency>
+                  <groupId>io.springfox</groupId>
+                  <artifactId>springfox-boot-starter</artifactId>
+                  <version>${swagger.fox.version}</version>
+              </dependency>
+          -->
+
+        <!-- #### AUTHENTICATION / AUTHORIZATION #################################################  -->
+        <!--  json web token JWT-->
+        <!--
+            <dependency>
+                 <groupId>io.jsonwebtoken</groupId>
+                 <artifactId>jjwt</artifactId>
+                 <version>0.9.1</version>
+             </dependency>
+         -->
+
+        <!-- #### DATABASE #################################################  -->
+        <!-- Spring data-jpa-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!--Cache-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+        <!-- JDBC Template-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!--Database-->
+        <!--h2DB-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--Mysql-->
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
+        </dependency>
+
+        <!--postgresql-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--Mongo DB Kalıcı veri-->
         <!--<dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>-->
 
-        <!-- jackson: XML -->
-       <!-- <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
+        <!--Mongo DB Embedded Test icin -->
+        <!--<dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <scope>test</scope>
+        </dependency>-->
+
+        <!-- #### SECURITY #################################################  -->
+        <!--security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-           -->
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--aop-->
+        <!-- <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-aop</artifactId>
+         </dependency>-->
 
         <!--SHA dependecy-->
         <!--<dependency>
@@ -263,58 +279,68 @@
             <version>20.0</version>
         </dependency>-->
 
-        <!--  Prometheus: Prometheus için gerekli olacak -->
-        <!-- Prometheus:System %of Memoryconsumption ,of CPU consumption -->
-      <!--  <dependency>
+        <!-- #### DEVOPS #################################################  -->
+        <!-- Prometheus -->
+        <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
             <scope>runtime</scope>
-        </dependency>-->
+        </dependency>
 
-        <!-- web jar Bootstrap-->
-        <!--<dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>3.3.7-1</version>
-        </dependency>-->
-
-        <!-- web jar jquery-->
-       <!-- <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>3.3.1-1</version>
-        </dependency>-->
-
-        <!--aop-->
-       <!-- <dependency>
+        <!--actuator-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Docker Compose -->
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-docker-compose</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
         </dependency>-->
 
         <!--redis-->
-      <!--  <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>2.7.0</version>
-        </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-        </dependency>-->
+        <!--  <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-data-redis</artifactId>
+              <version>2.7.0</version>
+          </dependency>
+          <dependency>
+              <groupId>redis.clients</groupId>
+              <artifactId>jedis</artifactId>
+          </dependency>-->
 
         <!--other libraries-->
         <!--grapQL: Dikkat: graphql ve graphiql aynı sürüm olmalıdır.-->
-     <!--   <dependency>
-            <groupId>com.graphql-java</groupId>
-            <artifactId>graphql-spring-boot-starter</artifactId>
-            <version>5.0.2</version>
-        </dependency>
+        <!--   <dependency>
+               <groupId>com.graphql-java</groupId>
+               <artifactId>graphql-spring-boot-starter</artifactId>
+               <version>5.0.2</version>
+           </dependency>
 
+           <dependency>
+               <groupId>com.graphql-java</groupId>
+               <artifactId>graphql-java-tools</artifactId>
+               <version>5.2.4</version>
+           </dependency>-->
+
+        <!--  Prometheus: Prometheus için gerekli olacak -->
+        <!-- Prometheus:System %of Memoryconsumption ,of CPU consumption -->
+        <!--  <dependency>
+              <groupId>io.micrometer</groupId>
+              <artifactId>micrometer-registry-prometheus</artifactId>
+              <scope>runtime</scope>
+          </dependency>-->
+
+        <!-- #### TEST #################################################  -->
+        <!--TEST-->
         <dependency>
-            <groupId>com.graphql-java</groupId>
-            <artifactId>graphql-java-tools</artifactId>
-            <version>5.2.4</version>
-        </dependency>-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <!--build-->
