@@ -43,7 +43,7 @@ public class UserDto extends AuditingAwareBaseDto implements Serializable {
     //PASSWORD
     //@JsonIgnore // backentte giden veriyi saklar
     @NotEmpty(message = "{user.password.validation.constraints.NotNull.NotNull.message}")
-    @Size(min = 7, max = 10, message = "{user.password.pattern.validation.constraints.NotNull.message}")
+    @Size(min = 7, max = 15, message = "{user.password.pattern.validation.constraints.NotNull.message}")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).*$", message = "{user.password.pattern.validation.constraints.NotNull.message}")
     private String password;
 
