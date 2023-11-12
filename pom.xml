@@ -43,6 +43,7 @@
       <!--  <swagger.fox.version>3.0.0</swagger.fox.version>-->
     </properties>
 
+    <!--dependencies-->
     <dependencies>
         <!-- #### ÖNEMLİ KÜTÜPHANLER #################################################  -->
         <!-- MAİL-->
@@ -348,7 +349,6 @@
         <!--manuel deployment için-->
         <defaultGoal>spring-boot:run</defaultGoal>
         <finalName>${project.artifactId}}</finalName>
-
 
         <plugins>
             <!-- for maven -->

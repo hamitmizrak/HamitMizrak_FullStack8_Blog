@@ -19,8 +19,10 @@ public interface IUserService {
 
     ////////////////////////////////////
     // EMAIL CONFIRMATION
+    // EMAIL TOKEN CONFIRMATION
     public void emailTokenConfirmation(TokenConfirmationEntity tokenConfirmationEntity);
 
+    // EMAIL TOKEN FIND
     public Optional<TokenConfirmationEntity> findTokenConfirmation(String token);
 
     //SIGN IN (Giriş yap)
